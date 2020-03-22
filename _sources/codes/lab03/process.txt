@@ -1,0 +1,55 @@
+(Unit: tick)
+Process   Turnaround   Waiting   CPU Burst   I/O Burst
+     0           75        67           8           0
+     1         2518         0           1        2517
+     2           25         4          21           0
+     3         3003         0           4        2999
+     4         5317         6          51        5260
+     5            3         0           3           0
+Average:     1823.50     12.83
+Throughout: 0.11/s
+-----===< COOL GRAPHIC OF SCHEDULER >===-----
+
+            [Symbol]   [Meaning]
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+             number   PID or tick
+              "-"     New or Exit
+              "#"       Running
+              "|"        Ready
+              ":"       Waiting
+                    / Running with
+              "+" -|     Ready
+                    \and/or Waiting
+
+-----===< !!!!!!!!!!!!!!!!!!!!!!!!! >===-----
+
+  40 -0
+  41 #0
+  42 #
+  43 #
+  44 #
+  45 #
+  46 #
+  47 #
+  48 |0  -1
+  49 |   :1  -2
+  50 |   :   #2
+  51 |   :   #
+  52 |   :   #
+  53 |   :   #
+  54 |   :   #
+  55 |   :   #
+  56 |   :   #
+  57 |   :   #
+  58 |   :   #
+  59 |   :   #
+  60 |   :   #
+  61 |   :   #
+  62 |   :   #
+  63 |   :   #
+  64 |   :   |2  -3
+  65 |   :   |   #3
+  66 |   :   |   #
+  67 |   :   |   #
+…………
+

@@ -1,0 +1,128 @@
+.. myos documentation master file, created by
+   sphinx-quickstart on Wed Oct 30 10:48:45 2019.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+
+**********************************
+实验环境的搭建与使用
+**********************************
+
+本操作系统实验的硬件环境是IA-32(x86)架构的PC机（就是你现在正在使用的计算机），主要软件环境是Bochs + gcc + 你最喜欢的编辑器/IDE + 你最喜欢的操作系统 + Linux 0.11源代码。实验的基本流程是根据实验要求编写应用程序、修改Linux 0.11的源代码，用gcc编译后，在Bochs的虚拟环境中运行、调试目标代码。
+
+
+主要平台和工具简介
+================================
+
+
+
+x86模拟器Bochs
+----------------------------
+
+Bochs是一个免费且开放源代码的IA-32(x86)架构PC机模拟器。在它模拟出的环境中可以运行Linux、DOS和各种版本的Windows等多种操作系统。而Bochs本身具有很高的移植性，可以运行在多种软硬件平台之上，这也是我们选择它做为本书的指定模拟器的主要原因。如果您想拥抱自由的Linux，那么Bochs几乎是您的不二选择。如果您想继续把自己绑定在Windows平台上，那么除了Bochs，您还可以选用VMware或者Microsoft Virtual PC。它们是最著名虚拟机软件，而且都可以免费使用。因为Bochs的是模拟器，其原理决定了它的运行效率会低于虚拟机。但对于本书所设计的实验来说，效率上的差别很不明显。而且，Bochs有虚拟机无可比拟的调试操作系统的能力，所以我们更建议您选用Bochs。hit-oslab已经内置了bochs，本书后文假定的缺省环境也是Bochs。
+
+关于Bochs的更详细的介绍请访问它的主页及Bochs使用手册。
+
+
+GCC编译器
+----------------------------
+GCC是和Linux一起成长起来的编译器。Linux最初的版本就是由GCC编译的。现在GCC也是在自由软件领域应用最广泛的编译器。所以，我们也选择GCC做为本书实验的指定编译器。
+
+DB调试器
+----------------------------
+GDB调试器是GCC编译器的兄弟。做为自由软件领域几乎是唯一的调试器，它秉承了*nix类操作系统的一贯风格，采用纯命令行操作，有点儿类似dos下的debug。关于它的使用方法请看GDB使用手册。
+
+
+
+H4 -- Subsubsection
++++++++++++++++++++
+
+
+.. code-block:: python
+
+   print "Hello"
+
+
+.. code-block:: console
+
+    echo "Hello"
+
+.. code-block:: bash
+
+    $ pip install redis-py
+
+
+
+.. code-block:: C
+   :emphasize-lines: 3,5
+
+    struct exec {
+        unsigned char a_magic[2];  //执行文件魔数
+        unsigned char a_flags;
+        unsigned char a_cpu;       //CPU标识号
+        unsigned char a_hdrlen;    //头部长度，32字节或48字节
+        unsigned char a_unused;
+        unsigned short a_version;
+        long a_text; long a_data; long a_bss; //代码段长度、数据段长度、堆长度
+        long a_entry;    //执行入口地址
+        long a_total;    //分配的内存总量
+        long a_syms;     //符号表大小
+    };
+
+.. code-block:: dasm16
+
+    !以16进制方式打印栈顶的16位数
+
+    print_hex:
+        mov cx, #4
+
+.. code-block:: asm
+
+    #以16进制方式打印栈顶的16位数
+
+    print_hex:
+        mov cx, $4      # 4个十六进制数字
+        mov dx,(bp)     # 将
+
+
+    .text
+    .globl idt,gdt,pg_dir,tmp_floppy_area
+    pg_dir:
+    .globl startup_32
+    startup_32:
+        movl $0x10,%eax
+
+.. code-block:: dasm16
+   :emphasize-lines: 3,5
+
+    ! 以16进制方式打印栈顶的16位数
+
+    print_hex:
+        mov    cx,#4         ! 4个十六进制数字
+        mov    dx,(bp)       ! 将(bp)所指的值放入dx中，如果bp是指向栈顶的话
+    print_digit:
+        rol    dx,#4         ! 循环以使低4比特用上 !! 取dx的高4比特移到低4比特处。
+        mov    ax,#0xe0f     ! ah = 请求的功能值，al = 半字节(4个比特)掩码。
+        and    al,dl         ! 取dl的低4比特值。
+        add    al,0x30       ! 给al数字加上十六进制0x30
+        add    al,$0x30      ! 给al数字加上十六进制0x30
+        cmp    al,#0x3a
+        jl     outp          !是一个不大于十的数字
+        add    al,#0x07      !是a～f，要多加7
+    outp:
+        int    0x10
+        loop   print_digit
+        ret
+
+.. literalinclude:: ../codes/me.s
+   :language: dasm16
+   :lines: 1,3,5-10,20-
+
+.... literalinclude:: ../codes/bootsect.s
+   ..:language: dasm16
+
+.. literalinclude:: ../codes/boot.s
+   :language: nasm
+
+.. literalinclude:: ../codes/memory.c
+   :language: C

@@ -1,0 +1,47 @@
+保护模式内存管理
+================
+
+内存管理概览
+------------
+
+了解与掌握以下概念，并掌握它们之间的变换：
+
+* 逻辑地址 Logical Address
+* 线性地址 Linear Address
+* 物理地址 Physical Address
+
+有关分段管理的内容一定要掌握，有关分页的内容，我们会在以后的课程中详细介绍。
+
+分段机制
+--------
+
+了解以下分段模型：
+
+* Basic Flat Model
+* Protected Flat Model
+* Multi-Segment Model
+
+逻辑地址和线性地址的转换
+------------------------
+
+重点掌握以下内容：
+
+* 段选择子 Segment Selectors
+* 段寄存器 Segment Registers，以及如何加载它们
+* 段描述子 Segment Descriptors，掌握其结构
+
+掌握以上概念后，思考如何将逻辑地址转换成线性地址的，处理器做了几件事？
+
+描述符的分类
+------------
+
+重点掌握有关描述符以下内容：
+
+* 数据段描述符 Data segment Descriptor
+* 代码段描述符 Code segment Descriptor
+* 局部描述符表描述符 Local descriptor-table (LDT) segment descriptor
+* 任务状态段描述符 Task-state segment (TSS) descriptor
+* 调用门描述符 Call-gate descriptor
+* 中断门描述符 Interrupt-gate descriptor
+* 陷阱门描述符 Trap-gate descriptor
+* 任务门描述符 Task-gate descriptor

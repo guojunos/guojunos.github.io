@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>2. 保护模式内存管理 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. 中断和异常处理" href="chap04.html" />
+    <link rel="prev" title="1. x86系统架构概览" href="chap02.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 保护模式内存管理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 内存管理概览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 分段机制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2.3. 逻辑地址和线性地址的转换</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">2.4. 描述符的分类</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>2. 保护模式内存管理</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>2. 保护模式内存管理<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>2.1. 内存管理概览<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>了解与掌握以下概念，并掌握它们之间的变换：</p>
+<ul class="simple">
+<li><p>逻辑地址 Logical Address</p></li>
+<li><p>线性地址 Linear Address</p></li>
+<li><p>物理地址 Physical Address</p></li>
+</ul>
+<p>有关分段管理的内容一定要掌握，有关分页的内容，我们会在以后的课程中详细介绍。</p>
+</div>
+<div class="section" id="id3">
+<h2>2.2. 分段机制<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>了解以下分段模型：</p>
+<ul class="simple">
+<li><p>Basic Flat Model</p></li>
+<li><p>Protected Flat Model</p></li>
+<li><p>Multi-Segment Model</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>2.3. 逻辑地址和线性地址的转换<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>重点掌握以下内容：</p>
+<ul class="simple">
+<li><p>段选择子 Segment Selectors</p></li>
+<li><p>段寄存器 Segment Registers，以及如何加载它们</p></li>
+<li><p>段描述子 Segment Descriptors，掌握其结构</p></li>
+</ul>
+<p>掌握以上概念后，思考如何将逻辑地址转换成线性地址的，处理器做了几件事？</p>
+</div>
+<div class="section" id="id5">
+<h2>2.4. 描述符的分类<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>重点掌握有关描述符以下内容：</p>
+<ul class="simple">
+<li><p>数据段描述符 Data segment Descriptor</p></li>
+<li><p>代码段描述符 Code segment Descriptor</p></li>
+<li><p>局部描述符表描述符 Local descriptor-table (LDT) segment descriptor</p></li>
+<li><p>任务状态段描述符 Task-state segment (TSS) descriptor</p></li>
+<li><p>调用门描述符 Call-gate descriptor</p></li>
+<li><p>中断门描述符 Interrupt-gate descriptor</p></li>
+<li><p>陷阱门描述符 Trap-gate descriptor</p></li>
+<li><p>任务门描述符 Task-gate descriptor</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="chap04.html" class="btn btn-neutral float-right" title="3. 中断和异常处理" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="chap02.html" class="btn btn-neutral float-left" title="1. x86系统架构概览" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. GuoJun LIU
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

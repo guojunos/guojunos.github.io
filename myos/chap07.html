@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>操作系统内核程序 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>操作系统内核程序</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>操作系统内核程序<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id2">
+<h2>在进入时钟中断之前做了哪些准备工作？<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>初始化ds，不初始化行不行？不行，找不到数据区，进入保护模式之前，ds，es
+都为0x07c0，必须重新初始为0x10，这样基地址变为0x0。此外，栈空间必须提前
+准备好。</p>
+<p>重新建idt表，讲述建的过程，怎样用寄存器在内存地址里拼成64字节的描述符
+，预留了256个中断向量表，全用0初始化，然后，用循环创建256个默认中断，装
+载idtr，用预先放在内存的6个字节，限长设为256。此外，需要额外讲述call的用
+法，近调用只把下一指令的ip放在栈里，ret近返回弹栈时，只把ip弹出来。</p>
+<p>gdt表建好后，必须重新刷新各个段寄存器，ds、es、fs，gs等，栈按理说，到
+此时没变化，为了安全起见，重新设了一遍栈顶。</p>
+<p>设置8253定时芯片，把计数器通道0设置成每隔10ms向中断向量控制器发送一个
+中断请求信号，硬件操作，无需多讲。</p>
+<p>在idt表第8项和第0x80项处，分别设置定时中断门描述符和系统调用陷阱门描述
+符。</p>
+</div>
+<div class="section" id="id3">
+<h2>构建堆栈返回，完成从内核模式切换到用户模式<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>理解如何从内核模式切换到用户模式</p>
+<p>压到哪个栈</p>
+<p>压入堆栈几个值？</p>
+<p>压入的值分别是什么？</p>
+<p>次序是什么?</p>
+</div>
+<div class="section" id="id4">
+<h2>弹栈以后，计算机是如何跳转到任务0的用户程序<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>CS，EIP是如何取值的</p>
+<p>CS=0x0f应该查GDT还是LDT表</p>
+<p>LDT表的基地址从哪里获得</p>
+</div>
+<div class="section" id="id5">
+<h2>特权级变化，栈需要切换<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>当特权级变化，为什么要进行栈切换</p>
+<p>任务空间一般有几个栈空间</p>
+<p>如何切换到相应的栈</p>
+</div>
+<div class="section" id="x80">
+<h2>如何响应0x80中断<a class="headerlink" href="#x80" title="永久链接至标题">¶</a></h2>
+<p>理解掌握保护模式下中断响应机制</p>
+<p>如何跳转到相应中断程序？</p>
+<p>中断程序发生时，特权级是否改变？</p>
+<p>栈是否要切换？</p>
+<p>系统是否进行了压栈，压入的是什么？为什么要压栈？</p>
+<p>响应完中断，如何返回？</p>
+</div>
+<div class="section" id="x08">
+<h2>如何响应0x08时钟中断<a class="headerlink" href="#x08" title="永久链接至标题">¶</a></h2>
+<p>时钟中断是从哪里被响应的？</p>
+<p>时钟中断里是如何完成用户任务切换的</p>
+<p>时钟中断里，程序执行流程是怎样的？</p>
+<p>当任务0切换到任务1，再切换回任务0时，是从Task0处继续执行吗？</p>
+<p>从时钟中断是如何返回的？</p>
+</div>
+<div class="section" id="id6">
+<h2>如何从任务0切换到任务1<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>理解什么是TSS？</p>
+<p>当ljmp TSS1时，硬件做了哪些操作？</p>
+<p>如何保护被切换的现场？</p>
+<p>tr，ldtr变化吗？</p>
+<p>程序跳到哪里去执行，如何跳的？</p>
+</div>
+<div class="section" id="id7">
+<h2>深入理解模式切换与任务切换<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<p>一个完整的时钟中断的流程是怎样的？</p>
+<p>操作系统是如何在内核模式与内核模式下切换的</p>
+<p>模式切换与任务切换的区别是什么？</p>
+<p>分析一下切换的代价</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. GuoJun LIU
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

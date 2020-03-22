@@ -1,0 +1,39 @@
+虚拟机环境 VirtualBox + Ubuntu
+================================================================================
+
+
+
+VirtualBox 设置
+---------------------------------------------------------------------------
+
+*  下载安装 `VirtualBox <https://www.virtualbox.org/>`_
+*  系统 -> 指点设备(P): **PS/2 鼠标**
+*  显示 -> 显示控制器(G): **VBoxVGA**
+*  存储 -> 控制器:IDE -> **VBoxGuestAdditionis.iso** 安装增强功能
+*  网络 -> 连接方式(A): 桥接网卡
+*  网络 -> 控制芯片(T): **PCnet-FAST III**
+*  网络 -> 混杂模式(P): **拒绝**
+*  共享文件夹 -> 制定一个需要共享的目录
+
+Ubuntu 设置
+---------------------------------------------------------------------------
+
+*  下载并在VirtualBox中安装 `Ubuntu <https://ubuntu.com/download>`_
+*  更新国内源， ``/etc/apt/sources.list`` 
+
+.. code-block::
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+
+*  配置 ``SSH``
+*  VSCODE，安装插件 ``Remote Development`` 等，通过远程编辑与调试代码

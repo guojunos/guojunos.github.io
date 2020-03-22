@@ -1,0 +1,385 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. 打印进程地址转换过程 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="1. 中断向量表" href="../appendix/BIOS.html" />
+    <link rel="prev" title="5. 地址映射与共享" href="lab05.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. 打印进程地址转换过程</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">6.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">6.2. 实验内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">6.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">6.3.1. 评分标准</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">6.4. 实验提示</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>6. 打印进程地址转换过程</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>6. 打印进程地址转换过程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>难度系数：★★★★☆</p>
+<div class="section" id="id2">
+<h2>6.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>深入理解操作系统的段、页式内存管理，深入理解段表、页表、逻辑地址、线性地址、物理地址等概念；</p></li>
+<li><p>实践段、页式内存管理的地址映射过程；</p></li>
+<li><p>编程打印特定进程地址转换过程。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>6.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>本次实验的基本内容是：</p>
+<p>本实验在地址映射与共享实验的基础上，需要增加实现一个系统调用，使得你可以观察两个通过共享内存（ <code class="docutils literal notranslate"><span class="pre">shmget</span></code> , <code class="docutils literal notranslate"><span class="pre">shmat</span></code> ）通信的进程的内存共享情况。</p>
+<p>例如，你可以实现以下系统调用：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">debug_paging</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">logPath</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>当 <code class="docutils literal notranslate"><span class="pre">address</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 的时候，该系统调用将会打印pid进程所有正在使用的（P位为0，不考虑虚拟存储）页目录项和页表项。否则只输出 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的页地址转换过程。当 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 打印输出为标准输出，否则为 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 对应的文本文件。</p>
+<p>例如，对于以下测试程序：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* test.c */</span>
+<span class="cp">#define   __LIBRARY__</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unistd.h&gt;</span><span class="cp"></span>
+
+<span class="n">_syscall3</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">debug_paging</span><span class="p">,</span> <span class="kt">pid_t</span><span class="p">,</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">,</span> <span class="n">logPath</span><span class="p">);</span>
+
+<span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mh">0x12345678</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;The logical/virtual address of i is 0x%08x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">fflush</span><span class="p">(</span><span class="n">stdout</span><span class="p">);</span>
+    <span class="n">debug_paging</span><span class="p">(</span><span class="n">getpid</span><span class="p">(),</span> <span class="o">&amp;</span><span class="n">i</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">);</span>
+    <span class="n">debug_paging</span><span class="p">(</span><span class="n">getpid</span><span class="p">(),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="s">&quot;/usr/var/paging.log&quot;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>输出可以为：</p>
+<p><img alt="Demo1" src="../_images/lab06_demo1.gif" /></p>
+<p>图1. Demo</p>
+<p>又比如，对于地址映射与共享实验，我们可以在 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">shmat(shmid)</span></code> 后使用：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">debug_paging</span><span class="p">(</span><span class="n">getpid</span><span class="p">(),</span> <span class="n">p</span><span class="p">,</span> <span class="s">&quot;/usr/var/paging.log&quot;</span><span class="p">);</span>
+<span class="n">debug_paging</span><span class="p">(</span><span class="n">getpid</span><span class="p">(),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="s">&quot;/usr/var/paging.log&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>并在 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">shmat(shmid)</span></code> 后使用：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">debug_paging</span><span class="p">(</span><span class="n">getpid</span><span class="p">(),</span> <span class="nb">NULL</span><span class="p">,</span> <span class="s">&quot;/usr/var/paging.log&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>来观察和验证共享内存页的情况，输出可以为：</p>
+<p><img alt="Demo2" src="../_images/lab06_demo2.gif" /></p>
+<p>图2. Demo</p>
+<p>可以看到，两个进程共享的内存页是 <code class="docutils literal notranslate"><span class="pre">0xFA9000</span></code> 。</p>
+</div>
+<div class="section" id="id4">
+<h2>6.3. 实验报告<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>完成实验后，在实验报告中回答如下问题：</p>
+<ul class="simple">
+<li><p>页表中正在使用的页表项是连续的吗？这体现了分页的什么优点？</p></li>
+<li><p>你觉的分段是必要的吗？现在的Linux (x86-64) 是怎么处理分段的？</p></li>
+</ul>
+<div class="section" id="id5">
+<h3>6.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>输出能够反映内存共享情况，80%</p></li>
+<li><p>实验报告，20%</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>6.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>《注释》中的4.3和4.4节描述了8086下的分段和分页机制，第13章讲解了Linux 0.11下的内存管理（分段和分页管理）和分配机制，值得参考。</p>
+<p>例如页转换和地址分配：</p>
+<p><img alt="Demo3" src="../_images/lab06_demo3.png" /></p>
+<p><img alt="Demo4" src="../_images/lab06_demo4.png" /></p>
+<p><img alt="Demo5" src="../_images/lab06_demo5.png" /></p>
+<p><img alt="Demo6" src="../_images/lab06_demo6.png" /></p>
+<p>为了更方便的向文件或者终端格式化输出，你可以在 <code class="docutils literal notranslate"><span class="pre">/kernel/printk.c</span></code> 中实现一个 <code class="docutils literal notranslate"><span class="pre">fprintk</span></code> ：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">char</span> <span class="n">logbuf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">fprintk</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...)</span>
+<span class="p">{</span>
+    <span class="kt">va_list</span> <span class="n">args</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">file</span> <span class="o">*</span> <span class="n">file</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">m_inode</span> <span class="o">*</span> <span class="n">inode</span><span class="p">;</span>
+
+    <span class="n">va_start</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">fmt</span><span class="p">);</span>
+    <span class="n">count</span><span class="o">=</span><span class="n">vsprintf</span><span class="p">(</span><span class="n">logbuf</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
+    <span class="n">va_end</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fd</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">__asm__</span><span class="p">(</span><span class="s">&quot;push %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;push %%ds</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl $logbuf</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %1</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;call sys_write</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;addl $8,%%esp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;popl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs&quot;</span>
+            <span class="o">::</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">fd</span><span class="p">)</span><span class="o">:</span><span class="s">&quot;ax&quot;</span><span class="p">,</span><span class="s">&quot;cx&quot;</span><span class="p">,</span><span class="s">&quot;dx&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">]))</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">inode</span><span class="o">=</span><span class="n">file</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="p">;</span>
+
+        <span class="n">__asm__</span><span class="p">(</span><span class="s">&quot;push %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;push %%ds</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl $logbuf</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %1</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %2</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;call file_write</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;addl $12,%%esp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;popl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs&quot;</span>
+            <span class="o">::</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">file</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">inode</span><span class="p">)</span><span class="o">:</span><span class="s">&quot;ax&quot;</span><span class="p">,</span><span class="s">&quot;cx&quot;</span><span class="p">,</span><span class="s">&quot;dx&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>此外，别忘了在 <code class="docutils literal notranslate"><span class="pre">/include/linux/kernel.h</span></code> 中添加声明：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">fprintk</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...);</span>
+</pre></div>
+</div>
+<p>由于我们是在内核中对页表进行输出处理，所以使用 <strong>系统调用</strong> 的时候别忘了加上 <code class="docutils literal notranslate"><span class="pre">sys</span></code> ，例如 <code class="docutils literal notranslate"><span class="pre">sys_open</span></code> 和  <code class="docutils literal notranslate"><span class="pre">sys_close</span></code> 。</p>
+<p>最后，无论你是在 <code class="docutils literal notranslate"><span class="pre">/kernel/</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">/mm/</span></code> 添加了系统调用的实现文件，记得修改对应的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 文件。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../appendix/BIOS.html" class="btn btn-neutral float-right" title="1. 中断向量表" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lab05.html" class="btn btn-neutral float-left" title="5. 地址映射与共享" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. GuoJun LIU
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

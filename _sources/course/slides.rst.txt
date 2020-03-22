@@ -1,0 +1,30 @@
+课件资料
+===============
+
+电子版为可在电脑上单页全屏观看版本，打印版为方便复习打印时使用，两版内容一致
+
+.. csv-table:: 
+   :header: "章 节", "题 目"
+   :align: center
+   :widths: 25, 100
+
+         Chapter 01, Computer System Overview
+         Chapter 02, Operating System Overview
+         Chapter 03, Process Description and Control
+         Chapter 04, Threads
+         Chapter 05, Concurrency: Mutual Exclusion and Synchronization
+         Chapter 06, Concurrency: Deadlock and Starvation
+         Chapter 07, Memory Management
+         Chapter 08, Virtual Memory
+         Chapter 09, Uniprocessor Scheduling
+         Chapter 10, I/O Management and Disk Scheduling	
+         Chapter 11, File Management
+         Chapter A1, Intel IA-32 Architectures Software Developer’s Manual
+
+.. .. tabularcolumns:: |p{1cm}|p{7cm}|
+
+.. .. csv-table:: Lorem Ipsum
+..    :file: _files/lorem-tab.csv
+..    :header-rows: 1
+..    :class: longtable
+..    :widths: 1 1

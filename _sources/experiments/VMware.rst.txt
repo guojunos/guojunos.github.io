@@ -1,0 +1,36 @@
+虚拟机环境 VMware + Ubuntu
+================================================================================
+
+
+
+VMware 设置
+---------------------------------------------------------------------------
+
+*  下载安装 ``VMware`` 虚拟机
+*  安装增强功能
+*  网络: 桥接网卡
+*  共享文件夹 -> 制定一个需要共享的目录
+*  安装完系统，进行快照保存
+
+Ubuntu 设置
+---------------------------------------------------------------------------
+
+*  下载并在VirtualBox中安装 `Ubuntu <https://ubuntu.com/download>`_
+*  更新国内源， ``/etc/apt/sources.list`` 
+
+.. code-block::
+
+    deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+    deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+    deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+
+
+*  配置 ``SSH``
+*  VSCODE，安装插件 ``Remote Development`` 等，通过远程编辑与调试代码

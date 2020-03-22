@@ -1,0 +1,849 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>3. 进程运行轨迹的跟踪与统计 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="4. 信号量的实现和应用" href="lab04.html" />
+    <link rel="prev" title="2. 系统调用" href="lab02.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 进程运行轨迹的跟踪与统计</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3.2. 实验内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.1. 评分标准</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">3.4. 实验提示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">3.4.1. 编写样本程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log">3.4.2. log文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">3.4.2.1. 打开 log 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">3.4.2.2. 写 log 文件</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">3.4.3. 跟踪进程运行轨迹</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jiffies">3.4.3.1. jiffies，滴答</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">3.4.3.2. 寻找状态切换点</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">3.4.4. 管理 log 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">3.4.5. 数据统计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">3.4.6. 修改时间片</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>3. 进程运行轨迹的跟踪与统计</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>3. 进程运行轨迹的跟踪与统计<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>难度系数：★★★☆☆</p>
+<div class="section" id="id2">
+<h2>3.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>掌握Linux下的多进程编程技术；</p></li>
+<li><p>通过对进程运行轨迹的跟踪来形象化进程的概念；</p></li>
+<li><p>在进程运行轨迹跟踪的基础上进行相应的数据统计，从而能对进程调度算法进行实际的量化评价，
+更进一步加深对调度和调度算法的理解，获得能在实际操作系统上对调度算法进行实验数据对比的直接经验。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>3.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>进程从创建（Linux下调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> ）到结束的整个过程就是进程的生命期，
+进程在其生命期中的运行轨迹实际上就表现为进程状态的多次切换，如进程创建以后会成为就绪态；
+当该进程被调度以后会切换到运行态；在运行的过程中如果启动了一个文件读写操作，
+操作系统会将该进程切换到阻塞态（等待态）从而让出CPU；
+当文件读写完毕以后，操作系统会在将其切换成就绪态，等待进程调度算法来调度该进程执行……</p>
+<p>本次实验包括如下内容：</p>
+<ol class="arabic simple">
+<li><p>基于模板 <code class="docutils literal notranslate"><span class="pre">process.c</span></code> 编写多进程的样本程序，实现如下功能：</p>
+<ul class="simple">
+<li><p>所有子进程都并行运行，每个子进程的实际运行时间一般不超过 <code class="docutils literal notranslate"><span class="pre">30</span></code> 秒；</p></li>
+<li><p>父进程向标准输出打印所有子进程的 <code class="docutils literal notranslate"><span class="pre">id</span></code> ，并在所有子进程都退出后才退出；</p></li>
+</ul>
+</li>
+<li><p>在Linux 0.11上实现进程运行轨迹的跟踪。基本任务是在内核中维护一个日志文件 <code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> ，把从操作系统启动到系统关机过程中所有进程的运行轨迹都记录在这一 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件中。</p></li>
+<li><p>在修改过的0.11上运行样本程序，通过分析 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，统计该程序建立的所有进程的等待时间、完成时间（周转时间）和运行时间，然后计算平均等待时间，平均完成时间和吞吐量。可以自己编写统计程序，也可以使用python脚本程序 <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> 进行统计。</p></li>
+<li><p>修改0.11进程调度的时间片，然后再运行同样的样本程序，统计同样的时间数据，和原有的情况对比，体会不同时间片带来的差异。</p></li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> 文件的格式必须为：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pid X time</span>
+</pre></div>
+</div>
+<p>其中：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pid</span></code> 是进程的 <code class="docutils literal notranslate"><span class="pre">ID</span></code> ；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">X</span></code> 可以是 <code class="docutils literal notranslate"><span class="pre">N</span></code> , <code class="docutils literal notranslate"><span class="pre">J</span></code> , <code class="docutils literal notranslate"><span class="pre">R</span></code> , <code class="docutils literal notranslate"><span class="pre">W</span></code> 和 <code class="docutils literal notranslate"><span class="pre">E</span></code> 中的任意一个，分别表示进程新建( <code class="docutils literal notranslate"><span class="pre">N</span></code> )、进入就绪态( <code class="docutils literal notranslate"><span class="pre">J</span></code> )、进入运行态( <code class="docutils literal notranslate"><span class="pre">R</span></code> )、进入阻塞态( <code class="docutils literal notranslate"><span class="pre">W</span></code> )和退出( <code class="docutils literal notranslate"><span class="pre">E</span></code> )；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code> 表示 <code class="docutils literal notranslate"><span class="pre">X</span></code> 发生的时间。这个时间不是物理时间，而是系统的滴答时间( <code class="docutils literal notranslate"><span class="pre">tick</span></code> )；</p></li>
+</ul>
+<p>三个字段之间用制表符分隔。 例如：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">12    N    1056</span>
+<span class="go">12    J    1057</span>
+<span class="go">4     W    1057</span>
+<span class="go">12    R    1057</span>
+<span class="go">13    N    1058</span>
+<span class="go">13    J    1059</span>
+<span class="go">14    N    1059</span>
+<span class="go">14    J    1060</span>
+<span class="go">15    N    1060</span>
+<span class="go">15    J    1061</span>
+<span class="go">12    W    1061</span>
+<span class="go">15    R    1061</span>
+<span class="go">15    J    1076</span>
+<span class="go">14    R    1076</span>
+<span class="go">14    E    1076</span>
+<span class="go">……</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>3.3. 实验报告<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>完成实验后，在实验报告中回答如下问题：</p>
+<ol class="arabic simple">
+<li><p>结合自己的体会，谈谈从程序设计者的角度看，单进程编程和多进程编程最大的区别是什么？</p></li>
+<li><p>你是如何修改时间片的？仅针对样本程序建立的进程，在修改时间片前后， <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的统计结果（不包括Graphic）都是什么样？结合你的修改分析一下为什么会这样变化，或者为什么没变化？</p></li>
+</ol>
+<div class="section" id="id5">
+<h3>3.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> ，50%</p></li>
+<li><p>日志文件建立成功，5%</p></li>
+<li><p>能向日志文件输出信息，5%</p></li>
+<li><p>5种状态都能输出，10%（每种2%）</p></li>
+<li><p>调度算法修改，10%</p></li>
+<li><p>实验报告，20%</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id6">
+<h2>3.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> 的编写涉及到 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 系统调用，请自行查阅相关文献。0.11内核修改涉及到 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 、 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> ，开始实验前如果能详细阅读《注释》一书的相关部分，会大有裨益。</p>
+<div class="section" id="id7">
+<h3>3.4.1. 编写样本程序<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> 是样本程序的模板。它主要实现了一个函数：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* 此函数按照参数占用CPU和I/O时间</span>
+<span class="cm">* last: 函数实际占用CPU和I/O的总时间，不含在就绪队列中的时间，&gt;=0是必须的</span>
+<span class="cm">* cpu_time: 一次连续占用CPU的时间，&gt;=0是必须的</span>
+<span class="cm">* io_time: 一次I/O消耗的时间，&gt;=0是必须的</span>
+<span class="cm">* 如果last &gt; cpu_time + io_time，则往复多次占用CPU和I/O，直到总运行时间超过last为止</span>
+<span class="cm">* 所有时间的单位为秒</span>
+<span class="cm">*/</span>
+<span class="n">cpuio_bound</span><span class="p">(</span><span class="kt">int</span> <span class="n">last</span><span class="p">,</span> <span class="kt">int</span> <span class="n">cpu_time</span><span class="p">,</span> <span class="kt">int</span> <span class="n">io_time</span><span class="p">);</span>
+
+<span class="c1">//比如一个进程如果要占用10秒的CPU时间，它可以调用：</span>
+<span class="n">cpuio_bound</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>  <span class="c1">// 只要cpu_time&gt;0，io_time=0，效果相同</span>
+
+
+<span class="c1">// 以I/O为主要任务：</span>
+<span class="n">cpuio_bound</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>  <span class="c1">// 只要cpu_time=0，io_time&gt;0，效果相同</span>
+
+<span class="c1">// CPU和I/O各1秒钟轮回：</span>
+<span class="n">cpuio_bound</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// 较多的I/O，较少的CPU：</span>
+<span class="n">cpuio_bound</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">);</span>  <span class="c1">// I/O时间是CPU时间的9倍</span>
+</pre></div>
+</div>
+<p>修改此模板，用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 建立若干个同时运行的子进程，父进程等待所有子进程退出后才退出，每个子进程按照你的意愿做不同或相同的 <code class="docutils literal notranslate"><span class="pre">cpuio_bound()</span></code> ，从而完成一个个性化的样本程序。它可以用来检验有关 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的修改是否正确，同时还是数据统计工作的基础。</p>
+<p><code class="docutils literal notranslate"><span class="pre">wait()</span></code> 系统调用可以让父进程等待子进程的退出。</p>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<ul class="simple">
+<li><p>在Ubuntu下， <code class="docutils literal notranslate"><span class="pre">top</span></code> 命令可以监视即时的进程状态。在 <code class="docutils literal notranslate"><span class="pre">top</span></code> 中，按 <code class="docutils literal notranslate"><span class="pre">u</span></code> ，再输入你的用户名，可以限定只显示以你的身份运行的进程，更方便观察。按 <code class="docutils literal notranslate"><span class="pre">h</span></code> 可得到帮助。</p></li>
+<li><p>在Ubuntu下， <code class="docutils literal notranslate"><span class="pre">ps</span></code> 命令可以显示当时各个进程的状态。 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code> 会显示所有进程； <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xxxx</span></code> 将只显示名为 <code class="docutils literal notranslate"><span class="pre">xxxx</span></code> 的进程。更详细的用法请问 <code class="docutils literal notranslate"><span class="pre">man</span></code> 。</p></li>
+<li><p>在Linux 0.11下，按 <code class="docutils literal notranslate"><span class="pre">F1</span></code> 可以即时显示当前所有进程的状态。</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="log">
+<h3>3.4.2. log文件<a class="headerlink" href="#log" title="永久链接至标题">¶</a></h3>
+<p>操作系统启动后先要打开 <code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> ，然后在每个进程发生状态切换的时候向 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件内写入一条记录，
+其过程和用户态的应用程序没什么两样。然而，因为内核状态的存在，使过程中的很多细节变得完全不一样。</p>
+<div class="section" id="id8">
+<h4>3.4.2.1. 打开 log 文件<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h4>
+<p>为了能尽早开始记录，应当在内核启动时就打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件。
+内核的入口是 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">main()</span></code> （Windows环境下是 <code class="docutils literal notranslate"><span class="pre">start()</span></code> ），
+其中一段代码是：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">move_to_user_mode</span><span class="p">();</span>
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>        <span class="cm">/* we count on this going ok */</span>
+    <span class="n">init</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>这段代码在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中运行，先切换到用户模式，然后全系统第一次调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 建立进程1。进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 。在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">drive_info</span><span class="p">);</span>        <span class="c1">//加载文件系统</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//打开/dev/tty0，建立文件描述符0和/dev/tty0的关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//让文件描述符1也和/dev/tty0关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//让文件描述符2也和/dev/tty0关联</span>
+</pre></div>
+</div>
+<p>这段代码建立了文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，它们分别就是 <code class="docutils literal notranslate"><span class="pre">stdin</span></code> 、 <code class="docutils literal notranslate"><span class="pre">stdout</span></code> 和 <code class="docutils literal notranslate"><span class="pre">stderr</span></code> 。
+这三者的值是系统标准（Windows也是如此），不可改变。
+可以把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的描述符关联到 <code class="docutils literal notranslate"><span class="pre">3</span></code> 。
+文件系统初始化，描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> 关联之后，才能打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，开始记录进程的运行轨迹。
+为了能尽早访问 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，我们要让上述工作在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中就完成。
+所以把这一段代码从 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 移动到 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 中，放在 <code class="docutils literal notranslate"><span class="pre">move_to_user_mode()</span></code> 之后（不能再靠前了），
+同时加上打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的代码。
+修改后的 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 如下：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">move_to_user_mode</span><span class="p">();</span>
+
+<span class="cm">/***************添加开始***************/</span>
+<span class="n">setup</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">drive_info</span><span class="p">);</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//建立文件描述符0和/dev/tty0的关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">//文件描述符1也和/dev/tty0关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">//文件描述符2也和/dev/tty0关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/var/process.log&quot;</span><span class="p">,</span><span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_TRUNC</span><span class="o">|</span><span class="n">O_WRONLY</span><span class="p">,</span><span class="mo">0666</span><span class="p">);</span>
+<span class="cm">/***************添加结束***************/</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>        <span class="cm">/* we count on this going ok */</span>
+    <span class="n">init</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的参数的含义是建立只写文件，如果文件已存在则清空已有内容。文件的权限是所有人可读可写。</p>
+<p>这样，文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 和 <code class="docutils literal notranslate"><span class="pre">3</span></code> 就在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中建立了。根据 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 的原理，进程1会继承这些文件描述符，所以 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中就不必再 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 它们。此后所有新建的进程都是进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的子孙，也会继承它们。但实际上， <code class="docutils literal notranslate"><span class="pre">init()</span></code> 的后续代码和 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 都会重新初始化它们。所以只有进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的文件描述符肯定关联着 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，这一点在接下来的写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 中很重要。</p>
+</div>
+<div class="section" id="id9">
+<h4>3.4.2.2. 写 log 文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">log</span></code> 文件将被用来记录进程的状态转移轨迹。所有的状态转移都是在内核进行的。
+在内核状态下， <code class="docutils literal notranslate"><span class="pre">write()</span></code> 功能失效，其原理等同于《系统调用》实验中不能在内核状态调用 <code class="docutils literal notranslate"><span class="pre">printf()</span></code> ，
+只能调用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 。
+编写可在内核调用的 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 的难度较大，所以这里直接给出源码。
+它主要参考了 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_write()</span></code> 而写成的：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;linux/sched.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/stat.h&gt;</span><span class="cp"></span>
+
+<span class="k">static</span> <span class="kt">char</span> <span class="n">logbuf</span><span class="p">[</span><span class="mi">1024</span><span class="p">];</span>
+<span class="kt">int</span> <span class="nf">fprintk</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">fmt</span><span class="p">,</span> <span class="p">...)</span>
+<span class="p">{</span>
+    <span class="kt">va_list</span> <span class="n">args</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">count</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">file</span> <span class="o">*</span> <span class="n">file</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">m_inode</span> <span class="o">*</span> <span class="n">inode</span><span class="p">;</span>
+
+    <span class="n">va_start</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">fmt</span><span class="p">);</span>
+    <span class="n">count</span><span class="o">=</span><span class="n">vsprintf</span><span class="p">(</span><span class="n">logbuf</span><span class="p">,</span> <span class="n">fmt</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>
+    <span class="n">va_end</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">fd</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">)</span>    <span class="cm">/* 如果输出到stdout或stderr，直接调用sys_write即可 */</span>
+    <span class="p">{</span>
+        <span class="n">__asm__</span><span class="p">(</span><span class="s">&quot;push %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;push %%ds</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl $logbuf</span><span class="se">\n\t</span><span class="s">&quot;</span> <span class="cm">/* 注意对于Windows环境来说，是_logbuf,下同 */</span>
+            <span class="s">&quot;pushl %1</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;call sys_write</span><span class="se">\n\t</span><span class="s">&quot;</span> <span class="cm">/* 注意对于Windows环境来说，是_sys_write,下同 */</span>
+            <span class="s">&quot;addl $8,%%esp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;popl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs&quot;</span>
+            <span class="o">::</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">fd</span><span class="p">)</span><span class="o">:</span><span class="s">&quot;ax&quot;</span><span class="p">,</span><span class="s">&quot;cx&quot;</span><span class="p">,</span><span class="s">&quot;dx&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">else</span>    <span class="cm">/* 假定&gt;=3的描述符都与文件关联。事实上，还存在很多其它情况，这里并没有考虑。*/</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">]))</span>    <span class="cm">/* 从进程0的文件描述符表中得到文件句柄 */</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">inode</span><span class="o">=</span><span class="n">file</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="p">;</span>
+
+        <span class="n">__asm__</span><span class="p">(</span><span class="s">&quot;push %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;push %%ds</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl $logbuf</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %1</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pushl %2</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;call file_write</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;addl $12,%%esp</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;popl %0</span><span class="se">\n\t</span><span class="s">&quot;</span>
+            <span class="s">&quot;pop %%fs&quot;</span>
+            <span class="o">::</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">count</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">file</span><span class="p">),</span><span class="s">&quot;r&quot;</span> <span class="p">(</span><span class="n">inode</span><span class="p">)</span><span class="o">:</span><span class="s">&quot;ax&quot;</span><span class="p">,</span><span class="s">&quot;cx&quot;</span><span class="p">,</span><span class="s">&quot;dx&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">count</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>因为和 <code class="docutils literal notranslate"><span class="pre">printk</span></code> 的功能近似，建议将此函数放入到 <code class="docutils literal notranslate"><span class="pre">kernel/printk.c</span></code> 中。
+<code class="docutils literal notranslate"><span class="pre">fprintk()</span></code> 的使用方式类同与C标准库函数 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> ，唯一的区别是第一个参数是文件描述符，而不是文件指针。例如：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">fprintk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;The ID of running process is %ld&quot;</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//向stdout打印正在运行的进程的ID</span>
+<span class="n">fprintk</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;%ld</span><span class="se">\t</span><span class="s">%c</span><span class="se">\t</span><span class="s">%ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">pid</span><span class="p">,</span> <span class="sc">&#39;R&#39;</span><span class="p">,</span> <span class="n">jiffies</span><span class="p">);</span> <span class="c1">//向log文件输出</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>3.4.3. 跟踪进程运行轨迹<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<div class="section" id="jiffies">
+<h4>3.4.3.1. jiffies，滴答<a class="headerlink" href="#jiffies" title="永久链接至标题">¶</a></h4>
+<p>jiffies在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 文件中定义为一个全局变量：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="k">volatile</span> <span class="n">jiffies</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>它记录了从开机到当前时间的时钟中断发生次数。在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 文件中的 <code class="docutils literal notranslate"><span class="pre">sched_init()</span></code> 函数中，
+时钟中断处理函数被设置为：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">set_intr_gate</span><span class="p">(</span><span class="mh">0x20</span><span class="p">,</span><span class="o">&amp;</span><span class="n">timer_interrupt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>而在 <code class="docutils literal notranslate"><span class="pre">kernel/system_call.s</span></code> 文件中将 <code class="docutils literal notranslate"><span class="pre">timer_interrupt</span></code> 定义为：</p>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="nl">timer_interrupt:</span>
+
+    <span class="nf">incl</span> <span class="no">jiffies</span>     <span class="c">#增加jiffies计数值</span>
+</pre></div>
+</div>
+<p>这说明 <strong>jiffies</strong> 表示从开机时到现在发生的时钟中断次数，这个数也被称为“滴答数”。</p>
+<p>另外，在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">sched_init()</span></code> 中有下面的代码：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">outb_p</span><span class="p">(</span><span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">);</span> <span class="c1">//设置8253模式</span>
+<span class="n">outb_p</span><span class="p">(</span><span class="n">LATCH</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">);</span>
+<span class="n">outb_p</span><span class="p">(</span><span class="n">LATCH</span><span class="o">&gt;&gt;</span><span class="mi">8</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>这三条语句用来设置每次时钟中断的间隔，即为 <code class="docutils literal notranslate"><span class="pre">LATCH</span></code> ，而 <code class="docutils literal notranslate"><span class="pre">LATCH</span></code> 是定义在文件 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 中的一个宏：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define LATCH  (1193180/HZ)</span>
+<span class="cp">#define HZ 100  </span><span class="c1">//在include/linux/sched.h中</span>
+</pre></div>
+</div>
+<p>再加上PC机8253定时芯片的输入时钟频率为 <code class="docutils literal notranslate"><span class="pre">1.193180MHz</span></code> ，即 <code class="docutils literal notranslate"><span class="pre">1193180/每秒</span></code> ， <code class="docutils literal notranslate"><span class="pre">LATCH=1193180/100</span></code> ，
+时钟每跳 <code class="docutils literal notranslate"><span class="pre">11931.8</span></code> 下产生一次时钟中断，即每 <code class="docutils literal notranslate"><span class="pre">1/100秒（10ms）</span></code> 产生一次时钟中断，
+所以 <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 实际上记录了从开机以来共经过了多少个 <code class="docutils literal notranslate"><span class="pre">10ms</span></code> 。</p>
+</div>
+<div class="section" id="id11">
+<h4>3.4.3.2. 寻找状态切换点<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<p>必须找到所有发生进程状态切换的代码点，并在这些点添加适当的代码，来输出进程状态变化的情况到 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件中。
+此处要面对的情况比较复杂，需要对 <code class="docutils literal notranslate"><span class="pre">kernel</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">fork.c</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sched.c</span></code> 有通盘的了解，而 <code class="docutils literal notranslate"><span class="pre">exit.c</span></code> 也会涉及到。
+我们给出两个例子描述这个工作该如何做，其他情况实验者可仿照完成。</p>
+<p>第一个例子是看看如何记录一个进程生命期的开始，当然这个事件就是进程的创建函数 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> ，
+由《系统调用》实验可知， <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 功能在内核中实现为 <code class="docutils literal notranslate"><span class="pre">sys_fork()</span></code> ，该“函数”在文件 <code class="docutils literal notranslate"><span class="pre">kernel/system_call.s</span></code> 中实现为：</p>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="nl">sys_fork:</span>
+    <span class="nf">call</span> <span class="no">find_empty_process</span>
+
+    <span class="c"># ……</span>
+
+    <span class="nf">push</span>  <span class="nv">%gs</span>   <span class="c"># 传递一些参数</span>
+    <span class="nf">pushl</span> <span class="nv">%esi</span>
+    <span class="nf">pushl</span> <span class="nv">%edi</span>
+    <span class="nf">pushl</span> <span class="nv">%ebp</span>
+    <span class="nf">pushl</span> <span class="nv">%eax</span>
+    <span class="nf">call</span> <span class="no">copy_process</span>  <span class="c"># 调用copy_process实现进程创建</span>
+    <span class="nf">addl</span> <span class="no">$20</span><span class="p">,</span><span class="nv">%esp</span>
+</pre></div>
+</div>
+<p>所以真正实现进程创建的函数是 <code class="docutils literal notranslate"><span class="pre">copy_process()</span></code> ，它在 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 中定义为：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span><span class="kt">int</span> <span class="n">nr</span><span class="p">,</span> <span class="cm">/* ……*/</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="c1">// ……</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="p">)</span> <span class="n">get_free_page</span><span class="p">();</span>  <span class="c1">//获得一个task_struct结构体空间</span>
+    <span class="c1">// ……</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">pid</span> <span class="o">=</span> <span class="n">last_pid</span><span class="p">;</span>
+    <span class="c1">// ……</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">jiffies</span><span class="p">;</span>    <span class="c1">//设置start_time为jiffies</span>
+    <span class="c1">// ……</span>
+    <span class="n">p</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_RUNNING</span><span class="p">;</span>    <span class="c1">//设置进程状态为就绪。所有就绪进程的状态都是</span>
+								<span class="c1">//TASK_RUNNING(0），被全局变量current指向的</span>
+								<span class="c1">//是正在运行的进程。</span>
+    <span class="k">return</span> <span class="n">last_pid</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>因此要完成进程运行轨迹的记录就要在 <code class="docutils literal notranslate"><span class="pre">copy_process()</span></code> 中添加输出语句。这里要输出两种状态，分别是 <code class="docutils literal notranslate"><span class="pre">N</span></code> （新建） 和 <code class="docutils literal notranslate"><span class="pre">J</span></code> （就绪） 。</p>
+<p>第二个例子是记录进入睡眠态的时间。 <code class="docutils literal notranslate"><span class="pre">sleep_on()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">interruptible_sleep_on()</span></code> 让当前进程进入睡眠状态，这两个函数在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 文件中定义如下：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">sleep_on</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">**</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
+    <span class="c1">// ……</span>
+    <span class="n">tmp</span> <span class="o">=</span> <span class="o">*</span><span class="n">p</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">current</span><span class="p">;</span>	<span class="c1">//仔细阅读，实际上是将current插入“等待队列”头部，tmp是原来的头部</span>
+    <span class="n">current</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_UNINTERRUPTIBLE</span><span class="p">;</span> <span class="c1">//切换到睡眠态</span>
+    <span class="n">schedule</span><span class="p">();</span>		<span class="c1">//让出CPU</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>    <span class="c1">//唤醒队列中的上一个（tmp）睡眠进程。0换作TASK_RUNNING更好</span>
+						 <span class="c1">//在记录进程被唤醒时一定要考虑到这种情况，实验者一定要注意!!!</span>
+<span class="p">}</span>
+<span class="cm">/* TASK_UNINTERRUPTIBLE和TASK_INTERRUPTIBLE的区别在于不可中断的睡眠</span>
+<span class="cm"> * 只能由wake_up()显式唤醒，再由上面的 schedule()语句后的</span>
+<span class="cm"> *</span>
+<span class="cm"> *   if (tmp) tmp-&gt;state=0;</span>
+<span class="cm"> *</span>
+<span class="cm"> * 依次唤醒，所以不可中断的睡眠进程一定是按严格从“队列”（一个依靠</span>
+<span class="cm"> * 放在进程内核栈中的指针变量tmp维护的队列）的首部进行唤醒。而对于可</span>
+<span class="cm"> * 中断的进程，除了用wake_up唤醒以外，也可以用信号（给进程发送一个信</span>
+<span class="cm"> * 号，实际上就是将进程PCB中维护的一个向量的某一位置位，进程需要在合</span>
+<span class="cm"> * 适的时候处理这一位。感兴趣的实验者可以阅读有关代码）来唤醒，如在</span>
+<span class="cm"> * schedule()中：</span>
+<span class="cm"> *</span>
+<span class="cm"> *  for(p = &amp;LAST_TASK ; p &gt; &amp;FIRST_TASK ; --p)</span>
+<span class="cm"> *      if (((*p)-&gt;signal &amp; ~(_BLOCKABLE &amp; (*p)-&gt;blocked)) &amp;&amp;</span>
+<span class="cm"> *         (*p)-&gt;state==TASK_INTERRUPTIBLE)</span>
+<span class="cm"> *         (*p)-&gt;state=TASK_RUNNING;//唤醒</span>
+<span class="cm"> *</span>
+<span class="cm"> * 就是当进程是可中断睡眠时，如果遇到一些信号就将其唤醒。这样的唤醒会</span>
+<span class="cm"> * 出现一个问题，那就是可能会唤醒等待队列中间的某个进程，此时这个链就</span>
+<span class="cm"> * 需要进行适当调整。interruptible_sleep_on和sleep_on函数的主要区别就</span>
+<span class="cm"> * 在这里。</span>
+<span class="cm"> */</span>
+<span class="kt">void</span> <span class="nf">interruptible_sleep_on</span><span class="p">(</span><span class="k">struct</span> <span class="n">task_struct</span> <span class="o">**</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">tmp</span><span class="p">;</span>
+    <span class="c1">// ……</span>
+    <span class="n">tmp</span><span class="o">=*</span><span class="n">p</span><span class="p">;</span>
+    <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="n">current</span><span class="p">;</span>
+<span class="nl">repeat</span><span class="p">:</span>    <span class="n">current</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_INTERRUPTIBLE</span><span class="p">;</span>
+    <span class="n">schedule</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span> <span class="o">&amp;&amp;</span> <span class="o">*</span><span class="n">p</span> <span class="o">!=</span> <span class="n">current</span><span class="p">)</span> <span class="p">{</span>
+   	 <span class="c1">//如果队列头进程和刚唤醒的进程current不是一个，说明从队列中间唤醒了一个进程，需要处理</span>
+        <span class="p">(</span><span class="o">**</span><span class="n">p</span><span class="p">).</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>   <span class="c1">//将队列头唤醒，并通过goto repeat让自己再去睡眠</span>
+        <span class="k">goto</span> <span class="n">repeat</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="o">*</span><span class="n">p</span><span class="o">=</span><span class="nb">NULL</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+        <span class="n">tmp</span><span class="o">-&gt;</span><span class="n">state</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>  <span class="c1">//作用和sleep_on函数中的一样</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>相信实验者已经找到合适的地方插入记录进程从运行到睡眠的语句了。</p>
+<p>总的来说，Linux 0.11支持四种进程状态的转移：
+就绪到运行、运行到就绪、运行到睡眠和睡眠到就绪，此外还有新建和退出两种情况。
+其中:</p>
+<ul class="simple">
+<li><p>就绪与运行间的状态转移是通过 <code class="docutils literal notranslate"><span class="pre">schedule()</span></code> （它亦是调度算法所在）完成的；</p></li>
+<li><p>运行到睡眠依靠的是 <code class="docutils literal notranslate"><span class="pre">sleep_on()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">interruptible_sleep_on()</span></code> ，还有进程主动睡觉的系统调用 <code class="docutils literal notranslate"><span class="pre">sys_pause()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_waitpid()</span></code> ；</p></li>
+<li><p>睡眠到就绪的转移依靠的是 <code class="docutils literal notranslate"><span class="pre">wake_up()</span></code> 。所以只要在这些函数的适当位置插入适当的处理语句就能完成进程运行轨迹的全面跟踪了。</p></li>
+</ul>
+<p>为了让生成的 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件更精准，以下几点请注意：</p>
+<ol class="arabic simple">
+<li><p>进程退出的最后一步是通知父进程自己的退出，目的是唤醒正在等待此事件的父进程。从时序上来说，应该是子进程先退出，父进程才醒来。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">schedule()</span></code> 找到的 <code class="docutils literal notranslate"><span class="pre">next</span></code> 进程是接下来要运行的进程（注意，一定要分析清楚 <code class="docutils literal notranslate"><span class="pre">next</span></code> 是什么）。如果 <code class="docutils literal notranslate"><span class="pre">next</span></code> 恰好是当前正处于运行态的进程， <code class="docutils literal notranslate"><span class="pre">swith_to(next)</span></code> 也会被调用。这种情况下相当于当前进程的状态没变。</p></li>
+<li><p>系统无事可做的时候，进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 会不停地调用 <code class="docutils literal notranslate"><span class="pre">sys_pause()</span></code> ，以激活调度算法。此时它的状态可以是等待态，等待有其它可运行的进程；也可以叫运行态，因为它是唯一一个在CPU上运行的进程，只不过运行的效果是等待。</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>3.4.4. 管理 log 文件<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<p>日志文件的管理与代码编写无关，有几个要点要注意：</p>
+<ol class="arabic simple">
+<li><p>每次关闭bochs前都要执行一下 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 命令，它会刷新 <code class="docutils literal notranslate"><span class="pre">cache</span></code> ，确保文件确实写入了磁盘。</p></li>
+<li><p>在0.11下，可以用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">/var</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ll</span> <span class="pre">/var</span></code> 查看 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 是否建立，及它的属性和长度。</p></li>
+<li><p>一定要实践《实验环境的搭建与使用》一章中关于文件交换的部分。最终肯定要把 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 文件拷贝到主机环境下处理。</p></li>
+<li><p>在0.11下，可以用 <code class="docutils literal notranslate"><span class="pre">vi</span> <span class="pre">/var/process.log</span></code> 或 <code class="docutils literal notranslate"><span class="pre">more</span> <span class="pre">/var/process.</span> <span class="pre">log</span></code>  查看整个 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件。不过，还是拷贝到Ubuntu下看，会更舒服。</p></li>
+<li><p>在0.11下，可以用 <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">NUM</span> <span class="pre">/var/process.log</span></code> 查看 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的最后 <code class="docutils literal notranslate"><span class="pre">NUM</span></code> 行。</p></li>
+</ol>
+<p>一种可能的情况下，得到的 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 文件的前几行是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1    N    48    //进程1新建（init()）。此前是进程0建立和运行，但为什么没出现在log文件里？
+1    J    49    //新建后进入就绪队列
+0    J    49    //进程0从运行-&gt;就绪，让出CPU
+1    R    49    //进程1运行
+2    N    49    //进程1建立进程2。2会运行/etc/rc脚本，然后退出
+2    J    49
+1    W    49    //进程1开始等待（等待进程2退出）
+2    R    49    //进程2运行
+3    N    64    //进程2建立进程3。3是/bin/sh建立的运行脚本的子进程
+3    J    64
+2    E    68    //进程2不等进程3退出，就先走一步了
+1    J    68    //进程1此前在等待进程2退出，被阻塞。进程2退出后，重新进入就绪队列
+1    R    68
+4    N    69    //进程1建立进程4，即shell
+4    J    69
+1    W    69    //进程1等待shell退出（除非执行exit命令，否则shell不会退出）
+3    R    69    //进程3开始运行
+3    W    75
+4    R    75
+5    N    107    //进程5是shell建立的不知道做什么的进程
+5    J    108
+4    W    108
+5    R    108
+4    J    110
+5    E    111    //进程5很快退出
+4    R    111
+4    W    116    //shell等待用户输入命令。
+0    R    116    //因为无事可做，所以进程0重出江湖
+4    J    239    //用户输入命令了，唤醒了shell
+4    R    239
+4    W    240
+0    R    240
+……
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>3.4.5. 数据统计<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<p>为展示实验结果，需要编写一个数据统计程序，它从 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件读入原始数据，然后计算平均周转时间、平均等待时间和吞吐率。任何语言都可以编写这样的程序，实验者可自行设计。我们用python语言编写了一个—— <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> （这是 <code class="docutils literal notranslate"><span class="pre">python</span></code> 源程序，可以用任意文本编辑器打开）。</p>
+<p><code class="docutils literal notranslate"><span class="pre">python</span></code> 是一种跨平台的脚本语言，号称“可执行的伪代码”，非常强大，非常好用，也非常有用，建议闲着的时候学习一下。
+其解释器免费且开源，Ubuntu下这样安装：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">sudo apt-get install python</span>
+</pre></div></div><p>然后只要给 <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> 加上执行权限，就可以直接运行它。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod +x stat_log.py</span>
+</pre></div></div><div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>此程序是python 2.x版本，如果使用python 3.x版本，需要简单修改此程序。</p>
+</div>
+<p>此程序必须在命令行下加参数执行，直接运行会打印使用说明。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span>
+  <span class="o">./</span><span class="n">stat_log</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">process</span><span class="o">.</span><span class="n">log</span> <span class="p">[</span><span class="n">PID1</span><span class="p">]</span> <span class="p">[</span><span class="n">PID2</span><span class="p">]</span> <span class="o">...</span> <span class="p">[</span><span class="o">-</span><span class="n">x</span> <span class="n">PID1</span> <span class="p">[</span><span class="n">PID2</span><span class="p">]</span> <span class="o">...</span> <span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">m</span><span class="p">]</span> <span class="p">[</span><span class="o">-</span><span class="n">g</span><span class="p">]</span>
+<span class="n">Example</span><span class="p">:</span>
+  <span class="c1"># Include process 6, 7, 8 and 9 in statistics only. (Unit: tick)</span>
+  <span class="o">./</span><span class="n">stat_log</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">process</span><span class="o">.</span><span class="n">log</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span>
+  <span class="c1"># Exclude process 0 and 1 from statistics. (Unit: tick)</span>
+  <span class="o">./</span><span class="n">stat_log</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">process</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span><span class="n">x</span> <span class="mi">0</span> <span class="mi">1</span>
+  <span class="c1"># Include process 6 and 7 only. (Unit: millisecond)</span>
+  <span class="o">./</span><span class="n">stat_log</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">process</span><span class="o">.</span><span class="n">log</span> <span class="mi">6</span> <span class="mi">7</span> <span class="o">-</span><span class="n">m</span>
+  <span class="c1"># Include all processes and print a COOL &quot;graphic&quot;! (Unit: tick)</span>
+  <span class="o">./</span><span class="n">stat_log</span><span class="o">.</span><span class="n">py</span> <span class="o">/</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">process</span><span class="o">.</span><span class="n">log</span> <span class="o">-</span><span class="n">g</span>
+</pre></div>
+</div>
+<p>运行 <code class="docutils literal notranslate"><span class="pre">./stat_log.py</span> <span class="pre">process.log</span> <span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span> <span class="pre">5</span> <span class="pre">-g</span></code> （只统计 <code class="docutils literal notranslate"><span class="pre">PID</span></code> 为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 、 <code class="docutils literal notranslate"><span class="pre">3</span></code> 、 <code class="docutils literal notranslate"><span class="pre">4</span></code> 和 <code class="docutils literal notranslate"><span class="pre">5</span></code> 的进程）的输出示例：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">(Unit: tick)</span>
+<span class="go">Process   Turnaround   Waiting   CPU Burst   I/O Burst</span>
+<span class="go">     0           75        67           8           0</span>
+<span class="go">     1         2518         0           1        2517</span>
+<span class="go">     2           25         4          21           0</span>
+<span class="go">     3         3003         0           4        2999</span>
+<span class="go">     4         5317         6          51        5260</span>
+<span class="go">     5            3         0           3           0</span>
+<span class="go">Average:     1823.50     12.83</span>
+<span class="go">Throughout: 0.11/s</span>
+<span class="go">-----===&lt; COOL GRAPHIC OF SCHEDULER &gt;===-----</span>
+
+<span class="go">            [Symbol]   [Meaning]</span>
+<span class="go">         ~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<span class="go">             number   PID or tick</span>
+<span class="go">              &quot;-&quot;     New or Exit</span>
+<span class="go">              &quot;#&quot;       Running</span>
+<span class="go">              &quot;|&quot;        Ready</span>
+<span class="go">              &quot;:&quot;       Waiting</span>
+<span class="go">                    / Running with</span>
+<span class="go">              &quot;+&quot; -|     Ready</span>
+<span class="go">                    \and/or Waiting</span>
+
+<span class="go">-----===&lt; !!!!!!!!!!!!!!!!!!!!!!!!! &gt;===-----</span>
+
+<span class="go">  40 -0</span>
+<span class="go">  41 #0</span>
+<span class="go">  42 #</span>
+<span class="go">  43 #</span>
+<span class="go">  44 #</span>
+<span class="go">  45 #</span>
+<span class="go">  46 #</span>
+<span class="go">  47 #</span>
+<span class="go">  48 |0  -1</span>
+<span class="go">  49 |   :1  -2</span>
+<span class="go">  50 |   :   #2</span>
+<span class="go">  51 |   :   #</span>
+<span class="go">  52 |   :   #</span>
+<span class="go">  53 |   :   #</span>
+<span class="go">  54 |   :   #</span>
+<span class="go">  55 |   :   #</span>
+<span class="go">  56 |   :   #</span>
+<span class="go">  57 |   :   #</span>
+<span class="go">  58 |   :   #</span>
+<span class="go">  59 |   :   #</span>
+<span class="go">  60 |   :   #</span>
+<span class="go">  61 |   :   #</span>
+<span class="go">  62 |   :   #</span>
+<span class="go">  63 |   :   #</span>
+<span class="go">  64 |   :   |2  -3</span>
+<span class="go">  65 |   :   |   #3</span>
+<span class="go">  66 |   :   |   #</span>
+<span class="go">  67 |   :   |   #</span>
+<span class="go">…………</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p>如果命令行程序输出过多，可以用 <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">arguments</span> <span class="pre">\|</span> <span class="pre">more</span></code> 的方式运行，结果会一屏一屏地显示。 <code class="docutils literal notranslate"><span class="pre">more</span></code> 在Linux和Windows下都有。Linux下还有一个 <code class="docutils literal notranslate"><span class="pre">less</span></code> ，和 <code class="docutils literal notranslate"><span class="pre">more</span></code> 类似，但功能更强，可以上下翻页、搜索。</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h3>3.4.6. 修改时间片<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<p>下面是0.11的调度函数 <code class="docutils literal notranslate"><span class="pre">schedule</span></code> ，在文件 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 中定义为：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">NR_TASKS</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">task</span><span class="p">[</span><span class="n">NR_TASKS</span><span class="p">];</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">--</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!*--</span><span class="n">p</span><span class="p">)</span>    <span class="k">continue</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">==</span> <span class="n">TASK_RUNNING</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">&gt;</span> <span class="n">c</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span><span class="p">,</span> <span class="n">next</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>                <span class="c1">//找到counter值最大的就绪态进程</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>    <span class="c1">//如果有counter值大于0的就绪态进程，则退出</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">LAST_TASK</span> <span class="p">;</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">FIRST_TASK</span> <span class="p">;</span> <span class="o">--</span><span class="n">p</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">priority</span><span class="p">;</span>
+                        <span class="c1">//如果没有，所有进程的counter值除以2衰减后再和priority值相加，产生新的时间片</span>
+<span class="p">}</span>
+<span class="n">switch_to</span><span class="p">(</span><span class="n">next</span><span class="p">);</span>  <span class="c1">//切换到next进程</span>
+</pre></div>
+</div>
+<p>分析代码可知，0.11的调度算法是选取 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 值最大的就绪进程进行调度。
+其中运行态进程（即 <code class="docutils literal notranslate"><span class="pre">current</span></code> ）的 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 数值会随着时钟中断而不断减 <code class="docutils literal notranslate"><span class="pre">1</span></code> （时钟中断 <code class="docutils literal notranslate"><span class="pre">10ms</span></code> 一次），
+所以是一种比较典型的时间片轮转调度算法。另外，由上面的程序可以看出，当没有 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 值大于 <code class="docutils literal notranslate"><span class="pre">0</span></code>  的就绪进程时，
+要对所有的进程做</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">priority</span>
+</pre></div>
+</div>
+<p>其效果是对所有的进程（包括阻塞态进程）都进行 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 的衰减，并再累加 <code class="docutils literal notranslate"><span class="pre">priority</span></code> 值。
+这样，对正被阻塞的进程来说，一个进程在阻塞队列中停留的时间越长，其优先级越大，被分配的时间片也就会越大。
+所以总的来说，Linux 0.11的进程调度是一种综合考虑进程优先级并能动态反馈调整时间片的轮转调度算法。</p>
+<p>此处要求实验者对现有的调度算法进行时间片大小的修改，并进行实验验证。</p>
+<p>为完成此工作，我们需要知道两件事情：</p>
+<ol class="arabic simple">
+<li><p>进程counter是如何初始化的？</p></li>
+<li><p>当进程的时间片用完时，被重新赋成何值？</p></li>
+</ol>
+<p>首先回答第一个问题，显然这个值是在 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 中设定的。
+Linux 0.11的 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 会调用 <code class="docutils literal notranslate"><span class="pre">copy_process()</span></code> 来完成从父进程信息拷贝（所以才称其为 <code class="docutils literal notranslate"><span class="pre">fork</span></code> ），
+看看 <code class="docutils literal notranslate"><span class="pre">copy_process()</span></code> 的实现（也在 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 文件中），会发现其中有下面两条语句：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">*</span><span class="n">current</span><span class="p">;</span>             <span class="c1">//用来复制父进程的PCB数据信息，包括priority和counter</span>
+<span class="n">p</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="n">p</span><span class="o">-&gt;</span><span class="n">priority</span><span class="p">;</span>  <span class="c1">//初始化counter</span>
+</pre></div>
+</div>
+<p>因为父进程的 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 数值已发生变化，而 <code class="docutils literal notranslate"><span class="pre">priority</span></code> 不会，
+所以上面的第二句代码将 <code class="docutils literal notranslate"><span class="pre">p-&gt;counter</span></code> 设置成 <code class="docutils literal notranslate"><span class="pre">p-&gt;priority</span></code> 。
+每个进程的 <code class="docutils literal notranslate"><span class="pre">priority</span></code> 都是继承自父亲进程的，除非它自己改变优先级。
+查找所有的代码，只有一个地方修改过 <code class="docutils literal notranslate"><span class="pre">priority</span></code> ，那就是 <code class="docutils literal notranslate"><span class="pre">nice</span></code> 系统调用：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">sys_nice</span><span class="p">(</span><span class="kt">long</span> <span class="n">increment</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">priority</span><span class="o">-</span><span class="n">increment</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">current</span><span class="o">-&gt;</span><span class="n">priority</span> <span class="o">-=</span> <span class="n">increment</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>本实验假定没有人调用过 <code class="docutils literal notranslate"><span class="pre">nice</span></code> 系统调用，时间片的初值就是进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的 <code class="docutils literal notranslate"><span class="pre">priority</span></code> ，即宏 <code class="docutils literal notranslate"><span class="pre">INIT_TASK</span></code> 中定义的：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define INIT_TASK \</span>
+<span class="cp">  { 0,15,15, </span><span class="c1">//分别对应state;counter;和priority;</span>
+</pre></div>
+</div>
+<p>接下来回答第二个问题，当就绪进程的 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 时，不会被调度（ <code class="docutils literal notranslate"><span class="pre">schedule</span></code> 要选取 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 最大的，大于 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的进程），而当所有的就绪态进程的 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 都变成 <code class="docutils literal notranslate"><span class="pre">0</span></code> 时，会执行下面的语句：</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">=</span> <span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">counter</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">priority</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>显然算出的新的 <code class="docutils literal notranslate"><span class="pre">counter</span></code> 值也等于 <code class="docutils literal notranslate"><span class="pre">priority</span></code> ，即初始时间片的大小。</p>
+<p>提示就到这里。如何修改时间片，自己思考、尝试吧!</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lab04.html" class="btn btn-neutral float-right" title="4. 信号量的实现和应用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="lab02.html" class="btn btn-neutral float-left" title="2. 系统调用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. GuoJun LIU
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

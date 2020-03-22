@@ -1,0 +1,44 @@
+x86系统架构概览
+===============
+
+系统级体系结构概览
+------------------
+
+参照图2.1，需要了解图中的所有系统级寄存器和数据结构，在后面的章节中都有介绍。
+
+以下内容是要重点掌握的：
+
+* Global and Local Descriptor Tables
+* System Segments, Segment Descriptors, and Gates
+* Task-State Segments and Task Gates
+* Interrupt and Exception Handling
+* Memory Management
+* System Registers
+
+实模式和保护模式转换
+--------------------
+
+了解两种操作模式进行转换，所需要进行哪些修改。
+
+80x86系统指令寄存器
+-------------------
+
+了解和掌握相关寄存器：
+
+* 标志寄存器 EFLAGS
+* 内存管理寄存器，包括GDTR，LDTR，IDTR，TR
+* 控制寄存器，包括CR0至CR3
+
+系统指令
+--------
+
+了解和掌握相关系统指令：
+
+* LGDT
+* SGDT
+* LIDT
+* SIDT
+* LLDT
+* SLDT
+* LTR
+* STR

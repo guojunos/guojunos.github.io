@@ -1,0 +1,1077 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>实验环境的搭建与使用 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>实验环境的搭建与使用</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>实验环境的搭建与使用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本操作系统实验的硬件环境是IA-32(x86)架构的PC机（就是你现在正在使用的计算机），主要软件环境是Bochs + gcc + 你最喜欢的编辑器/IDE + 你最喜欢的操作系统 + Linux 0.11源代码。实验的基本流程是根据实验要求编写应用程序、修改Linux 0.11的源代码，用gcc编译后，在Bochs的虚拟环境中运行、调试目标代码。</p>
+<div class="section" id="id2">
+<h2>主要平台和工具简介<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="x86bochs">
+<h3>x86模拟器Bochs<a class="headerlink" href="#x86bochs" title="永久链接至标题">¶</a></h3>
+<p>Bochs是一个免费且开放源代码的IA-32(x86)架构PC机模拟器。在它模拟出的环境中可以运行Linux、DOS和各种版本的Windows等多种操作系统。而Bochs本身具有很高的移植性，可以运行在多种软硬件平台之上，这也是我们选择它做为本书的指定模拟器的主要原因。如果您想拥抱自由的Linux，那么Bochs几乎是您的不二选择。如果您想继续把自己绑定在Windows平台上，那么除了Bochs，您还可以选用VMware或者Microsoft Virtual PC。它们是最著名虚拟机软件，而且都可以免费使用。因为Bochs的是模拟器，其原理决定了它的运行效率会低于虚拟机。但对于本书所设计的实验来说，效率上的差别很不明显。而且，Bochs有虚拟机无可比拟的调试操作系统的能力，所以我们更建议您选用Bochs。hit-oslab已经内置了bochs，本书后文假定的缺省环境也是Bochs。</p>
+<p>关于Bochs的更详细的介绍请访问它的主页及Bochs使用手册。</p>
+</div>
+<div class="section" id="gcc">
+<h3>GCC编译器<a class="headerlink" href="#gcc" title="永久链接至标题">¶</a></h3>
+<p>GCC是和Linux一起成长起来的编译器。Linux最初的版本就是由GCC编译的。现在GCC也是在自由软件领域应用最广泛的编译器。所以，我们也选择GCC做为本书实验的指定编译器。</p>
+</div>
+<div class="section" id="db">
+<h3>DB调试器<a class="headerlink" href="#db" title="永久链接至标题">¶</a></h3>
+<p>GDB调试器是GCC编译器的兄弟。做为自由软件领域几乎是唯一的调试器，它秉承了*nix类操作系统的一贯风格，采用纯命令行操作，有点儿类似dos下的debug。关于它的使用方法请看GDB使用手册。</p>
+<div class="section" id="h4-subsubsection">
+<h4>H4 – Subsubsection<a class="headerlink" href="#h4-subsubsection" title="永久链接至标题">¶</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="s2">&quot;Hello&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">echo &quot;Hello&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ pip install redis-py
+</pre></div>
+</div>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span> <span class="k">struct</span> <span class="n">exec</span> <span class="p">{</span>
+     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a_magic</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>  <span class="c1">//执行文件魔数</span>
+<span class="hll">     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a_flags</span><span class="p">;</span>
+</span>     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a_cpu</span><span class="p">;</span>       <span class="c1">//CPU标识号</span>
+<span class="hll">     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a_hdrlen</span><span class="p">;</span>    <span class="c1">//头部长度，32字节或48字节</span>
+</span>     <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">a_unused</span><span class="p">;</span>
+     <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">a_version</span><span class="p">;</span>
+     <span class="kt">long</span> <span class="n">a_text</span><span class="p">;</span> <span class="kt">long</span> <span class="n">a_data</span><span class="p">;</span> <span class="kt">long</span> <span class="n">a_bss</span><span class="p">;</span> <span class="c1">//代码段长度、数据段长度、堆长度</span>
+     <span class="kt">long</span> <span class="n">a_entry</span><span class="p">;</span>    <span class="c1">//执行入口地址</span>
+     <span class="kt">long</span> <span class="n">a_total</span><span class="p">;</span>    <span class="c1">//分配的内存总量</span>
+     <span class="kt">long</span> <span class="n">a_syms</span><span class="p">;</span>     <span class="c1">//符号表大小</span>
+ <span class="p">};</span>
+</pre></div>
+</div>
+<div class="highlight-dasm16 notranslate"><div class="highlight"><pre><span></span><span class="c">!以16进制方式打印栈顶的16位数</span>
+
+<span class="nl">print_hex:</span>
+    <span class="nf">mov</span> <span class="no">cx</span><span class="p">,</span> <span class="mi">#4</span>
+</pre></div>
+</div>
+<div class="highlight-asm notranslate"><div class="highlight"><pre><span></span><span class="c">#以16进制方式打印栈顶的16位数</span>
+
+<span class="nl">print_hex:</span>
+    <span class="nf">mov</span> <span class="no">cx</span><span class="p">,</span> <span class="no">$4</span>      <span class="c"># 4个十六进制数字</span>
+    <span class="nf">mov</span> <span class="no">dx</span><span class="p">,(</span><span class="no">bp</span><span class="p">)</span>     <span class="c"># 将</span>
+
+
+<span class="na">.text</span>
+<span class="na">.globl</span> <span class="no">idt</span><span class="p">,</span><span class="no">gdt</span><span class="p">,</span><span class="no">pg_dir</span><span class="p">,</span><span class="no">tmp_floppy_area</span>
+<span class="nl">pg_dir:</span>
+<span class="na">.globl</span> <span class="no">startup_32</span>
+<span class="nl">startup_32:</span>
+    <span class="nf">movl</span> <span class="no">$0x10</span><span class="p">,</span><span class="nv">%eax</span>
+</pre></div>
+</div>
+<div class="highlight-dasm16 notranslate"><div class="highlight"><pre><span></span> <span class="c">! 以16进制方式打印栈顶的16位数</span>
+
+<span class="hll"> <span class="nl">print_hex:</span>
+</span>     <span class="nf">mov</span>    <span class="no">cx</span><span class="p">,#</span><span class="mi">4</span>         <span class="c">! 4个十六进制数字</span>
+<span class="hll">     <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,(</span><span class="no">bp</span><span class="p">)</span>       <span class="c">! 将(bp)所指的值放入dx中，如果bp是指向栈顶的话</span>
+</span> <span class="nl">print_digit:</span>
+     <span class="nf">rol</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">4</span>         <span class="c">! 循环以使低4比特用上 !! 取dx的高4比特移到低4比特处。</span>
+     <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0xe0f</span>     <span class="c">! ah = 请求的功能值，al = 半字节(4个比特)掩码。</span>
+     <span class="nf">and</span>    <span class="no">al</span><span class="p">,</span><span class="no">dl</span>         <span class="c">! 取dl的低4比特值。</span>
+     <span class="nf">add</span>    <span class="no">al</span><span class="p">,</span><span class="mi">0x30</span>       <span class="c">! 给al数字加上十六进制0x30</span>
+     <span class="nf">add</span>    <span class="no">al</span><span class="p">,</span><span class="no">$0x30</span>      <span class="c">! 给al数字加上十六进制0x30</span>
+     <span class="nf">cmp</span>    <span class="no">al</span><span class="p">,#</span><span class="mi">0x3a</span>
+     <span class="nf">jl</span>     <span class="no">outp</span>          <span class="c">!是一个不大于十的数字</span>
+     <span class="nf">add</span>    <span class="no">al</span><span class="p">,#</span><span class="mi">0x07</span>      <span class="c">!是a～f，要多加7</span>
+ <span class="nl">outp:</span>
+     <span class="nf">int</span>    <span class="mi">0x10</span>
+     <span class="nf">loop</span>   <span class="no">print_digit</span>
+     <span class="nf">ret</span>
+</pre></div>
+</div>
+<div class="highlight-dasm16 notranslate"><div class="highlight"><pre><span></span>    <span class="c">! 以16进制方式打印栈顶的16位数</span>
+    <span class="nl">print_hex:</span>
+        <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,(</span><span class="no">bp</span><span class="p">)</span>       <span class="c">! 将(bp)所指的值放入dx中，如果bp是指向栈顶的话</span>
+    <span class="nl">print_digit:</span>
+        <span class="nf">rol</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">4</span>         <span class="c">! 循环以使低4比特用上 !! 取dx的高4比特移到低4比特处。</span>
+        <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0xe0f</span>     <span class="c">! ah = 请求的功能值，al = 半字节(4个比特)掩码。</span>
+        <span class="nf">and</span>    <span class="no">al</span><span class="p">,</span><span class="no">dl</span>         <span class="c">! 取dl的低4比特值。</span>
+        <span class="nf">add</span>    <span class="no">al</span><span class="p">,</span><span class="mi">0x30</span>       <span class="c">! 给al数字加上十六进制0x30</span>
+    <span class="nl">print_hex:</span>
+        <span class="nf">mov</span>    <span class="no">cx</span><span class="p">,#</span><span class="mi">4</span>         <span class="c">! 4个十六进制数字</span>
+        <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,(</span><span class="no">bp</span><span class="p">)</span>       <span class="c">! 将(bp)所指的值放入dx中，如果bp是指向栈顶的话</span>
+    <span class="nl">print_digit:</span>
+        <span class="nf">rol</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">4</span>         <span class="c">! 循环以使低4比特用上 !! 取dx的高4比特移到低4比特处。</span>
+        <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0xe0f</span>     <span class="c">! ah = 请求的功能值，al = 半字节(4个比特)掩码。</span>
+        <span class="nf">and</span>    <span class="no">al</span><span class="p">,</span><span class="no">dl</span>         <span class="c">! 取dl的低4比特值。</span>
+        <span class="nf">add</span>    <span class="no">al</span><span class="p">,</span><span class="mi">0x30</span>       <span class="c">! 给al数字加上十六进制0x30</span>
+        <span class="nf">add</span>    <span class="no">al</span><span class="p">,</span><span class="no">$0x30</span>      <span class="c">! 给al数字加上十六进制0x30</span>
+        <span class="nf">cmp</span>    <span class="no">al</span><span class="p">,#</span><span class="mi">0x3a</span>
+        <span class="nf">jl</span>     <span class="no">outp</span>          <span class="c">!是一个不大于十的数字</span>
+        <span class="nf">add</span>    <span class="no">al</span><span class="p">,#</span><span class="mi">0x07</span>      <span class="c">!是a～f，要多加7</span>
+    <span class="nl">outp:</span>
+        <span class="nf">int</span>    <span class="mi">0x10</span>
+        <span class="nf">loop</span>   <span class="no">print_digit</span>
+        <span class="nf">ret</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>…. literalinclude:: ../codes/bootsect.s</dt><dd><p>..:language: dasm16</p>
+</dd>
+</dl>
+<div class="highlight-nasm notranslate"><div class="highlight"><pre><span></span><span class="no">bootseg</span><span class="kd"> equ</span> <span class="mh">0x07c0</span>
+<span class="no">sysseg</span><span class="kd"> equ</span> <span class="mh">0x1000</span>
+<span class="no">syslen</span><span class="kd"> equ</span> <span class="mi">17</span>
+<span class="nl">start:</span>
+    <span class="nf">jmp</span> <span class="nv">bootseg</span><span class="p">:</span><span class="nv">go</span>
+<span class="nl">go:</span>
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="nb">cs</span>
+    <span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">mov</span> <span class="nb">ss</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">mov</span> <span class="nb">sp</span><span class="p">,</span><span class="mh">0x0400</span>
+
+<span class="nl">load_syetem:</span>
+    <span class="nf">mov</span> <span class="nb">dx</span><span class="p">,</span><span class="mh">0x0000</span>
+    <span class="nf">mov</span> <span class="nb">cx</span><span class="p">,</span><span class="mh">0x0002</span>
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="nv">sysseg</span>
+    <span class="nf">mov</span> <span class="nb">es</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">xor</span> <span class="nb">bx</span><span class="p">,</span><span class="nb">bx</span>
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="mh">0x200</span><span class="o">+</span><span class="nv">syslen</span>
+    <span class="nf">int</span> <span class="mh">0x13</span>
+    <span class="nf">jnc</span> <span class="nv">ok_load</span>
+<span class="nl">die:</span>
+    <span class="nf">jmp</span> <span class="nb">di</span><span class="nv">e</span>
+
+<span class="nl">ok_load:</span>
+    <span class="nf">cli</span>
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="nv">sysseg</span>
+    <span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">xor</span> <span class="nb">ax</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">mov</span> <span class="nb">es</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">mov</span> <span class="nb">cx</span><span class="p">,</span><span class="mh">0x2000</span>
+    <span class="nf">sub</span> <span class="nb">si</span><span class="p">,</span><span class="nb">si</span>
+    <span class="nf">sub</span> <span class="nb">di</span><span class="p">,</span><span class="nb">di</span>
+    <span class="nf">rep</span> <span class="nv">movsb</span>
+
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="nv">bootseg</span>
+    <span class="nf">mov</span> <span class="nb">ds</span><span class="p">,</span><span class="nb">ax</span>
+    <span class="nf">lidt</span> <span class="p">[</span><span class="nv">idt_48</span><span class="p">]</span>
+    <span class="nf">lgdt</span> <span class="p">[</span><span class="nv">gdt_48</span><span class="p">]</span>
+    <span class="nf">mov</span> <span class="nb">ax</span><span class="p">,</span><span class="mh">0x0001</span>
+    <span class="nf">lmsw</span> <span class="nb">ax</span>
+    <span class="nf">jmp</span> <span class="mi">8</span><span class="p">:</span><span class="mi">0</span>
+
+<span class="nl">gdt:</span>
+    <span class="kd">dw</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="kd">dw</span> <span class="mh">0x07ff</span>
+    <span class="kd">dw</span> <span class="mh">0x0000</span>
+    <span class="kd">dw</span> <span class="mh">0x9a00</span>
+    <span class="kd">dw</span> <span class="mh">0x00c0</span>
+
+    <span class="kd">dw</span> <span class="mh">0x07ff</span>
+    <span class="kd">dw</span> <span class="mh">0x0000</span>
+    <span class="kd">dw</span> <span class="mh">0x9200</span>
+    <span class="kd">dw</span> <span class="mh">0x00c0</span>
+
+<span class="nl">idt_48:</span>
+    <span class="kd">dw</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+<span class="nl">gdt_48:</span>
+    <span class="kd">dw</span> <span class="mh">0x7ff</span>
+    <span class="kd">dw</span> <span class="mh">0x7c00</span><span class="o">+</span><span class="nv">gdt</span><span class="p">,</span><span class="mi">0</span>
+    <span class="kd">times</span> <span class="mi">510</span><span class="o">-</span><span class="p">(</span><span class="kc">$</span><span class="o">-</span><span class="kc">$$</span><span class="p">)</span> <span class="nv">db</span> <span class="mi">0</span>
+    <span class="kd">dw</span> <span class="mh">0xaa55</span>
+</pre></div>
+</div>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* linux/mm/memory.c</span>
+<span class="cm">*</span>
+<span class="cm">* (C) 1991 Linus Torvalds</span>
+<span class="cm">*/</span>
+
+<span class="cm">/*</span>
+<span class="cm">* demand-loading started 01.12.91 - seems it is high on the list of</span>
+<span class="cm">* things wanted, and it should be easy to implement. - Linus</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 需求加载是从01.12.91 开始编写的 - 在程序编制表中是呼是最重要的程序，</span>
+<span class="cm">* 并且应该是很容易编制的 - linus</span>
+<span class="cm">*/</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Ok, demand-loading was easy, shared pages a little bit tricker. Shared</span>
+<span class="cm">* pages started 02.12.91, seems to work. - Linus.</span>
+<span class="cm">*</span>
+<span class="cm">* Tested sharing by executing about 30 /bin/sh: under the old kernel it</span>
+<span class="cm">* would have taken more than the 6M I have free, but it worked well as</span>
+<span class="cm">* far as I could see.</span>
+<span class="cm">*</span>
+<span class="cm">* Also corrected some &quot;invalidate()&quot;s - I wasn&#39;t doing enough of them.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* OK，需求加载是比较容易编写的，而共享页面却需要有点技巧。共享页面程序是</span>
+<span class="cm">* 02.12.91 开始编写的，好象能够工作 - Linus。</span>
+<span class="cm">*</span>
+<span class="cm">* 通过执行大约30 个/bin/sh 对共享操作进行了测试：在老内核当中需要占用多于</span>
+<span class="cm">* 6M 的内存，而目前却不用。现在看来工作得很好。</span>
+<span class="cm">*</span>
+<span class="cm">* 对&quot;invalidate()&quot;函数也进行了修正 - 在这方面我还做的不够。</span>
+<span class="cm">*/</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;signal.h&gt;		// 信号头文件。定义信号符号常量，信号结构以及信号操作函数原型。</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;asm/system.h&gt;		// 系统头文件。定义了设置或修改描述符/中断门等的嵌入式汇编宏。</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;linux/sched.h&gt;	// 调度程序头文件，定义了任务结构task_struct、初始任务0 的数据，</span><span class="cp"></span>
+<span class="c1">// 还有一些有关描述符参数设置和获取的嵌入式汇编函数宏语句。</span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/head.h&gt;		// head 头文件，定义了段描述符的简单结构，和几个选择符常量。</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;linux/kernel.h&gt;	// 内核头文件。含有一些内核常用函数的原形定义。</span><span class="cp"></span>
+
+<span class="k">volatile</span> <span class="kt">void</span> <span class="nf">do_exit</span> <span class="p">(</span><span class="kt">long</span> <span class="n">code</span><span class="p">);</span>	<span class="c1">// 进程退出处理函数，在kernel/exit.c，102 行。</span>
+
+<span class="c1">//// 显示内存已用完出错信息，并退出。</span>
+<span class="k">static</span> <span class="kr">inline</span> <span class="k">volatile</span> <span class="kt">void</span>
+<span class="nf">oom</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">printk</span> <span class="p">(</span><span class="s">&quot;out of memory</span><span class="se">\n\r</span><span class="s">&quot;</span><span class="p">);</span>
+  <span class="n">do_exit</span> <span class="p">(</span><span class="n">SIGSEGV</span><span class="p">);</span>		<span class="c1">// do_exit()应该使用退出代码，这里用了信号值SIGSEGV(11)</span>
+<span class="p">}</span>				<span class="c1">// 相同值的出错码含义是“资源暂时不可用”，正好同义。</span>
+
+<span class="c1">// 刷新页变换高速缓冲宏函数。</span>
+<span class="c1">// 为了提高地址转换的效率，CPU 将最近使用的页表数据存放在芯片中高速缓冲中。在修改过页表</span>
+<span class="c1">// 信息之后，就需要刷新该缓冲区。这里使用重新加载页目录基址寄存器cr3 的方法来进行刷新。</span>
+<span class="c1">// 下面eax = 0，是页目录的基址。</span>
+<span class="cp">#define invalidate() \</span>
+<span class="cp">__asm__( &quot;movl %%eax,%%cr3&quot;:: &quot;a&quot; (0))</span>
+
+<span class="cm">/* these are not to be changed without changing head.s etc */</span>
+<span class="cm">/* 下面定义若需要改动，则需要与head.s 等文件中的相关信息一起改变 */</span>
+<span class="c1">// linux 0.11 内核默认支持的最大内存容量是16M，可以修改这些定义以适合更多的内存。</span>
+<span class="cp">#define LOW_MEM 0x100000	</span><span class="c1">// 内存低端（1MB）。</span>
+<span class="cp">#define PAGING_MEMORY (15*1024*1024)	</span><span class="c1">// 分页内存15MB。主内存区最多15M。</span>
+<span class="cp">#define PAGING_PAGES (PAGING_MEMORY&gt;&gt;12)	</span><span class="c1">// 分页后的物理内存页数。</span>
+<span class="cp">#define MAP_NR(addr) (((addr)-LOW_MEM)&gt;&gt;12)	</span><span class="c1">// 指定内存地址映射为页号。</span>
+<span class="cp">#define USED 100		</span><span class="c1">// 页面被占用标志，参见405 行。</span>
+
+<span class="c1">// CODE_SPACE(addr) ((((addr)+0xfff)&amp;~0xfff) &lt; current-&gt;start_code + current-&gt;end_code)。</span>
+<span class="c1">// 该宏用于判断给定地址是否位于当前进程的代码段中，参见252 行。</span>
+<span class="cp">#define CODE_SPACE(addr) ((((addr)+4095)&amp;~4095) &lt; \</span>
+<span class="cp">current-&gt;start_code + current-&gt;end_code)</span>
+
+<span class="k">static</span> <span class="kt">long</span> <span class="n">HIGH_MEMORY</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>	<span class="c1">// 全局变量，存放实际物理内存最高端地址。</span>
+
+<span class="c1">// 复制1 页内存（4K 字节）。</span>
+<span class="cp">#define copy_page(from,to) \</span>
+<span class="cp">__asm__( &quot;cld ; rep ; movsl&quot;:: &quot;S&quot; (from), &quot;D&quot; (to), &quot;c&quot; (1024): &quot;cx&quot;, &quot;di&quot;, &quot;si&quot;)</span>
+
+<span class="c1">// 内存映射字节图(1 字节代表1 页内存)，每个页面对应的字节用于标志页面当前被引用（占用）次数。</span>
+<span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">mem_map</span><span class="p">[</span><span class="n">PAGING_PAGES</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">0</span><span class="p">,</span> <span class="p">};</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Get physical address of first (actually last :-) free page, and mark it</span>
+<span class="cm">* used. If no free pages left, return 0.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 获取首个(实际上是最后1 个:-)空闲页面，并标记为已使用。如果没有空闲页面，</span>
+<span class="cm">* 就返回0。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 取空闲页面。如果已经没有可用内存了，则返回0。</span>
+<span class="c1">// 输入：%1(ax=0) - 0；%2(LOW_MEM)；%3(cx=PAGING PAGES)；%4(edi=mem_map+PAGING_PAGES-1)。</span>
+<span class="c1">// 输出：返回%0(ax=页面起始地址)。</span>
+<span class="c1">// 上面%4 寄存器实际指向mem_map[]内存字节图的最后一个字节。本函数从字节图末端开始向前扫描</span>
+<span class="c1">// 所有页面标志（页面总数为PAGING_PAGES），若有页面空闲（其内存映像字节为0）则返回页面地址。</span>
+<span class="c1">// 注意！本函数只是指出在主内存区的一页空闲页面，但并没有映射到某个进程的线性地址去。后面</span>
+<span class="c1">// 的put_page()函数就是用来作映射的。</span>
+<span class="kt">unsigned</span> <span class="kt">long</span>
+<span class="nf">get_free_page</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">register</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">__res</span> <span class="k">asm</span> <span class="p">(</span><span class="s">&quot;ax&quot;</span><span class="p">);</span>
+
+  <span class="n">__asm__</span> <span class="p">(</span><span class="s">&quot;std ; repne ; scasb</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 方向位置位，将al(0)与对应每个页面的(di)内容比较，</span>
+	   <span class="s">&quot;jne 1f</span><span class="se">\n\t</span><span class="s">&quot;</span>		<span class="c1">// 如果没有等于0 的字节，则跳转结束（返回0）。</span>
+	   <span class="s">&quot;movb $1,1(%%edi)</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 将对应页面的内存映像位置1。</span>
+	   <span class="s">&quot;sall $12,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 页面数*4K = 相对页面起始地址。</span>
+	   <span class="s">&quot;addl %2,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 再加上低端内存地址，即获得页面实际物理起始地址。</span>
+	   <span class="s">&quot;movl %%ecx,%%edx</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 将页面实际起始地址??edx 寄存器。</span>
+	   <span class="s">&quot;movl $1024,%%ecx</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 寄存器ecx 置计数值1024。</span>
+	   <span class="s">&quot;leal 4092(%%edx),%%edi</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 将4092+edx 的位置??edi(该页面的末端)。</span>
+	   <span class="s">&quot;rep ; stosl</span><span class="se">\n\t</span><span class="s">&quot;</span>	<span class="c1">// 将edi 所指内存清零（反方向，也即将该页面清零）。</span>
+	   <span class="s">&quot;movl %%edx,%%eax</span><span class="se">\n</span><span class="s">&quot;</span>	<span class="c1">// 将页面起始地址??eax（返回值）。</span>
+<span class="s">&quot;1:&quot;</span><span class="o">:</span> <span class="s">&quot;=a&quot;</span> <span class="p">(</span><span class="n">__res</span><span class="p">)</span><span class="o">:</span> <span class="s">&quot;&quot;</span> <span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="s">&quot;i&quot;</span> <span class="p">(</span><span class="n">LOW_MEM</span><span class="p">),</span> <span class="s">&quot;c&quot;</span> <span class="p">(</span><span class="n">PAGING_PAGES</span><span class="p">),</span> <span class="s">&quot;D&quot;</span> <span class="p">(</span><span class="n">mem_map</span> <span class="o">+</span> <span class="n">PAGING_PAGES</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="o">:</span><span class="s">&quot;di&quot;</span><span class="p">,</span> <span class="s">&quot;cx&quot;</span><span class="p">,</span>
+	   <span class="s">&quot;dx&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">__res</span><span class="p">;</span>			<span class="c1">// 返回空闲页面地址（如果无空闲也则返回0）。</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Free a page of memory at physical address &#39;addr&#39;. Used by</span>
+<span class="cm">* &#39;free_page_tables()&#39;</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 释放物理地址&#39;addr&#39;开始的一页内存。用于函数&#39;free_page_tables()&#39;。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 释放物理地址addr 开始的一页面内存。</span>
+<span class="c1">// 1MB 以下的内存空间用于内核程序和缓冲，不作为分配页面的内存空间。</span>
+<span class="kt">void</span>
+<span class="nf">free_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">addr</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">LOW_MEM</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>			<span class="c1">// 如果物理地址addr 小于内存低端（1MB），则返回。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">addr</span> <span class="o">&gt;=</span> <span class="n">HIGH_MEMORY</span><span class="p">)</span>	<span class="c1">// 如果物理地址addr&gt;=内存最高端，则显示出错信息。</span>
+    <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;trying to free nonexistent page&quot;</span><span class="p">);</span>
+  <span class="n">addr</span> <span class="o">-=</span> <span class="n">LOW_MEM</span><span class="p">;</span>		<span class="c1">// 物理地址减去低端内存位置，再除以4KB，得页面号。</span>
+  <span class="n">addr</span> <span class="o">&gt;&gt;=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mem_map</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span><span class="o">--</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">;</span>			<span class="c1">// 如果对应内存页面映射字节不等于0，则减1 返回。</span>
+  <span class="n">mem_map</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>		<span class="c1">// 否则置对应页面映射字节为0，并显示出错信息，死机。</span>
+  <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;trying to free free page&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* This function frees a continuos block of page tables, as needed</span>
+<span class="cm">* by &#39;exit()&#39;. As does copy_page_tables(), this handles only 4Mb blocks.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 下面函数释放页表连续的内存块，&#39;exit()&#39;需要该函数。与copy_page_tables()</span>
+<span class="cm">* 类似，该函数仅处理4Mb 的内存块。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 根据指定的线性地址和限长（页表个数），释放对应内存页表所指定的内存块并置表项空闲。</span>
+<span class="c1">// 页目录位于物理地址0 开始处，共1024 项，占4K 字节。每个目录项指定一个页表。</span>
+<span class="c1">// 页表从物理地址0x1000 处开始（紧接着目录空间），每个页表有1024 项，也占4K 内存。</span>
+<span class="c1">// 每个页表项对应一页物理内存（4K）。目录项和页表项的大小均为4 个字节。</span>
+<span class="c1">// 参数：from - 起始基地址；size - 释放的长度。</span>
+<span class="kt">int</span>
+<span class="nf">free_page_tables</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">pg_table</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">dir</span><span class="p">,</span> <span class="n">nr</span><span class="p">;</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">from</span> <span class="o">&amp;</span> <span class="mh">0x3fffff</span><span class="p">)</span>		<span class="c1">// 要释放内存块的地址需以4M 为边界。</span>
+    <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;free_page_tables called with wrong alignment&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">from</span><span class="p">)</span>			<span class="c1">// 出错，试图释放内核和缓冲所占空间。</span>
+    <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;Trying to free up swapper memory space&quot;</span><span class="p">);</span>
+<span class="c1">// 计算所占页目录项数(4M 的进位整数倍)，也即所占页表数。</span>
+  <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mh">0x3fffff</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">22</span><span class="p">;</span>
+<span class="c1">// 下面一句计算起始目录项。对应的目录项号=from&gt;&gt;22，因每项占4 字节，并且由于页目录是从</span>
+<span class="c1">// 物理地址0 开始，因此实际的目录项指针=目录项号&lt;&lt;2，也即(from&gt;&gt;20)。与上0xffc 确保</span>
+<span class="c1">// 目录项指针范围有效。</span>
+  <span class="n">dir</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">from</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>	<span class="cm">/* _pg_dir = 0 */</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">size</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">dir</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>				<span class="c1">// size 现在是需要被释放内存的目录项数。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">dir</span><span class="p">))</span>		<span class="c1">// 如果该目录项无效(P 位=0)，则继续。</span>
+	<span class="k">continue</span><span class="p">;</span>		<span class="c1">// 目录项的位0(P 位)表示对应页表是否存在。</span>
+      <span class="n">pg_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">dir</span><span class="p">);</span>	<span class="c1">// 取目录项中页表地址。</span>
+      <span class="k">for</span> <span class="p">(</span><span class="n">nr</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">nr</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">;</span> <span class="n">nr</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>			<span class="c1">// 每个页表有1024 个页项。</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">pg_table</span><span class="p">)</span>	<span class="c1">// 若该页表项有效(P 位=1)，则释放对应内存页。</span>
+	    <span class="n">free_page</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">pg_table</span><span class="p">);</span>
+	  <span class="o">*</span><span class="n">pg_table</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>	<span class="c1">// 该页表项内容清零。</span>
+	  <span class="n">pg_table</span><span class="o">++</span><span class="p">;</span>		<span class="c1">// 指向页表中下一项。</span>
+	<span class="p">}</span>
+      <span class="n">free_page</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">dir</span><span class="p">);</span>	<span class="c1">// 释放该页表所占内存页面。但由于页表在</span>
+<span class="c1">// 物理地址1M 以内，所以这句什么都不做。</span>
+      <span class="o">*</span><span class="n">dir</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>			<span class="c1">// 对相应页表的目录项清零。</span>
+    <span class="p">}</span>
+  <span class="n">invalidate</span> <span class="p">();</span>		<span class="c1">// 刷新页变换高速缓冲。</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* Well, here is one of the most complicated functions in mm. It</span>
+<span class="cm">* copies a range of linerar addresses by copying only the pages.</span>
+<span class="cm">* Let&#39;s hope this is bug-free, &#39;cause this one I don&#39;t want to debug :-)</span>
+<span class="cm">*</span>
+<span class="cm">* Note! We don&#39;t copy just any chunks of memory - addresses have to</span>
+<span class="cm">* be divisible by 4Mb (one page-directory entry), as this makes the</span>
+<span class="cm">* function easier. It&#39;s used only by fork anyway.</span>
+<span class="cm">*</span>
+<span class="cm">* NOTE 2!! When from==0 we are copying kernel space for the first</span>
+<span class="cm">* fork(). Then we DONT want to copy a full page-directory entry, as</span>
+<span class="cm">* that would lead to some serious memory waste - we just copy the</span>
+<span class="cm">* first 160 pages - 640kB. Even that is more than we need, but it</span>
+<span class="cm">* doesn&#39;t take any more memory - we don&#39;t copy-on-write in the low</span>
+<span class="cm">* 1 Mb-range, so the pages can be shared with the kernel. Thus the</span>
+<span class="cm">* special case for nr=xxxx.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 好了，下面是内存管理mm 中最为复杂的程序之一。它通过只复制内存页面</span>
+<span class="cm">* 来拷贝一定范围内线性地址中的内容。希望代码中没有错误，因为我不想</span>
+<span class="cm">* 再调试这块代码了?。</span>
+<span class="cm">*</span>
+<span class="cm">* 注意！我们并不是仅复制任何内存块 - 内存块的地址需要是4Mb 的倍数（正好</span>
+<span class="cm">* 一个页目录项对应的内存大小），因为这样处理可使函数很简单。不管怎样，</span>
+<span class="cm">* 它仅被fork()使用（fork.c 第56 行）。</span>
+<span class="cm">*</span>
+<span class="cm">* 注意2！！当from==0 时，是在为第一次fork()调用复制内核空间。此时我们</span>
+<span class="cm">* 不想复制整个页目录项对应的内存，因为这样做会导致内存严重的浪费 - 我们</span>
+<span class="cm">* 只复制头160 个页面 - 对应640kB。即使是复制这些页面也已经超出我们的需求，</span>
+<span class="cm">* 但这不会占用更多的内存 - 在低1Mb 内存范围内我们不执行写时复制操作，所以</span>
+<span class="cm">* 这些页面可以与内核共享。因此这是nr=xxxx 的特殊情况（nr 在程序中指页面数）。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 复制指定线性地址和长度（页表个数）内存对应的页目录项和页表，从而被复制的页目录和</span>
+<span class="c1">//// 页表对应的原物理内存区被共享使用。</span>
+<span class="c1">// 复制指定地址和长度的内存对应的页目录项和页表项。需申请页面来存放新页表，原内存区被共享；</span>
+<span class="c1">// 此后两个进程将共享内存区，直到有一个进程执行写操作时，才分配新的内存页（写时复制机制）。</span>
+<span class="kt">int</span>
+<span class="nf">copy_page_tables</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">,</span> <span class="kt">long</span> <span class="n">size</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">from_page_table</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">to_page_table</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">this_page</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">from_dir</span><span class="p">,</span> <span class="o">*</span><span class="n">to_dir</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">nr</span><span class="p">;</span>
+
+<span class="c1">// 源地址和目的地址都需要是在4Mb 的内存边界地址上。否则出错，死机。</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">from</span> <span class="o">&amp;</span> <span class="mh">0x3fffff</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">to</span> <span class="o">&amp;</span> <span class="mh">0x3fffff</span><span class="p">))</span>
+    <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;copy_page_tables called with wrong alignment&quot;</span><span class="p">);</span>
+<span class="c1">// 取得源地址和目的地址的目录项(from_dir 和to_dir)。参见对115 句的注释。</span>
+  <span class="n">from_dir</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">from</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>	<span class="cm">/* _pg_dir = 0 */</span>
+  <span class="n">to_dir</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">to</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="c1">// 计算要复制的内存块占用的页表数（也即目录项数）。</span>
+  <span class="n">size</span> <span class="o">=</span> <span class="p">((</span><span class="kt">unsigned</span><span class="p">)</span> <span class="p">(</span><span class="n">size</span> <span class="o">+</span> <span class="mh">0x3fffff</span><span class="p">))</span> <span class="o">&gt;&gt;</span> <span class="mi">22</span><span class="p">;</span>
+<span class="c1">// 下面开始对每个占用的页表依次进行复制操作。</span>
+  <span class="k">for</span> <span class="p">(;</span> <span class="n">size</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">from_dir</span><span class="o">++</span><span class="p">,</span> <span class="n">to_dir</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+<span class="c1">// 如果目的目录项指定的页表已经存在(P=1)，则出错，死机。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">to_dir</span><span class="p">)</span>
+	<span class="n">panic</span> <span class="p">(</span><span class="s">&quot;copy_page_tables: already exist&quot;</span><span class="p">);</span>
+<span class="c1">// 如果此源目录项未被使用，则不用复制对应页表，跳过。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">from_dir</span><span class="p">))</span>
+	<span class="k">continue</span><span class="p">;</span>
+<span class="c1">// 取当前源目录项中页表的地址??from_page_table。</span>
+      <span class="n">from_page_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">from_dir</span><span class="p">);</span>
+<span class="c1">// 为目的页表取一页空闲内存，如果返回是0 则说明没有申请到空闲内存页面。返回值=-1，退出。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">to_page_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">get_free_page</span> <span class="p">()))</span>
+	<span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>		<span class="cm">/* Out of memory, see freeing */</span>
+<span class="c1">// 设置目的目录项信息。7 是标志信息，表示(Usr, R/W, Present)。</span>
+      <span class="o">*</span><span class="n">to_dir</span> <span class="o">=</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span> <span class="n">to_page_table</span><span class="p">)</span> <span class="o">|</span> <span class="mi">7</span><span class="p">;</span>
+<span class="c1">// 针对当前处理的页表，设置需复制的页面数。如果是在内核空间，则仅需复制头160 页，否则需要</span>
+<span class="c1">// 复制1 个页表中的所有1024 页面。</span>
+      <span class="n">nr</span> <span class="o">=</span> <span class="p">(</span><span class="n">from</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mh">0xA0</span> <span class="o">:</span> <span class="mi">1024</span><span class="p">;</span>
+<span class="c1">// 对于当前页表，开始复制指定数目nr 个内存页面。</span>
+      <span class="k">for</span> <span class="p">(;</span> <span class="n">nr</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">from_page_table</span><span class="o">++</span><span class="p">,</span> <span class="n">to_page_table</span><span class="o">++</span><span class="p">)</span>
+	<span class="p">{</span>
+	  <span class="n">this_page</span> <span class="o">=</span> <span class="o">*</span><span class="n">from_page_table</span><span class="p">;</span>	<span class="c1">// 取源页表项内容。</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">this_page</span><span class="p">))</span>	<span class="c1">// 如果当前源页面没有使用，则不用复制。</span>
+	    <span class="k">continue</span><span class="p">;</span>
+<span class="c1">// 复位页表项中R/W 标志(置0)。(如果U/S 位是0，则R/W 就没有作用。如果U/S 是1，而R/W 是0，</span>
+<span class="c1">// 那么运行在用户层的代码就只能读页面。如果U/S 和R/W 都置位，则就有写的权限。)</span>
+	  <span class="n">this_page</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mi">2</span><span class="p">;</span>
+	  <span class="o">*</span><span class="n">to_page_table</span> <span class="o">=</span> <span class="n">this_page</span><span class="p">;</span>	<span class="c1">// 将该页表项复制到目的页表中。</span>
+<span class="c1">// 如果该页表项所指页面的地址在1M 以上，则需要设置内存页面映射数组mem_map[]，于是计算</span>
+<span class="c1">// 页面号，并以它为索引在页面映射数组相应项中增加引用次数。</span>
+	  <span class="k">if</span> <span class="p">(</span><span class="n">this_page</span> <span class="o">&gt;</span> <span class="n">LOW_MEM</span><span class="p">)</span>
+	    <span class="p">{</span>
+<span class="c1">// 下面这句的含义是令源页表项所指内存页也为只读。因为现在开始有两个进程共用内存区了。</span>
+<span class="c1">// 若其中一个内存需要进行写操作，则可以通过页异常的写保护处理，为执行写操作的进程分配</span>
+<span class="c1">// 一页新的空闲页面，也即进行写时复制的操作。</span>
+	      <span class="o">*</span><span class="n">from_page_table</span> <span class="o">=</span> <span class="n">this_page</span><span class="p">;</span>	<span class="c1">// 令源页表项也只读。</span>
+	      <span class="n">this_page</span> <span class="o">-=</span> <span class="n">LOW_MEM</span><span class="p">;</span>
+	      <span class="n">this_page</span> <span class="o">&gt;&gt;=</span> <span class="mi">12</span><span class="p">;</span>
+	      <span class="n">mem_map</span><span class="p">[</span><span class="n">this_page</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+	    <span class="p">}</span>
+	<span class="p">}</span>
+    <span class="p">}</span>
+  <span class="n">invalidate</span> <span class="p">();</span>		<span class="c1">// 刷新页变换高速缓冲。</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* This function puts a page in memory at the wanted address.</span>
+<span class="cm">* It returns the physical address of the page gotten, 0 if</span>
+<span class="cm">* out of memory (either when trying to access page-table or</span>
+<span class="cm">* page.)</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 下面函数将一内存页面放置在指定地址处。它返回页面的物理地址，如果</span>
+<span class="cm">* 内存不够(在访问页表或页面时)，则返回0。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 把一物理内存页面映射到指定的线性地址处。</span>
+<span class="c1">// 主要工作是在页目录和页表中设置指定页面的信息。若成功则返回页面地址。</span>
+<span class="kt">unsigned</span> <span class="kt">long</span>
+<span class="nf">put_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">page</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tmp</span><span class="p">,</span> <span class="o">*</span><span class="n">page_table</span><span class="p">;</span>
+
+<span class="cm">/* NOTE !!! This uses the fact that _pg_dir=0 */</span>
+<span class="cm">/* 注意!!!这里使用了页目录基址_pg_dir=0 的条件 */</span>
+
+<span class="c1">// 如果申请的页面位置低于LOW_MEM(1Mb)或超出系统实际含有内存高端HIGH_MEMORY，则发出警告。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">page</span> <span class="o">&lt;</span> <span class="n">LOW_MEM</span> <span class="o">||</span> <span class="n">page</span> <span class="o">&gt;=</span> <span class="n">HIGH_MEMORY</span><span class="p">)</span>
+    <span class="n">printk</span> <span class="p">(</span><span class="s">&quot;Trying to put page %p at %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+<span class="c1">// 如果申请的页面在内存页面映射字节图中没有置位，则显示警告信息。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">mem_map</span><span class="p">[(</span><span class="n">page</span> <span class="o">-</span> <span class="n">LOW_MEM</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">printk</span> <span class="p">(</span><span class="s">&quot;mem_map disagrees with %p at %p</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">page</span><span class="p">,</span> <span class="n">address</span><span class="p">);</span>
+<span class="c1">// 计算指定地址在页目录表中对应的目录项指针。</span>
+  <span class="n">page_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="c1">// 如果该目录项有效(P=1)(也即指定的页表在内存中)，则从中取得指定页表的地址??page_table。</span>
+  <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="n">page_table</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">page_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">page_table</span><span class="p">);</span>
+  <span class="k">else</span>
+    <span class="p">{</span>
+<span class="c1">// 否则，申请空闲页面给页表使用，并在对应目录项中置相应标志7（User, U/S, R/W）。然后将</span>
+<span class="c1">// 该页表的地址??page_table。</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">get_free_page</span> <span class="p">()))</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="o">*</span><span class="n">page_table</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">|</span> <span class="mi">7</span><span class="p">;</span>
+      <span class="n">page_table</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="c1">// 在页表中设置指定地址的物理内存页面的页表项内容。每个页表共可有1024 项(0x3ff)。</span>
+  <span class="n">page_table</span><span class="p">[(</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">12</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x3ff</span><span class="p">]</span> <span class="o">=</span> <span class="n">page</span> <span class="o">|</span> <span class="mi">7</span><span class="p">;</span>
+<span class="cm">/* no need for invalidate */</span>
+<span class="cm">/* 不需要刷新页变换高速缓冲 */</span>
+  <span class="k">return</span> <span class="n">page</span><span class="p">;</span>			<span class="c1">// 返回页面地址。</span>
+<span class="p">}</span>
+
+<span class="c1">//// 取消写保护页面函数。用于页异常中断过程中写保护异常的处理（写时复制）。</span>
+<span class="c1">// 输入参数为页表项指针。</span>
+<span class="c1">// [ un_wp_page 意思是取消页面的写保护：Un-Write Protected。]</span>
+<span class="kt">void</span>
+<span class="nf">un_wp_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="n">table_entry</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">old_page</span><span class="p">,</span> <span class="n">new_page</span><span class="p">;</span>
+
+  <span class="n">old_page</span> <span class="o">=</span> <span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="o">*</span><span class="n">table_entry</span><span class="p">;</span>	<span class="c1">// 取原页面对应的目录项号。</span>
+<span class="c1">// 如果原页面地址大于内存低端LOW_MEM(1Mb)，并且其在页面映射字节图数组中值为1（表示仅</span>
+<span class="c1">// 被引用1 次，页面没有被共享），则在该页面的页表项中置R/W 标志（可写），并刷新页变换</span>
+<span class="c1">// 高速缓冲，然后返回。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">old_page</span> <span class="o">&gt;=</span> <span class="n">LOW_MEM</span> <span class="o">&amp;&amp;</span> <span class="n">mem_map</span><span class="p">[</span><span class="n">MAP_NR</span> <span class="p">(</span><span class="n">old_page</span><span class="p">)]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="o">*</span><span class="n">table_entry</span> <span class="o">|=</span> <span class="mi">2</span><span class="p">;</span>
+      <span class="n">invalidate</span> <span class="p">();</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="c1">// 否则，在主内存区内申请一页空闲页面。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">new_page</span> <span class="o">=</span> <span class="n">get_free_page</span> <span class="p">()))</span>
+    <span class="n">oom</span> <span class="p">();</span>			<span class="c1">// Out of Memory。内存不够处理。</span>
+<span class="c1">// 如果原页面大于内存低端（则意味着mem_map[]&gt;1，页面是共享的），则将原页面的页面映射</span>
+<span class="c1">// 数组值递减1。然后将指定页表项内容更新为新页面的地址，并置可读写等标志(U/S, R/W, P)。</span>
+<span class="c1">// 刷新页变换高速缓冲。最后将原页面内容复制到新页面。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">old_page</span> <span class="o">&gt;=</span> <span class="n">LOW_MEM</span><span class="p">)</span>
+    <span class="n">mem_map</span><span class="p">[</span><span class="n">MAP_NR</span> <span class="p">(</span><span class="n">old_page</span><span class="p">)]</span><span class="o">--</span><span class="p">;</span>
+  <span class="o">*</span><span class="n">table_entry</span> <span class="o">=</span> <span class="n">new_page</span> <span class="o">|</span> <span class="mi">7</span><span class="p">;</span>
+  <span class="n">invalidate</span> <span class="p">();</span>
+  <span class="n">copy_page</span> <span class="p">(</span><span class="n">old_page</span><span class="p">,</span> <span class="n">new_page</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* This routine handles present pages, when users try to write</span>
+<span class="cm">* to a shared page. It is done by copying the page to a new address</span>
+<span class="cm">* and decrementing the shared-page counter for the old page.</span>
+<span class="cm">*</span>
+<span class="cm">* If it&#39;s in code space we exit with a segment error.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* 当用户试图往一个共享页面上写时，该函数处理已存在的内存页面，（写时复制）</span>
+<span class="cm">* 它是通过将页面复制到一个新地址上并递减原页面的共享页面计数值实现的。</span>
+<span class="cm">*</span>
+<span class="cm">* 如果它在代码空间，我们就以段错误信息退出。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 页异常中断处理调用的C 函数。写共享页面处理函数。在page.s 程序中被调用。</span>
+<span class="c1">// 参数error_code 是由CPU 自动产生，address 是页面线性地址。</span>
+<span class="c1">// 写共享页面时，需复制页面（写时复制）。</span>
+<span class="kt">void</span>
+<span class="nf">do_wp_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="cp">#if 0</span><span class="c"></span>
+<span class="c">/* we cannot do this yet: the estdio library writes to code space */</span>
+<span class="c">/* stupid, stupid. I really want the libc.a from GNU */</span>
+<span class="c">/* 我们现在还不能这样做：因为estdio 库会在代码空间执行写操作 */</span>
+<span class="c">/* 真是太愚蠢了。我真想从GNU 得到libc.a 库。*/</span>
+<span class="c">  if (CODE_SPACE (address))	// 如果地址位于代码空间，则终止执行程序。</span>
+<span class="c">    do_exit (SIGSEGV);</span>
+<span class="cp">#endif</span>
+<span class="c1">// 处理取消页面保护。参数指定页面在页表中的页表项指针，其计算方法是：</span>
+<span class="c1">// ((address&gt;&gt;10) &amp; 0xffc)：计算指定地址的页面在页表中的偏移地址；</span>
+<span class="c1">// (0xfffff000 &amp;((address&gt;&gt;20) &amp;0xffc))：取目录项中页表的地址值，</span>
+<span class="c1">// 其中((address&gt;&gt;20) &amp;0xffc)计算页面所在页表的目录项指针；</span>
+<span class="c1">// 两者相加即得指定地址对应页面的页表项指针。这里对共享的页面进行复制。</span>
+  <span class="n">un_wp_page</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span>
+	      <span class="p">(((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span>
+					    <span class="o">*</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span>
+					       <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span>
+						   <span class="mh">0xffc</span><span class="p">)))));</span>
+
+<span class="p">}</span>
+
+<span class="c1">//// 写页面验证。</span>
+<span class="c1">// 若页面不可写，则复制页面。在fork.c 第34 行被调用。</span>
+<span class="kt">void</span>
+<span class="nf">write_verify</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">page</span><span class="p">;</span>
+
+<span class="c1">// 判断指定地址所对应页目录项的页表是否存在(P)，若不存在(P=0)则返回。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="n">page</span> <span class="o">=</span> <span class="o">*</span><span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">)))</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="c1">// 取页表的地址，加上指定地址的页面在页表中的页表项偏移值，得对应物理页面的页表项指针。</span>
+  <span class="n">page</span> <span class="o">&amp;=</span> <span class="mh">0xfffff000</span><span class="p">;</span>
+  <span class="n">page</span> <span class="o">+=</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="c1">// 如果该页面不可写(标志R/W 没有置位)，则执行共享检验和复制页面操作（写时复制）。</span>
+  <span class="k">if</span> <span class="p">((</span><span class="mi">3</span> <span class="o">&amp;</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">page</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>	<span class="cm">/* non-writeable, present */</span>
+    <span class="n">un_wp_page</span> <span class="p">((</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">page</span><span class="p">);</span>
+  <span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//// 取得一页空闲内存并映射到指定线性地址处。</span>
+<span class="c1">// 与get_free_page()不同。get_free_page()仅是申请取得了主内存区的一页物理内存。而该函数</span>
+<span class="c1">// 不仅是获取到一页物理内存页面，还进一步调用put_page()，将物理页面映射到指定的线性地址</span>
+<span class="c1">// 处。</span>
+<span class="kt">void</span>
+<span class="nf">get_empty_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tmp</span><span class="p">;</span>
+
+<span class="c1">// 若不能取得一空闲页面，或者不能将页面放置到指定地址处，则显示内存不够的信息。</span>
+<span class="c1">// 279 行上英文注释的含义是：即使执行get_free_page()返回0 也无所谓，因为put_page()</span>
+<span class="c1">// 中还会对此情况再次申请空闲物理页面的，见210 行。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">tmp</span> <span class="o">=</span> <span class="n">get_free_page</span> <span class="p">())</span> <span class="o">||</span> <span class="o">!</span><span class="n">put_page</span> <span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">address</span><span class="p">))</span>
+    <span class="p">{</span>
+      <span class="n">free_page</span> <span class="p">(</span><span class="n">tmp</span><span class="p">);</span>		<span class="cm">/* 0 is ok - ignored */</span>
+      <span class="n">oom</span> <span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* try_to_share() checks the page at address &quot;address&quot; in the task &quot;p&quot;,</span>
+<span class="cm">* to see if it exists, and if it is clean. If so, share it with the current</span>
+<span class="cm">* task.</span>
+<span class="cm">*</span>
+<span class="cm">* NOTE! This assumes we have checked that p != current, and that they</span>
+<span class="cm">* share the same executable.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* try_to_share()在任务&quot;p&quot;中检查位于地址&quot;address&quot;处的页面，看页面是否存在，是否干净。</span>
+<span class="cm">* 如果是干净的话，就与当前任务共享。</span>
+<span class="cm">*</span>
+<span class="cm">* 注意！这里我们已假定p !=当前任务，并且它们共享同一个执行程序。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 尝试对进程指定地址处的页面进行共享操作。</span>
+<span class="c1">// 同时还验证指定的地址处是否已经申请了页面，若是则出错，死机。</span>
+<span class="c1">// 返回1-成功，0-失败。</span>
+<span class="k">static</span> <span class="kt">int</span>
+<span class="nf">try_to_share</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">,</span> <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">from_page</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">to_page</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">phys_addr</span><span class="p">;</span>
+
+<span class="c1">// 求指定内存地址的页目录项。</span>
+  <span class="n">from_page</span> <span class="o">=</span> <span class="n">to_page</span> <span class="o">=</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="c1">// 计算进程p 的代码起始地址所对应的页目录项。</span>
+  <span class="n">from_page</span> <span class="o">+=</span> <span class="p">((</span><span class="n">p</span><span class="o">-&gt;</span><span class="n">start_code</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="c1">// 计算当前进程中代码起始地址所对应的页目录项。</span>
+  <span class="n">to_page</span> <span class="o">+=</span> <span class="p">((</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">start_code</span> <span class="o">&gt;&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+<span class="cm">/* is there a page-directory at from? */</span>
+<span class="cm">/* 在from 处是否存在页目录？*/</span>
+<span class="c1">// *** 对p 进程页面进行操作。</span>
+<span class="c1">// 取页目录项内容。如果该目录项无效(P=0)，则返回。否则取该目录项对应页表地址??from。</span>
+  <span class="n">from</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">from_page</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">from</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">from</span> <span class="o">&amp;=</span> <span class="mh">0xfffff000</span><span class="p">;</span>
+<span class="c1">// 计算地址对应的页表项指针值，并取出该页表项内容??phys_addr。</span>
+  <span class="n">from_page</span> <span class="o">=</span> <span class="n">from</span> <span class="o">+</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+  <span class="n">phys_addr</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">from_page</span><span class="p">;</span>
+<span class="cm">/* is the page clean and present? */</span>
+<span class="cm">/* 页面干净并且存在吗？*/</span>
+<span class="c1">// 0x41 对应页表项中的Dirty 和Present 标志。如果页面不干净或无效则返回。</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">phys_addr</span> <span class="o">&amp;</span> <span class="mh">0x41</span><span class="p">)</span> <span class="o">!=</span> <span class="mh">0x01</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// 取页面的地址??phys_addr。如果该页面地址不存在或小于内存低端(1M)也返回退出。</span>
+  <span class="n">phys_addr</span> <span class="o">&amp;=</span> <span class="mh">0xfffff000</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">phys_addr</span> <span class="o">&gt;=</span> <span class="n">HIGH_MEMORY</span> <span class="o">||</span> <span class="n">phys_addr</span> <span class="o">&lt;</span> <span class="n">LOW_MEM</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// *** 对当前进程页面进行操作。</span>
+<span class="c1">// 取页目录项内容??to。如果该目录项无效(P=0)，则取空闲页面，并更新to_page 所指的目录项。</span>
+  <span class="n">to</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">to_page</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">to</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">to</span> <span class="o">=</span> <span class="n">get_free_page</span> <span class="p">())</span>
+      <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">to_page</span> <span class="o">=</span> <span class="n">to</span> <span class="o">|</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="k">else</span>
+      <span class="n">oom</span> <span class="p">();</span>
+<span class="c1">// 取对应页表地址??to，页表项地址??to_page。如果对应的页面已经存在，则出错，死机。</span>
+  <span class="n">to</span> <span class="o">&amp;=</span> <span class="mh">0xfffff000</span><span class="p">;</span>
+  <span class="n">to_page</span> <span class="o">=</span> <span class="n">to</span> <span class="o">+</span> <span class="p">((</span><span class="n">address</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xffc</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">to_page</span><span class="p">)</span>
+    <span class="n">panic</span> <span class="p">(</span><span class="s">&quot;try_to_share: to_page already exists&quot;</span><span class="p">);</span>
+<span class="cm">/* share them: write-protect */</span>
+<span class="cm">/* 对它们进行共享处理：写保护 */</span>
+<span class="c1">// 对p 进程中页面置写保护标志(置R/W=0 只读)。并且当前进程中的对应页表项指向它。</span>
+  <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">from_page</span> <span class="o">&amp;=</span> <span class="o">~</span><span class="mi">2</span><span class="p">;</span>
+  <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">to_page</span> <span class="o">=</span> <span class="o">*</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="n">from_page</span><span class="p">;</span>
+<span class="c1">// 刷新页变换高速缓冲。</span>
+  <span class="n">invalidate</span> <span class="p">();</span>
+<span class="c1">// 计算所操作页面的页面号，并将对应页面映射数组项中的引用递增1。</span>
+  <span class="n">phys_addr</span> <span class="o">-=</span> <span class="n">LOW_MEM</span><span class="p">;</span>
+  <span class="n">phys_addr</span> <span class="o">&gt;&gt;=</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="n">mem_map</span><span class="p">[</span><span class="n">phys_addr</span><span class="p">]</span><span class="o">++</span><span class="p">;</span>
+  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/*</span>
+<span class="cm">* share_page() tries to find a process that could share a page with</span>
+<span class="cm">* the current one. Address is the address of the wanted page relative</span>
+<span class="cm">* to the current data space.</span>
+<span class="cm">*</span>
+<span class="cm">* We first check if it is at all feasible by checking executable-&gt;i_count.</span>
+<span class="cm">* It should be &gt;1 if there are other tasks sharing this inode.</span>
+<span class="cm">*/</span>
+<span class="cm">/*</span>
+<span class="cm">* share_page()试图找到一个进程，它可以与当前进程共享页面。参数address 是</span>
+<span class="cm">* 当前数据空间中期望共享的某页面地址。</span>
+<span class="cm">*</span>
+<span class="cm">* 首先我们通过检测executable-&gt;i_count 来查证是否可行。如果有其它任务已共享</span>
+<span class="cm">* 该inode，则它应该大于1。</span>
+<span class="cm">*/</span>
+<span class="c1">//// 共享页面。在缺页处理时看看能否共享页面。</span>
+<span class="c1">// 返回1 - 成功，0 - 失败。</span>
+<span class="k">static</span> <span class="kt">int</span>
+<span class="nf">share_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">struct</span> <span class="n">task_struct</span> <span class="o">**</span><span class="n">p</span><span class="p">;</span>
+
+<span class="c1">// 如果是不可执行的，则返回。excutable 是执行进程的内存i 节点结构。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// 如果只能单独执行(executable-&gt;i_count=1)，也退出。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span><span class="o">-&gt;</span><span class="n">i_count</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="c1">// 搜索任务数组中所有任务。寻找与当前进程可共享页面的进程，并尝试对指定地址的页面进行共享。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">LAST_TASK</span><span class="p">;</span> <span class="n">p</span> <span class="o">&gt;</span> <span class="o">&amp;</span><span class="n">FIRST_TASK</span><span class="p">;</span> <span class="o">--</span><span class="n">p</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="o">!*</span><span class="n">p</span><span class="p">)</span>			<span class="c1">// 如果该任务项空闲，则继续寻找。</span>
+	<span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span>	<span class="c1">// 如果就是当前任务，也继续寻找。</span>
+	<span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">((</span><span class="o">*</span><span class="n">p</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">executable</span> <span class="o">!=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span><span class="p">)</span>	<span class="c1">// 如果executable 不等，也继续。</span>
+	<span class="k">continue</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">try_to_share</span> <span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="o">*</span><span class="n">p</span><span class="p">))</span>	<span class="c1">// 尝试共享页面。</span>
+	<span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">//// 页异常中断处理调用的函数。处理缺页异常情况。在page.s 程序中被调用。</span>
+<span class="c1">// 参数error_code 是由CPU 自动产生，address 是页面线性地址。</span>
+<span class="kt">void</span>
+<span class="nf">do_no_page</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">address</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">nr</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tmp</span><span class="p">;</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">page</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">block</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">address</span> <span class="o">&amp;=</span> <span class="mh">0xfffff000</span><span class="p">;</span>	<span class="c1">// 页面地址。</span>
+<span class="c1">// 首先算出指定线性地址在进程空间中相对于进程基址的偏移长度值。</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="n">address</span> <span class="o">-</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">start_code</span><span class="p">;</span>
+<span class="c1">// 若当前进程的executable 空，或者指定地址超出代码+数据长度，则申请一页物理内存，并映射</span>
+<span class="c1">// 影射到指定的线性地址处。executable 是进程的i 节点结构。该值为0，表明进程刚开始设置，</span>
+<span class="c1">// 需要内存；而指定的线性地址超出代码加数据长度，表明进程在申请新的内存空间，也需要给予。</span>
+<span class="c1">// 因此就直接调用get_empty_page()函数，申请一页物理内存并映射到指定线性地址处即可。</span>
+<span class="c1">// start_code 是进程代码段地址，end_data 是代码加数据长度。对于linux 内核，它的代码段和</span>
+<span class="c1">// 数据段是起始基址是相同的。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span> <span class="o">||</span> <span class="n">tmp</span> <span class="o">&gt;=</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">end_data</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">get_empty_page</span> <span class="p">(</span><span class="n">address</span><span class="p">);</span>
+      <span class="k">return</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="c1">// 如果尝试共享页面成功，则退出。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">share_page</span> <span class="p">(</span><span class="n">tmp</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">;</span>
+<span class="c1">// 取空闲页面，如果内存不够了，则显示内存不够，终止进程。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">page</span> <span class="o">=</span> <span class="n">get_free_page</span> <span class="p">()))</span>
+    <span class="n">oom</span> <span class="p">();</span>
+<span class="cm">/* remember that 1 block is used for header */</span>
+<span class="cm">/* 记住，（程序）头要使用1 个数据块 */</span>
+<span class="c1">// 首先计算缺页所在的数据块项。BLOCK_SIZE = 1024 字节，因此一页内存需要4 个数据块。</span>
+  <span class="n">block</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">tmp</span> <span class="o">/</span> <span class="n">BLOCK_SIZE</span><span class="p">;</span>
+<span class="c1">// 根据i 节点信息，取数据块在设备上的对应的逻辑块号。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">;</span> <span class="n">block</span><span class="o">++</span><span class="p">,</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="n">nr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">bmap</span> <span class="p">(</span><span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span><span class="p">,</span> <span class="n">block</span><span class="p">);</span>
+<span class="c1">// 读设备上一个页面的数据（4 个逻辑块）到指定物理地址page 处。</span>
+  <span class="n">bread_page</span> <span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">executable</span><span class="o">-&gt;</span><span class="n">i_dev</span><span class="p">,</span> <span class="n">nr</span><span class="p">);</span>
+<span class="c1">// 在增加了一页内存后，该页内存的部分可能会超过进程的end_data 位置。下面的循环即是对物理</span>
+<span class="c1">// 页面超出的部分进行清零处理。</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">tmp</span> <span class="o">+</span> <span class="mi">4096</span> <span class="o">-</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">end_data</span><span class="p">;</span>
+  <span class="n">tmp</span> <span class="o">=</span> <span class="n">page</span> <span class="o">+</span> <span class="mi">4096</span><span class="p">;</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">i</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="n">tmp</span><span class="o">--</span><span class="p">;</span>
+      <span class="o">*</span><span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span> <span class="n">tmp</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="c1">// 如果把物理页面映射到指定线性地址的操作成功，就返回。否则就释放内存页，显示内存不够。</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">put_page</span> <span class="p">(</span><span class="n">page</span><span class="p">,</span> <span class="n">address</span><span class="p">))</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="n">free_page</span> <span class="p">(</span><span class="n">page</span><span class="p">);</span>
+  <span class="n">oom</span> <span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">//// 物理内存初始化。</span>
+<span class="c1">// 参数：start_mem - 可用作分页处理的物理内存起始位置（已去除RAMDISK 所占内存空间等）。</span>
+<span class="c1">// end_mem - 实际物理内存最大地址。</span>
+<span class="c1">// 在该版的linux 内核中，最多能使用16Mb 的内存，大于16Mb 的内存将不于考虑，弃置不用。</span>
+<span class="c1">// 0 - 1Mb 内存空间用于内核系统（其实是0-640Kb）。</span>
+<span class="kt">void</span>
+<span class="nf">mem_init</span> <span class="p">(</span><span class="kt">long</span> <span class="n">start_mem</span><span class="p">,</span> <span class="kt">long</span> <span class="n">end_mem</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+
+  <span class="n">HIGH_MEMORY</span> <span class="o">=</span> <span class="n">end_mem</span><span class="p">;</span>	<span class="c1">// 设置内存最高端。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">PAGING_PAGES</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>	<span class="c1">// 首先置所有页面为已占用(USED=100)状态，</span>
+    <span class="n">mem_map</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">USED</span><span class="p">;</span>		<span class="c1">// 即将页面映射数组全置成USED。</span>
+  <span class="n">i</span> <span class="o">=</span> <span class="n">MAP_NR</span> <span class="p">(</span><span class="n">start_mem</span><span class="p">);</span>	<span class="c1">// 然后计算可使用起始内存的页面号。</span>
+  <span class="n">end_mem</span> <span class="o">-=</span> <span class="n">start_mem</span><span class="p">;</span>		<span class="c1">// 再计算可分页处理的内存块大小。</span>
+  <span class="n">end_mem</span> <span class="o">&gt;&gt;=</span> <span class="mi">12</span><span class="p">;</span>		<span class="c1">// 从而计算出可用于分页处理的页面数。</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">end_mem</span><span class="o">--</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>		<span class="c1">// 最后将这些可用页面对应的页面映射数组清零。</span>
+    <span class="n">mem_map</span><span class="p">[</span><span class="n">i</span><span class="o">++</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// 计算内存空闲页面数并显示。</span>
+<span class="cm">/*void*/</span>
+<span class="n">calc_mem</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">free</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="kt">long</span> <span class="o">*</span><span class="n">pg_tbl</span><span class="p">;</span>
+
+<span class="c1">// 扫描内存页面映射数组mem_map[]，获取空闲页面数并显示。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">PAGING_PAGES</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">mem_map</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+      <span class="n">free</span><span class="o">++</span><span class="p">;</span>
+  <span class="n">printk</span> <span class="p">(</span><span class="s">&quot;%d pages free (of %d)</span><span class="se">\n\r</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">free</span><span class="p">,</span> <span class="n">PAGING_PAGES</span><span class="p">);</span>
+<span class="c1">// 扫描所有页目录项（除0，1 项），如果页目录项有效，则统计对应页表中有效页面数，并显示。</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&amp;</span> <span class="n">pg_dir</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+		<span class="p">{</span>
+		  <span class="n">pg_tbl</span> <span class="o">=</span> <span class="p">(</span><span class="kt">long</span> <span class="o">*</span><span class="p">)</span> <span class="p">(</span><span class="mh">0xfffff000</span> <span class="o">&amp;</span> <span class="n">pg_dir</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+		  <span class="k">for</span> <span class="p">(</span><span class="n">j</span> <span class="o">=</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="mi">1024</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span>
+			<span class="k">if</span> <span class="p">(</span><span class="n">pg_tbl</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;</span> <span class="mi">1</span><span class="p">)</span>
+			  <span class="n">k</span><span class="o">++</span><span class="p">;</span>
+		  <span class="n">printk</span> <span class="p">(</span><span class="s">&quot;Pg-dir[%d] uses %d pages</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="p">);</span>
+		<span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, Dr. GuoJun LIU
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
