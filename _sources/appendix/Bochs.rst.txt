@@ -6,11 +6,25 @@ Bochs 手册
 调试汇编代码
 -----------------------------------------
 
-用 ``Bochs`` 在汇编级调试操作系统很简单，只需要运行 ``dbg-asm`` ，然后就得到了如下图所示的调试界面。
+用 ``Bochs`` 在汇编级调试操作系统很简单，
+其核心就是 ``Ubuntu`` 下运行如下命令：
+
+.. prompt:: bash 
+
+   bochs -q -f xxx.bxrc
+
+
+``Windows`` 下运行如下命令：
+
+.. prompt:: bash 
+
+   bochsdbg -q -f xxx.bxrc
+
+然后就得到了如下图所示的调试界面。
 
 |Bochs调试操作系统的界面|
 
-图1 Bochs调试操作系统的界面
+图1 ``Bochs`` 调试操作系统的界面
 
 此时是暂停在 ``BIOS`` 中。而我们的代码是从 ``0x7C00`` 位置开始的，所以先要在那里设一个断点，然后继续运行到断点：
 
@@ -100,7 +114,7 @@ u/disasm/disassemble start end 反汇编给定线性地址范围的指令。也�
 
 |用Bochs调试操作系统|
 
-图2 用Bochs调试操作系统
+图2 用 ``Bochs`` 调试操作系统
 
 
 .. |Bochs调试操作系统的界面| image:: ../images/Bochs/bochs_debug.bmp

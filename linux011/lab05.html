@@ -90,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -123,8 +125,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id4">5.2.1. 跟踪地址翻译过程</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id5">5.2.2. 基于共享内存的生产者—消费者程序</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">5.2.3. 共享内存的实现</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#shmget">5.2.4. shmget()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#shmat">5.2.5. shmat()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shmget">5.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shmat">5.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id7">5.3. 实验报告</a><ul>
@@ -139,8 +141,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id14">5.4.5. 段基址和线性地址</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id15">5.4.6. 页表</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id16">5.4.7. 物理地址</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux">5.4.8. Linux中的共享内存</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux-0-11">5.4.9. 在Linux 0.11中实现共享内存</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#linux">5.4.8. Linux 中的共享内存</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-0-11">5.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id17">5.4.9.1. 获得空闲物理页面</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id18">5.4.9.2. 地址映射</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id19">5.4.9.3. 寻找空闲的虚拟地址空间</a></li>
@@ -156,6 +158,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -220,7 +223,6 @@
             
   <div class="section" id="id1">
 <h1>5. 地址映射与共享<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>难度系数：★★★★☆</p>
 <div class="section" id="id2">
 <h2>5.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
@@ -233,13 +235,13 @@
 <h2>5.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>本次实验的基本内容是：</p>
 <ul class="simple">
-<li><p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 调试工具跟踪Linux 0.11的地址翻译（地址映射）过程，了解 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 和Linux 0.11的内存管理机制；</p></li>
-<li><p>在Ubuntu上编写多进程的生产者-消费者程序，用共享内存做缓冲区；</p></li>
-<li><p>在信号量实验的基础上，为Linux 0.11增加共享内存功能，并将生产者-消费者程序移植到Linux 0.11。</p></li>
+<li><p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 调试工具跟踪 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的地址翻译（地址映射）过程，了解 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的内存管理机制；</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 上编写多进程的生产者-消费者程序，用共享内存做缓冲区；</p></li>
+<li><p>在信号量实验的基础上，为 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 增加共享内存功能，并将生产者-消费者程序移植到 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 。</p></li>
 </ul>
 <div class="section" id="id4">
 <h3>5.2.1. 跟踪地址翻译过程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>首先以汇编级调试的方式启动bochs，引导Linux 0.11，在0.11下编译和运行 <code class="docutils literal notranslate"><span class="pre">test.c</span></code> 。
+<p>首先以汇编级调试的方式启动 <code class="docutils literal notranslate"><span class="pre">bochs</span></code> ，引导 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，并在其下编译和运行 <code class="docutils literal notranslate"><span class="pre">test.c</span></code> 。
 它是一个无限循环的程序，永远不会主动退出。
 然后在调试器中通过查看各项系统参数，从逻辑地址、 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> 表、 <code class="docutils literal notranslate"><span class="pre">GDT</span></code> 表、线性地址到页表，计算出变量 <code class="docutils literal notranslate"><span class="pre">i</span></code> 的物理地址。
 最后通过直接修改物理内存的方式让 <code class="docutils literal notranslate"><span class="pre">test.c</span></code> 退出运行。 <code class="docutils literal notranslate"><span class="pre">test.c</span></code> 的代码如下：</p>
@@ -262,12 +264,12 @@
 </div>
 <div class="section" id="id5">
 <h3>5.2.2. 基于共享内存的生产者—消费者程序<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
-<p>本项实验在Ubuntu下完成，与信号量实验中的 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 的功能要求基本一致，仅有两点不同：</p>
+<p>本项实验在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下完成，与信号量实验中的 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 的功能要求基本一致，仅有两点不同：</p>
 <ul class="simple">
 <li><p>不用文件做缓冲区，而是使用共享内存；</p></li>
 <li><p>生产者和消费者分别是不同的程序。生产者是 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> ，消费者是 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 。两个程序都是单进程的，通过信号量和缓冲区进行通信。</p></li>
 </ul>
-<p>Linux下，可以通过 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 两个系统调用使用共享内存。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下，可以通过 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 两个系统调用使用共享内存。</p>
 </div>
 <div class="section" id="id6">
 <h3>5.2.3. 共享内存的实现<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
@@ -276,11 +278,11 @@
 <p>图1. 共享内存</p>
 <p><img alt="段页式" src="../_images/lab05_SegmentationPaging.png" /></p>
 <p>图2. 段页式</p>
-<p>本部分实验内容是在Linux 0.11上实现上述页面共享，并将上一部分实现的 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 移植过来，验证页面共享的有效性。</p>
+<p>本部分实验内容是在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上实现上述页面共享，并将上一部分实现的 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 移植过来，验证页面共享的有效性。</p>
 <p>具体要求在 <code class="docutils literal notranslate"><span class="pre">mm/shm.c</span></code> 中实现 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 两个系统调用。它们能支持 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 的运行即可，不需要完整地实现 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 所规定的功能。</p>
 </div>
 <div class="section" id="shmget">
-<h3>5.2.4. shmget()<a class="headerlink" href="#shmget" title="永久链接至标题">¶</a></h3>
+<h3>5.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code><a class="headerlink" href="#shmget" title="永久链接至标题">¶</a></h3>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">shmget</span><span class="p">(</span><span class="kt">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -291,7 +293,7 @@
 如果系统无空闲内存，返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> ，并置 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 为 <code class="docutils literal notranslate"><span class="pre">ENOMEM</span></code> 。 <code class="docutils literal notranslate"><span class="pre">shmflg</span></code> 参数可忽略。</p>
 </div>
 <div class="section" id="shmat">
-<h3>5.2.5. shmat()<a class="headerlink" href="#shmat" title="永久链接至标题">¶</a></h3>
+<h3>5.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code><a class="headerlink" href="#shmat" title="永久链接至标题">¶</a></h3>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">shmat</span><span class="p">(</span><span class="kt">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -303,7 +305,7 @@
 <h2>5.3. 实验报告<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
 <p>完成实验后，在实验报告中回答如下问题：</p>
 <ul class="simple">
-<li><p>对于地址映射实验部分，列出你认为最重要的那几步（不超过4步），并给出你获得的实验数据。</p></li>
+<li><p>对于地址映射实验部分，列出你认为最重要的那几步（不超过 <code class="docutils literal notranslate"><span class="pre">4</span></code> 步），并给出你获得的实验数据。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test.c</span></code> 退出后，如果马上再运行一次，并再进行地址跟踪，你发现有哪些异同？为什么？</p></li>
 </ul>
 <div class="section" id="id8">
@@ -320,16 +322,18 @@
 </div>
 <div class="section" id="id9">
 <h2>5.4. 实验提示<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
-<p>《注释》中的5.3节和第13章对Linux 0.11的内存管理有详细分析、讲解，很值得一看。</p>
+<p>《注释》中的 <code class="docutils literal notranslate"><span class="pre">5.3</span></code> 节和第 <code class="docutils literal notranslate"><span class="pre">13</span></code> 章对 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的内存管理有详细分析、讲解，很值得一看。</p>
 <p><code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 的地址翻译过程</p>
-<p>Linux 0.11完全遵循IA-32（Intel Architecture 32-bit）架构进行地址翻译，Windows、后续版本的Linux以及一切在 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 保护模式下运行的操作系统都遵循此架构。
-因为只有这样才能充分发挥CPU的 <code class="docutils literal notranslate"><span class="pre">MMU</span></code> 的功能。
-关于此地址翻译过程的细节，请参考《注释》一书中的5.3.1-5.3.4节。</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 完全遵循IA-32（Intel Architecture 32-bit）架构进行地址翻译，<code class="docutils literal notranslate"><span class="pre">Windows</span></code> 、后续版本的 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 以及一切在 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 保护模式下运行的操作系统都遵循此架构。</p>
+</div></blockquote>
+<p>因为只有这样才能充分发挥 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 的 <code class="docutils literal notranslate"><span class="pre">MMU</span></code> 的功能。
+关于此地址翻译过程的细节，请参考《注释》一书中的 <code class="docutils literal notranslate"><span class="pre">5.3.1-5.3.4</span></code> 节。</p>
 <p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 汇编级调试功能进行人工地址翻译</p>
 <p>此过程比较机械，基本不消耗脑细胞，做一下有很多好处。</p>
 <div class="section" id="id10">
 <h3>5.4.1. 准备<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
-<p>编译好Linux 0.11后，首先通过运行 <code class="docutils literal notranslate"><span class="pre">./run</span></code> 启动调试器，此时 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的窗口处于黑屏状态，而命令行窗口显示：</p>
+<p>编译好 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 后，首先通过运行 <code class="docutils literal notranslate"><span class="pre">./run</span></code> 启动调试器，此时 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的窗口处于黑屏状态，而命令行窗口显示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">========================================================================</span>
                         <span class="n">Bochs</span> <span class="n">x86</span> <span class="n">Emulator</span> <span class="mf">2.6</span>
             <span class="n">Built</span> <span class="kn">from</span> <span class="nn">SVN</span> <span class="n">snapshot</span> <span class="n">on</span> <span class="n">September</span> <span class="mi">2</span><span class="n">nd</span><span class="p">,</span> <span class="mi">2012</span>
@@ -339,8 +343,8 @@
 <span class="o">&lt;</span><span class="n">bochs</span><span class="p">:</span><span class="mi">1</span><span class="o">&gt;</span><span class="n">_</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">Next</span> <span class="pre">at</span> <span class="pre">t=0</span></code> 表示下面的指令是 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 启动后要执行的第一条软件指令。单步跟踪进去就能看到 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 的代码。不过这不是本实验需要的。直接输入命令 <code class="docutils literal notranslate"><span class="pre">c</span></code> ， <code class="docutils literal notranslate"><span class="pre">continue</span></code> 程序的运行， <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 一如既往地启动了Linux 0.11。</p>
-<p>在Linux 0.11下输入（或拷入） <code class="docutils literal notranslate"><span class="pre">test.c</span></code> ，编译为 <code class="docutils literal notranslate"><span class="pre">test</span></code> ，运行之，打印如下信息：</p>
+<p><code class="docutils literal notranslate"><span class="pre">Next</span> <span class="pre">at</span> <span class="pre">t=0</span></code> 表示下面的指令是 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 启动后要执行的第一条软件指令。单步跟踪进去就能看到 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 的代码。不过这不是本实验需要的。直接输入命令 <code class="docutils literal notranslate"><span class="pre">c</span></code> ， <code class="docutils literal notranslate"><span class="pre">continue</span></code> 程序的运行， <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 一如既往地启动了 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下输入（或拷入） <code class="docutils literal notranslate"><span class="pre">test.c</span></code> ，编译为 <code class="docutils literal notranslate"><span class="pre">test</span></code> ，运行之，打印如下信息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">logical</span><span class="o">/</span><span class="n">virtual</span> <span class="n">address</span> <span class="n">of</span> <span class="n">i</span> <span class="ow">is</span> <span class="mh">0x00003004</span>
 </pre></div>
 </div>
@@ -349,7 +353,7 @@
 </div>
 <div class="section" id="id11">
 <h3>5.4.2. 暂停<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
-<p>当 <code class="docutils literal notranslate"><span class="pre">test</span></code> 运行的时候，在命令行窗口按 <code class="docutils literal notranslate"><span class="pre">Ctrl+c</span></code> ，Bochs会暂停运行，进入调试状态。绝大多数情况下都会停在 <code class="docutils literal notranslate"><span class="pre">test</span></code> 内，显示类似如下信息：</p>
+<p>当 <code class="docutils literal notranslate"><span class="pre">test</span></code> 运行的时候，在命令行窗口按 <code class="docutils literal notranslate"><span class="pre">Ctrl+c</span></code> ， <code class="docutils literal notranslate"><span class="pre">Bochs``会暂停运行，进入调试状态。绝大多数情况下都会停在</span> <span class="pre">``test</span></code> 内，显示类似如下信息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x00fc8031</span><span class="p">]</span> <span class="mi">000</span><span class="n">f</span><span class="p">:</span><span class="mi">00000031</span> <span class="p">(</span><span class="n">unk</span><span class="o">.</span> <span class="n">ctxt</span><span class="p">):</span> <span class="nb">cmp</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="p">:</span><span class="mh">0x3004</span><span class="p">,</span> <span class="mh">0x00000000</span> <span class="p">;</span> <span class="mi">833</span><span class="n">d0430000000</span>
 </pre></div>
 </div>
@@ -508,8 +512,8 @@
 <p>现在，通过直接修改内存来改变 <code class="docutils literal notranslate"><span class="pre">i</span></code> 的值为 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，命令是： <code class="docutils literal notranslate"><span class="pre">setpmem</span> <span class="pre">0x00fa7004</span> <span class="pre">4</span> <span class="pre">0</span></code> ，表示从 <code class="docutils literal notranslate"><span class="pre">0x00fa7004</span></code> 地址开始的 <code class="docutils literal notranslate"><span class="pre">4</span></code> 个字节都设为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 。然后再用 <code class="docutils literal notranslate"><span class="pre">c</span></code> 命令继续 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的运行，可以看到 <code class="docutils literal notranslate"><span class="pre">test</span></code> 退出了，说明i的修改成功了，此项实验结束。</p>
 </div>
 <div class="section" id="linux">
-<h3>5.4.8. Linux中的共享内存<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
-<p>Linux支持两种方式的共享内存:</p>
+<h3>5.4.8. Linux 中的共享内存<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 支持两种方式的共享内存:</p>
 <ul class="simple">
 <li><p>一种方式是 <code class="docutils literal notranslate"><span class="pre">shm_open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shm_unlink()</span></code> 的组合；</p></li>
 <li><p>另一种方式是 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmdt()</span></code> 的组合。</p></li>
@@ -519,10 +523,10 @@
 <p>特别提醒：没有父子关系的进程之间进行共享内存， <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 的第一个参数 <code class="docutils literal notranslate"><span class="pre">key</span></code> 不要用 <code class="docutils literal notranslate"><span class="pre">IPC_PRIVATE</span></code> ，否则无法共享。用什么数字可视心情而定。</p>
 </div>
 <div class="section" id="linux-0-11">
-<h3>5.4.9. 在Linux 0.11中实现共享内存<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
+<h3>5.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id17">
 <h4>5.4.9.1. 获得空闲物理页面<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
-<p>实验者需要考虑如何实现页面共享。首先看一下Linux 0.11如何操作页面，如何管理进程地址空间。</p>
+<p>实验者需要考虑如何实现页面共享。首先看一下 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 如何操作页面，如何管理进程地址空间。</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 文件中有：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span> <span class="cm">/* …*/</span> <span class="p">)</span>
 <span class="p">{</span>
@@ -558,7 +562,7 @@
 </div>
 <div class="section" id="id18">
 <h4>5.4.9.2. 地址映射<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
-<p>有了空闲的物理页面，接下来需要完成线性地址和物理页面的映射，Linux 0.11中也有这样的代码，看看 <code class="docutils literal notranslate"><span class="pre">mm/memory.c</span></code> 中的
+<p>有了空闲的物理页面，接下来需要完成线性地址和物理页面的映射， <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中也有这样的代码，看看 <code class="docutils literal notranslate"><span class="pre">mm/memory.c</span></code> 中的
 <code class="docutils literal notranslate"><span class="pre">do_no_page(unsigned</span> <span class="pre">long</span> <span class="pre">address)</span></code> ，
 该函数用来处理线性地址 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的物理页面无效的情况（即缺页中断）， <code class="docutils literal notranslate"><span class="pre">do_no_page</span></code> 函数中调用一个重要的函数 <code class="docutils literal notranslate"><span class="pre">get_empty_page(address)</span></code> ，其中有：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tmp</span><span class="o">=</span><span class="n">get_free_page</span><span class="p">();</span>
@@ -595,7 +599,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>仔细分析过函数 <code class="docutils literal notranslate"><span class="pre">change_ldt</span></code> ，想必实验者已经知道该如何从数据段中找到一页空闲的线性地址。《注释》中的图13-6也能给你很大帮助。</p>
+<p>仔细分析过函数 <code class="docutils literal notranslate"><span class="pre">change_ldt</span></code> ，想必实验者已经知道该如何从数据段中找到一页空闲的线性地址。《注释》中的图 <code class="docutils literal notranslate"><span class="pre">13-6</span></code> 也能给你很大帮助。</p>
 <p><img alt="进程逻辑地址空间分布" src="../_images/lab05_Logicalspace.png" /></p>
 <p>图6. 进程代码和数据在其逻辑地址空间中的分布</p>
 <p>在同一终端中同时运行两个程序</p>

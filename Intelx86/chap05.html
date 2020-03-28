@@ -90,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul class="current">
@@ -136,6 +138,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -204,7 +207,7 @@
 <h2>4.1. 任务管理概述<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>什么是任务？</p></li>
-<li><p>80x86提供了哪些硬件支持？</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">80x86</span></code> 提供了哪些硬件支持？</p></li>
 <li><p>描述符表中与任务相关的描述符有哪些？</p></li>
 <li><p>任务切换与过程调用的区别是什么？</p></li>
 </ul>
@@ -229,7 +232,7 @@
 <ul class="simple">
 <li><p>任务的执行方式有几种？</p></li>
 <li><p>熟悉掌握每一种执行方式的过程</p></li>
-<li><p>Linux 0.00用的是哪种方式？</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.00</span></code> 用的是哪种方式？</p></li>
 <li><p>任务可以递归调用吗？为什么？</p></li>
 </ul>
 </div>
@@ -238,7 +241,7 @@
 <h2>4.2. 任务的数据结构<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>任务状态段 Task-State Segment (TSS)</p></li>
-<li><p>TSS 描述符</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TSS</span></code> 描述符</p></li>
 <li><p>任务寄存器</p></li>
 <li><p>任务门描述符 Task-Gate Descriptor</p></li>
 </ul>
@@ -249,7 +252,7 @@
 <ul class="simple">
 <li><p>什么时候发生任务切换？</p></li>
 <li><p>发生任务切换时，处理器会执行哪些操作？</p></li>
-<li><p>中断或异常向量指向IDT表中的中断门或陷阱门，会发生任务切换吗？</p></li>
+<li><p>中断或异常向量指向 <code class="docutils literal notranslate"><span class="pre">IDT</span></code> 表中的中断门或陷阱门，会发生任务切换吗？</p></li>
 </ul>
 </div>
 <div class="section" id="id8">

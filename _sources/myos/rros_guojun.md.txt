@@ -1,0 +1,200 @@
+---
+theme: gaia
+_class: lead
+paginate: true
+backgroundColor: #fff
+marp: true
+backgroundImage: url('https://marp.app/assets/hero-background.jpg')
+---
+
+# RROS Design
+
+Updated on Dec. 18, 2019
+
+Dr. GuoJun LIU
+
+---
+
+## 实验环境配置
+
+- Install nightly Rust
+- 国内Rustcc专属 [crates.io 镜像](https://cloud.tencent.com/developer/article/1489386)
+- Cargo
+- install Rust tools
+  - cargo install cargo-binutils cargo-xbuild
+  - rustup component add rust-src llvm-tools-preview
+  - rustup target add riscv64imac-unknown-none-elf
+- Install Qemu
+- Rics-v gcc needed by rustc
+
+---
+
+## Rust 简介
+
+- why
+- 特性
+- 简单语法
+- 安全性
+- 集众家所长
+  
+---
+
+## Risc-v 简介
+
+- why
+- 优势
+- 寄存器
+  - 通用寄存器
+  - CSR
+- 特权级
+- 中断
+- 内存管理
+
+---
+
+## Risc-v 和 X86 区别
+
+- 中断响应机制
+- 栈切换
+- 模式切换
+- 进程、线程切换
+- 虚拟内存管理，页目录表与页表的异同
+- 相对应的CSR发生变化
+- 一些概念没有了？
+  - idtr，gdtr，ldtr，TSS
+
+---
+
+```c
+static char logbuf[1024];
+int fprintk(int fd, const char *fmt, ...)
+{
+    va_list args;
+    int count;
+    struct file * file;
+    struct m_inode * inode;
+    ...
+    va_start(args, fmt);
+    count=vsprintf(logbuf, fmt, args);
+    va_end(args);
+
+    if (fd < 3)
+    {
+        __asm__("push %%fs\n\t"
+            "push %%ds\n\t"
+            "pop %%fs\n\t"
+            "pushl %0\n\t"
+            "pushl $logbuf\n\t"
+            "pushl %1\n\t"
+            "call sys_write\n\t"
+            "addl $8,%%esp\n\t"
+            "popl %0\n\t"
+            "pop %%fs"
+            ::"r" (count),"r" (fd):"ax","cx","dx");
+    }
+```
+
+---
+
+## RROS 知识储备
+
+- Rust IDE 搭建与使用
+- Rust Rics-v 交叉编译工具链
+- 生成内核镜像
+- 编写链接脚本
+  - 了解指定布局
+- 运行QEMU进行调试
+  - 调试命令，能否方便查看寄存器
+  - 调试技巧总结
+  - 调试常遇到的问题
+
+---
+
+## 实验 Bootloader
+
+- 如何启动内核程序
+- OpenSBI 介绍
+- 使用 OpenSBI 提供的服务，在屏幕上格式化打印字符串
+- 运行QEMU进行调试
+
+---
+
+## 实验 中断
+
+- RV64中断介绍
+- 手动触发断点
+- 程序运行上下文环境
+- 上下文环境保存与恢复
+- 时钟中断
+- 运行QEMU进行调试
+
+---
+
+## 实验 系统调用
+
+
+
+---
+
+
+## 实验 Linux 0.00 RROS版本
+
+- 讲述进程、线程的概念
+  - 栈切换
+  - 模式切换
+  - 进程、线程切换
+- 运行QEMU进行调试
+  - 查看栈
+  - 查看寄存器
+
+---
+
+
+
+
+## 实验 内存管理
+
+- 物理内存的探测、分配和管理
+- 内核内部动态分配内存
+
+---
+
+
+## 实验 虚存管理
+
+- 虚拟内存和物理内存的概念
+- 如何使用页表完成虚拟地址到物理地址的映射
+- 解释内核初始映射，进行内核重映射
+
+---
+
+
+
+## 实验 信号量的实现和应用
+
+---
+
+
+## 综合性实验 地址映射与共享
+
+- 理解并运用所掌握的内存知识
+
+---
+
+## 综合性实验 加载用户进程
+
+- 使用系统调用为用户程序提供服务
+- 解析 ELF 格式的用户程序
+- 为用户程序创建虚拟内存空间
+- 创建用户进程
+
+---
+
+## 选做实验 文件系统
+
+
+---
+
+## 选做实验 一个终端系统
+
+

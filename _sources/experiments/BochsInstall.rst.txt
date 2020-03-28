@@ -1,0 +1,75 @@
+Bochs 安装
+================================================================================
+
+
+
+Ubuntu 下编译安装
+---------------------------------------------------------------------------
+
+下载 ``Bochs`` 的 ``tarball`` ，然后自己编译安装
+
+
+先安装一些必要的包，否则编译的时候会报错
+
+.. prompt:: bash #
+
+    sudo apt-get install build-essential xorg-dev libgtk2.0-dev 
+
+配置，也可以查看编译命令 http://bochs.sourceforge.net/doc/docbook/user/compiling.html
+
+.. prompt:: bash #
+
+    ./configure --enable-debugger --enable-disasm
+
+
+编译并安装
+
+.. prompt:: bash #
+
+    make
+
+.. prompt:: bash #
+
+    sudo make install
+
+
+
+Windows 安装
+---------------------------------------------------------------------------
+
+
+最好是把 ``Bochs`` 直接安装到 ``C:\`` 下，路径名可以如下： 
+
+
+
+|Windows 安装 Bochs|
+
+图 Windows 安装 Bochs
+
+
+.. |Windows 安装 Bochs| image:: ../_static/img/bochs/BochsWin64.png
+    :height: 300px
+
+
+Bochs 配置文件
+---------------------------------------------------------------------------
+
+``Windows`` 下可视化配置
+
+.. code-block:: console
+
+    config_interface: win32config
+    display_library: win32, options="gui_debug"
+
+``Linux`` 下可视化配置
+
+.. code-block:: console
+
+    display_library: x, options="gui_debug"
+
+
+``macOS`` 下可视化配置
+
+.. code-block:: console
+
+    display_library: sdl2

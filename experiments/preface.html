@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1. 前言 &mdash; Guojunos 1.0.0 文档</title>
+  <title>前言 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -38,9 +38,7 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="2. 实验环境" href="introduction.html" />
-    <link rel="prev" title="4. 上课时间" href="../course/schedule.html" /> 
+    <link rel="search" title="搜索" href="../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,14 +88,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -124,6 +124,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -169,7 +170,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>1. 前言</li>
+      <li>前言</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -187,7 +188,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>1. 前言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>前言<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <p>操作系统是衔接软硬件的纽带，它的核心功能就是掌控硬件，当前多数院校操作系统的授课方式都规避了这一点，因为其需要娴熟的掌握软硬件知识，需要对计算机系统有着深入的了解。然而，这对于普通的学生，甚至是授课教师，都不是一件简单的事情。</p>
 <p>本次授课打算结合x86体系结构，深入剖析Linus当年写的第一个小的操作系统的版本，该版本完全是用汇编完成的，该程序虽然不是很长，但是，很多概念的精髓都在里面体现出来了，例如，开机如何引导一个系统，操作系统如何完成自我加载，如何由实模式进入到保护模式，进入到保护模式后，如何创建系统需要的gdt，idt，ldt表等，如何管理和维护这些表，如何在保护模式下寻址，如何响应中断，操作系统如何完成模式切换与任务切换等等。只有对这些问题有了深入的理解，才能更加深刻的理解，为什么书本上说的操作系统要有这些概念，要这么操作。</p>
 <p>操作系统的难点在于，操作系统在完成任务的时候，多数是软硬件协同完成的，如果不深入底层的硬件操作，是无法深入理解一些概念的。
@@ -201,15 +202,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="introduction.html" class="btn btn-neutral float-right" title="2. 实验环境" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="../course/schedule.html" class="btn btn-neutral float-left" title="4. 上课时间" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

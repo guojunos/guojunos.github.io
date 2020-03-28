@@ -88,14 +88,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -122,6 +124,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -186,12 +189,12 @@
             
   <div class="section" id="id1">
 <h1>实验环境的搭建与使用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>本操作系统实验的硬件环境是IA-32(x86)架构的PC机（就是你现在正在使用的计算机），主要软件环境是Bochs + gcc + 你最喜欢的编辑器/IDE + 你最喜欢的操作系统 + Linux 0.11源代码。实验的基本流程是根据实验要求编写应用程序、修改Linux 0.11的源代码，用gcc编译后，在Bochs的虚拟环境中运行、调试目标代码。</p>
+<p>本操作系统实验的硬件环境是 <code class="docutils literal notranslate"><span class="pre">IA-32(x86)</span></code> 架构的 <code class="docutils literal notranslate"><span class="pre">PC</span></code> 机（就是你现在正在使用的计算机），主要软件环境是 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> + <code class="docutils literal notranslate"><span class="pre">gcc</span></code> + 你最喜欢的编辑器 <code class="docutils literal notranslate"><span class="pre">IDE</span></code> + 你最喜欢的操作系统 + <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 源代码。实验的基本流程是根据实验要求编写应用程序、修改 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的源代码，用 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> 编译后，在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的虚拟环境中运行、调试目标代码。</p>
 <div class="section" id="id2">
 <h2>主要平台和工具简介<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <div class="section" id="x86bochs">
 <h3>x86模拟器Bochs<a class="headerlink" href="#x86bochs" title="永久链接至标题">¶</a></h3>
-<p>Bochs是一个免费且开放源代码的IA-32(x86)架构PC机模拟器。在它模拟出的环境中可以运行Linux、DOS和各种版本的Windows等多种操作系统。而Bochs本身具有很高的移植性，可以运行在多种软硬件平台之上，这也是我们选择它做为本书的指定模拟器的主要原因。如果您想拥抱自由的Linux，那么Bochs几乎是您的不二选择。如果您想继续把自己绑定在Windows平台上，那么除了Bochs，您还可以选用VMware或者Microsoft Virtual PC。它们是最著名虚拟机软件，而且都可以免费使用。因为Bochs的是模拟器，其原理决定了它的运行效率会低于虚拟机。但对于本书所设计的实验来说，效率上的差别很不明显。而且，Bochs有虚拟机无可比拟的调试操作系统的能力，所以我们更建议您选用Bochs。hit-oslab已经内置了bochs，本书后文假定的缺省环境也是Bochs。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Bochs``是一个免费且开放源代码的</span> <span class="pre">``IA-32(x86)</span></code> 架构PC机模拟器。在它模拟出的环境中可以运行Linux、DOS和各种版本的Windows等多种操作系统。而Bochs本身具有很高的移植性，可以运行在多种软硬件平台之上，这也是我们选择它做为本书的指定模拟器的主要原因。如果您想拥抱自由的Linux，那么Bochs几乎是您的不二选择。如果您想继续把自己绑定在Windows平台上，那么除了Bochs，您还可以选用VMware或者Microsoft Virtual PC。它们是最著名虚拟机软件，而且都可以免费使用。因为Bochs的是模拟器，其原理决定了它的运行效率会低于虚拟机。但对于本书所设计的实验来说，效率上的差别很不明显。而且，Bochs有虚拟机无可比拟的调试操作系统的能力，所以我们更建议您选用Bochs。hit-oslab已经内置了bochs，本书后文假定的缺省环境也是Bochs。</p>
 <p>关于Bochs的更详细的介绍请访问它的主页及Bochs使用手册。</p>
 </div>
 <div class="section" id="gcc">
@@ -1032,6 +1035,43 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">     31              23               15                7           0</span>
+<span class="go">    +---------------+-----------+-+-+++-+----+-+-+-+-+++-+-+-+-+-+-+-+</span>
+<span class="go">    |###########################|V|R|#|N|ID  |O|D|I|T|S|Z|#|A|#|P|#|C|</span>
+<span class="go">    |0 0 0 0 0 0 0 0 0 0 0 0 0 0| | |0| |    |#|#| |#|#|#|0|#|0|#|1|#|</span>
+<span class="go">    |###########################|M|F|#|T|  PL|F|F|F|F|F|F|#|F|#|F|#|F|</span>
+<span class="go">    +---------------+-----------+++++++++-+--+-+-+++-+++-+-+-+-+-+-+-+</span>
+<span class="go">                                 | |   |  |       |</span>
+<span class="go">            VIRTUAL 8086 MODE----+ |   |  |       |</span>
+<span class="go">                  RESUME FLAG------+   |  |       |</span>
+<span class="go">             NESTED TASK FLAG----------+  |       |</span>
+<span class="go">          I/O PRIVILEGE LEVEL-------------+       |</span>
+<span class="go">             INTERRUPT ENABLE---------------------+</span>
+
+<span class="go">----------------------------------------------------------------------------</span>
+<span class="go">NOTE</span>
+<span class="go">     0 OR 1 INDICATES INTEL RESERVED. DO NOT DEFINE.</span>
+<span class="go">----------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">31</span>                <span class="mi">23</span>                <span class="mi">15</span>                <span class="mi">7</span>               <span class="mi">0</span>
+<span class="o">+-----------------+-----------------+--------+--------+-----------------+</span>
+<span class="o">|</span>                                            <span class="o">|</span>                          <span class="o">|</span>
+<span class="o">|</span>    <span class="n">PAGE</span> <span class="n">DIRECTORY</span> <span class="n">BASE</span> <span class="n">REGISTER</span> <span class="p">(</span><span class="n">PDBR</span><span class="p">)</span>     <span class="o">|</span>         <span class="n">RESERVED</span>         <span class="o">|</span><span class="n">CR3</span>
+<span class="o">|--------------------------------------------+--------------------------|</span>
+<span class="o">|</span>                                                                       <span class="o">|</span>
+<span class="o">|</span>                       <span class="n">PAGE</span> <span class="n">FAULT</span> <span class="n">LINEAR</span> <span class="n">ADDRESS</span>                       <span class="o">|</span><span class="n">CR2</span>
+<span class="o">|-----------------------------------------------------------------------|</span>
+<span class="o">|</span>                                                                       <span class="o">|</span>
+<span class="o">|</span>                                <span class="n">RESERVED</span>                               <span class="o">|</span><span class="n">CR1</span>
+<span class="o">|-+-----------------------------------------------------------+-+-+-+-+-|</span>
+<span class="o">|</span><span class="n">P</span><span class="o">|</span>                                                           <span class="o">|</span><span class="n">E</span><span class="o">|</span><span class="n">T</span><span class="o">|</span><span class="n">E</span><span class="o">|</span><span class="n">M</span><span class="o">|</span><span class="n">P</span><span class="o">|</span>
+<span class="o">|</span><span class="n">G</span><span class="o">|</span>                              <span class="n">RESERVED</span>                     <span class="o">|</span><span class="n">T</span><span class="o">|</span><span class="n">S</span><span class="o">|</span><span class="n">M</span><span class="o">|</span><span class="n">P</span><span class="o">|</span><span class="n">E</span><span class="o">|</span><span class="n">CR0</span>
+<span class="o">+-+---------------+-----------------+-----------------+-------+-+-+-+-+-+</span>
+</pre></div>
+</div>
+<p><img alt="test" src="../_images/test.svg" /></p>
+<p>图1 用UltraEdit打开文件 <code class="docutils literal notranslate"><span class="pre">test</span></code></p>
 </div>
 </div>
 </div>

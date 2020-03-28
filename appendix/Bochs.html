@@ -39,6 +39,7 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="3. FAQ" href="FAQ.html" />
     <link rel="prev" title="1. 中断向量表" href="BIOS.html" /> 
 </head>
 
@@ -89,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -130,6 +133,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#cpu">2.5. 信息显示和CPU寄存器操作命令</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -196,9 +200,18 @@
 <h1>2. Bochs 手册<a class="headerlink" href="#bochs" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.1. 调试汇编代码<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
-<p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 在汇编级调试操作系统很简单，只需要运行 <code class="docutils literal notranslate"><span class="pre">dbg-asm</span></code> ，然后就得到了如下图所示的调试界面。</p>
+<p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 在汇编级调试操作系统很简单，
+其核心就是 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下运行如下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">bochs -q -f xxx.bxrc</span>
+</pre></div></div><p><code class="docutils literal notranslate"><span class="pre">Windows</span></code> 下运行如下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">bochsdbg -q -f xxx.bxrc</span>
+</pre></div></div><p>然后就得到了如下图所示的调试界面。</p>
 <p><img alt="Bochs调试操作系统的界面" src="../_images/bochs_debug.bmp" /></p>
-<p>图1 Bochs调试操作系统的界面</p>
+<p>图1 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 调试操作系统的界面</p>
 <p>此时是暂停在 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 中。而我们的代码是从 <code class="docutils literal notranslate"><span class="pre">0x7C00</span></code> 位置开始的，所以先要在那里设一个断点，然后继续运行到断点：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">break 0x7c00</span>
 <span class="go">continue</span>
@@ -351,7 +364,7 @@
 </table>
 <p>如下图</p>
 <p><img alt="用Bochs调试操作系统" src="../_images/bochs_disasm.bmp" /></p>
-<p>图2 用Bochs调试操作系统</p>
+<p>图2 用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 调试操作系统</p>
 </div>
 </div>
 
@@ -362,6 +375,8 @@
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="FAQ.html" class="btn btn-neutral float-right" title="3. FAQ" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="BIOS.html" class="btn btn-neutral float-left" title="1. 中断向量表" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

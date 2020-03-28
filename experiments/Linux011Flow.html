@@ -1,0 +1,293 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Linux 0.11 的工作模式 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gj.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="1. x86系统架构概览" href="../Intelx86/chap02.html" />
+    <link rel="prev" title="5. Linux 0.11 on Ubuntu" href="Linux011setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Linux 0.11 的工作模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image">6.1. Image 的生成与加载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdc-0-11-img">6.2. hdc-0.11.img 文件系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-linux-0-11">6.3. Ubuntu 和 Linux 0.11 文件交换</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>6. Linux 0.11 的工作模式</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux-0-11">
+<h1>6. Linux 0.11 的工作模式<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h1>
+<div class="section" id="image">
+<h2>6.1. Image 的生成与加载<a class="headerlink" href="#image" title="永久链接至标题">¶</a></h2>
+<p>在宿主操作系统之上完成对 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的开发、修改和编译之后，在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 目录下会生产一个名为 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 的文件，它就是编译之后的目标文件。该文件内已经包含 <strong>引导和所有内核</strong> 的二进制代码。如果拿来一张软盘，从它的 <code class="docutils literal notranslate"><span class="pre">0</span></code> 扇区开始，逐字节写入 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 文件的内容，就可以用这张软盘启动一台真正的计算机，并进入 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核。 <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 采用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 模拟器加载这个文件，模拟执行 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，这样省却了重新启动计算机的麻烦。</p>
+<p><code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 目录下是与 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 相关的执行文件、数据文件和配置文件。 <code class="docutils literal notranslate"><span class="pre">run</span></code> 是运行 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的脚本命令。运行后 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 会自动在它的虚拟软驱 <code class="docutils literal notranslate"><span class="pre">A</span></code> 和虚拟硬盘上各挂载一个镜像文件，软驱上挂载是 <code class="docutils literal notranslate"><span class="pre">linux-0.11/Image</span></code> ，硬盘上挂载的是 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 。因为 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 配置文件中的设置是从软驱 <code class="docutils literal notranslate"><span class="pre">A</span></code> 启动，所以 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 会被自动加载。而 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 会驱动硬盘，并 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 硬盘上的文件系统，也就是将 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 内镜像的文件系统挂载到 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 系统内的根目录—— <code class="docutils literal notranslate"><span class="pre">/</span></code>。在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下访问文件系统，访问的就是 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 文件内虚拟的文件系统。</p>
+</div>
+<div class="section" id="hdc-0-11-img">
+<h2>6.2. hdc-0.11.img 文件系统<a class="headerlink" href="#hdc-0-11-img" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 文件的格式是 <code class="docutils literal notranslate"><span class="pre">Minix</span></code> 文件系统的镜像。
+<code class="docutils literal notranslate"><span class="pre">Linux</span></code> 所有版本都支持这种格式的文件系统，所以可以直接在宿主 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 上通过 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 命令访问此文件内的文件，达到宿主系统和 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 内运行的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 之间交换文件的效果。</p>
+<p><code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 内包含有：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Bash</span> <span class="pre">shell</span></code></p></li>
+<li><p>一些基本的 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 命令、工具，比如 <code class="docutils literal notranslate"><span class="pre">cp</span></code> 、 <code class="docutils literal notranslate"><span class="pre">rm</span> <span class="pre">``、</span> <span class="pre">``mv</span></code> 、 <code class="docutils literal notranslate"><span class="pre">tar</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vi</span></code> 编辑器</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">1.4</span></code> 编译器，可用来编译标准C程序</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">as86</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ld86</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的源代码，可在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下编译，然后覆盖现有的二进制内核</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 上的实验环境</p></li>
+</ul>
+</div>
+<div class="section" id="ubuntu-linux-0-11">
+<h2>6.3. Ubuntu 和 Linux 0.11 文件交换<a class="headerlink" href="#ubuntu-linux-0-11" title="永久链接至标题">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">oslab</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">hdc-0.11-new.img</span></code> 是 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核启动后的根文件系统镜像文件，相当于在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 虚拟机里装载的硬盘。在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 上访问其内容的方法是：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">sudo ./mount-hdc</span>
+</pre></div></div><p>之后， <code class="docutils literal notranslate"><span class="pre">hdc</span></code> 目录下就是和 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核一模一样的文件系统了，可以读写任何文件（可能有些文件要用 <code class="docutils literal notranslate"><span class="pre">sudo</span></code> 才能访问）。读写完毕，不要忘了卸载这个文件系统：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">sudo umount hdc</span>
+</pre></div></div><div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>不要在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核运行的时候 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 镜像文件，否则可能会损坏文件系统。同理，也不要在已经 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 的时候运行 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核。</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>在关闭 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 之前，需要先在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的命令行运行 <code class="docutils literal notranslate"><span class="pre">sync</span></code> ，确保所有缓存数据都存盘后，再关闭 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 。</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../Intelx86/chap02.html" class="btn btn-neutral float-right" title="1. x86系统架构概览" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Linux011setup.html" class="btn btn-neutral float-left" title="5. Linux 0.11 on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+
+    </p>
+  </div>
+ 
+	<script type="text/javascript">
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1278706363'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1278706363%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));	
+	</script>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

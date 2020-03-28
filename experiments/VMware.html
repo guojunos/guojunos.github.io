@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4. 虚拟机环境 VMware + Ubuntu &mdash; Guojunos 1.0.0 文档</title>
+  <title>2. 虚拟机环境安装 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="5. 虚拟机环境 VirtualBox + Ubuntu" href="VirtualBox.html" />
-    <link rel="prev" title="2. 实验环境" href="introduction.html" /> 
+    <link rel="next" title="3. Bochs 安装" href="BochsInstall.html" />
+    <link rel="prev" title="1. 实验环境" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,18 +90,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 虚拟机环境 VMware + Ubuntu</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vmware">4.1. VMware 设置</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ubuntu">4.2. Ubuntu 设置</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 虚拟机环境安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#vmware-ubuntu">2.1. VMware + Ubuntu 设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#virtualbox-ubuntu">2.2. VirtualBox + Ubuntu 设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu">2.3. Ubuntu 设置</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -128,6 +131,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -173,7 +177,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>4. 虚拟机环境 VMware + Ubuntu</li>
+      <li>2. 虚拟机环境安装</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -190,10 +194,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="vmware-ubuntu">
-<h1>4. 虚拟机环境 VMware + Ubuntu<a class="headerlink" href="#vmware-ubuntu" title="永久链接至标题">¶</a></h1>
-<div class="section" id="vmware">
-<h2>4.1. VMware 设置<a class="headerlink" href="#vmware" title="永久链接至标题">¶</a></h2>
+  <div class="section" id="id1">
+<h1>2. 虚拟机环境安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="section" id="vmware-ubuntu">
+<h2>2.1. VMware + Ubuntu 设置<a class="headerlink" href="#vmware-ubuntu" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>下载安装 <code class="docutils literal notranslate"><span class="pre">VMware</span></code> 虚拟机</p></li>
 <li><p>安装增强功能</p></li>
@@ -201,11 +205,28 @@
 <li><p>共享文件夹 -&gt; 制定一个需要共享的目录</p></li>
 <li><p>安装完系统，进行快照保存</p></li>
 </ul>
+<div class="admonition tip">
+<p class="admonition-title">小技巧</p>
+<p>快照非常有用，关键节点上要保存一下快照，缺点是会增大虚拟文件的大小。</p>
+</div>
+</div>
+<div class="section" id="virtualbox-ubuntu">
+<h2>2.2. VirtualBox + Ubuntu 设置<a class="headerlink" href="#virtualbox-ubuntu" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>下载安装 <a class="reference external" href="https://www.virtualbox.org/">VirtualBox</a></p></li>
+<li><p>系统 -&gt; 指点设备(P): <strong>PS/2 鼠标</strong></p></li>
+<li><p>显示 -&gt; 显示控制器(G): <strong>VBoxVGA</strong></p></li>
+<li><p>存储 -&gt; 控制器:IDE -&gt; <strong>VBoxGuestAdditionis.iso</strong> 安装增强功能</p></li>
+<li><p>网络 -&gt; 连接方式(A): 桥接网卡</p></li>
+<li><p>网络 -&gt; 控制芯片(T): <strong>PCnet-FAST III</strong></p></li>
+<li><p>网络 -&gt; 混杂模式(P): <strong>拒绝</strong></p></li>
+<li><p>共享文件夹 -&gt; 制定一个需要共享的目录</p></li>
+</ul>
 </div>
 <div class="section" id="ubuntu">
-<h2>4.2. Ubuntu 设置<a class="headerlink" href="#ubuntu" title="永久链接至标题">¶</a></h2>
+<h2>2.3. Ubuntu 设置<a class="headerlink" href="#ubuntu" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>下载并在VirtualBox中安装 <a class="reference external" href="https://ubuntu.com/download">Ubuntu</a></p></li>
+<li><p>下载并安装 <a class="reference external" href="https://ubuntu.com/download">Ubuntu</a></p></li>
 <li><p>更新国内源， <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list</span></code></p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="o">.</span><span class="n">aliyun</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">ubuntu</span><span class="o">/</span> <span class="n">bionic</span> <span class="n">main</span> <span class="n">restricted</span> <span class="n">universe</span> <span class="n">multiverse</span>
@@ -222,7 +243,7 @@
 </div>
 <ul class="simple">
 <li><p>配置 <code class="docutils literal notranslate"><span class="pre">SSH</span></code></p></li>
-<li><p>VSCODE，安装插件 <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">Development</span></code> 等，通过远程编辑与调试代码</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VSCODE</span></code> ，安装插件 <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">Development</span></code> 等，通过远程编辑与调试代码</p></li>
 </ul>
 </div>
 </div>
@@ -235,10 +256,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="VirtualBox.html" class="btn btn-neutral float-right" title="5. 虚拟机环境 VirtualBox + Ubuntu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="BochsInstall.html" class="btn btn-neutral float-right" title="3. Bochs 安装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="introduction.html" class="btn btn-neutral float-left" title="2. 实验环境" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="1. 实验环境" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

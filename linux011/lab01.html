@@ -90,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -147,6 +149,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -211,11 +214,10 @@
             
   <div class="section" id="id1">
 <h1>1. 操作系统的引导<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>难度系数：★☆☆☆☆</p>
 <div class="section" id="id2">
 <h2>1.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>熟悉hit-oslab实验环境；</p></li>
+<li><p>熟悉实验环境；</p></li>
 <li><p>建立对操作系统引导过程的深入认识；</p></li>
 <li><p>掌握操作系统的基本开发过程；</p></li>
 <li><p>能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱。</p></li>
@@ -224,8 +226,8 @@
 <div class="section" id="id3">
 <h2>1.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <ol class="arabic simple">
-<li><p>阅读《Linux内核完全注释》的第6章，对计算机和Linux 0.11的引导过程进行初步的了解；</p></li>
-<li><p>按照下面的要求改写0.11的引导程序 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> ;</p></li>
+<li><p>阅读《Linux内核完全注释》的第 <code class="docutils literal notranslate"><span class="pre">6</span></code> 章，对计算机和 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的引导过程进行初步的了解；</p></li>
+<li><p>按照下面的要求改写 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的引导程序 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> ;</p></li>
 <li><p>有兴趣同学可以做做进入保护模式前的设置程序 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code>  。</p></li>
 </ol>
 <div class="section" id="bootsect-s">
@@ -238,7 +240,7 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">XXX is booting...</span>
-</pre></div></div><p>其中 <code class="docutils literal notranslate"><span class="pre">XXX</span></code> 是你给自己的操作系统起的名字，也可以显示一个特色logo，以表示自己操作系统的与众不同。</p>
+</pre></div></div><p>其中 <code class="docutils literal notranslate"><span class="pre">XXX</span></code> 是你给自己的操作系统起的名字，也可以显示一个特色``logo`` ，以表示自己操作系统的与众不同。</p>
 </div>
 <div class="section" id="setup-s">
 <h3>1.2.2. 改写 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 主要完成如下功能：<a class="headerlink" href="#setup-s" title="永久链接至标题">¶</a></h3>
@@ -257,7 +259,7 @@ span.prompt1:before {
 <h2>1.3. 实验报告<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>在实验报告中回答如下问题：</p>
 <ol class="arabic simple">
-<li><p>有时，继承传统意味着别手蹩脚。x86计算机为了向下兼容，导致启动过程比较复杂。 请找出x86计算机启动过程中，被硬件强制，软件必须遵守的两个“多此一举”的步骤（多找几个也无妨），说说它们为什么多此一举，并设计更简洁的替代方案。</p></li>
+<li><p>有时，继承传统意味着别手蹩脚。 <code class="docutils literal notranslate"><span class="pre">x86</span></code> 计算机为了向下兼容，导致启动过程比较复杂。 请找出 <code class="docutils literal notranslate"><span class="pre">x86</span></code> 计算机启动过程中，被硬件强制，软件必须遵守的两个“多此一举”的步骤（多找几个也无妨），说说它们为什么多此一举，并设计更简洁的替代方案。</p></li>
 </ol>
 <div class="section" id="id5">
 <h3>1.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
@@ -273,20 +275,20 @@ span.prompt1:before {
 <div class="section" id="id6">
 <h2>1.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <p>操作系统的 <code class="docutils literal notranslate"><span class="pre">boot</span></code> 代码有很多，并且大部分是相似的。
-本实验仿照Linux-0.11/boot目录下的 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> ，以剪裁它们为主线。当然，如果能完全从头编写，并实现实验所要求的功能，是再好不过了。</p>
-<p>同济大学赵炯博士的《Linux内核0.11完全注释（修正版V3.0）》（以后简称《注释》）的第6章是非常有帮助的参考，实验中可能遇到的各种问题，几乎都能找到答案。</p>
-<p>需要注意的是，oslab中的汇编代码使用 <code class="docutils literal notranslate"><span class="pre">as86</span></code> 编译，语法和汇编课上所授稍有不同。</p>
+本实验仿照 <code class="docutils literal notranslate"><span class="pre">Linux-0.11/boot</span></code> 目录下的 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> ，以剪裁它们为主线。当然，如果能完全从头编写，并实现实验所要求的功能，是再好不过了。</p>
+<p>同济大学赵炯博士的《Linux内核0.11完全注释（修正版V3.0）》（以后简称《注释》）的第 <code class="docutils literal notranslate"><span class="pre">6</span></code> 章是非常有帮助的参考，实验中可能遇到的各种问题，几乎都能找到答案。</p>
+<p>需要注意的是， <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 中的汇编代码使用 <code class="docutils literal notranslate"><span class="pre">as86</span></code> 编译，语法和汇编课上所授稍有不同。</p>
 <p>下面将给出一些更具体的“提示”。这些提示并不是实验的一步一步的指导，而是罗列了一些实验中可能遇到的困难，并给予相关提示。它们肯定不会涵盖所有问题，也不保证其中的每个字都对完成实验有帮助。
 所以，它们更适合在你遇到问题时查阅，而不是当作指南一样地亦步亦趋。本书所有实验的提示都是秉承这个思想编写的。</p>
 <div class="section" id="linux-0-11">
 <h3>1.4.1. Linux 0.11相关代码详解<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">boot/bootsect.s</span></code> 、 <code class="docutils literal notranslate"><span class="pre">boot/setup.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> 是本实验会涉及到的源文件。
-它们的功能详见《注释》的6.2、6.3节和16章。</p>
+它们的功能详见《注释》的 <code class="docutils literal notranslate"><span class="pre">6.2</span></code> 、 <code class="docutils literal notranslate"><span class="pre">6.3</span></code> 节和 <code class="docutils literal notranslate"><span class="pre">16</span></code> 章。</p>
 </div>
 <div class="section" id="id7">
 <h3>1.4.2. 引导程序的运行环境<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
-<p>引导程序由BIOS加载并运行。
-它活动时，操作系统还不存在，整台计算机的所有资源都由它掌控，而能利用的功能只有BIOS中断调用。</p>
+<p>引导程序由 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 加载并运行。
+它活动时，操作系统还不存在，整台计算机的所有资源都由它掌控，而能利用的功能只有 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 中断调用。</p>
 </div>
 <div class="section" id="id8">
 <h3>1.4.3. 完成 bootsect.s 的屏幕输出功能<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
@@ -367,7 +369,7 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 正好是 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节，去掉这 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节后就可以放入引导扇区了（这是 <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> 的用途之一）。</p>
 <p>对于上面的 <code class="docutils literal notranslate"><span class="pre">Minix</span></code> 可执行文件，
 其 <code class="docutils literal notranslate"><span class="pre">a_magic[0]=0x01</span></code> ， <code class="docutils literal notranslate"><span class="pre">a_magic[1]=0x03</span></code> ， <code class="docutils literal notranslate"><span class="pre">a_flags=0x10</span></code> （可执行文件）， <code class="docutils literal notranslate"><span class="pre">a_cpu=0x04</span></code> （表示 <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">i8086/8088</span></code> ，如果是 <code class="docutils literal notranslate"><span class="pre">0x17</span></code> 则表示 <code class="docutils literal notranslate"><span class="pre">Sun</span></code> 公司的 <code class="docutils literal notranslate"><span class="pre">SPARC</span></code> ），所以 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 文件的头几个字节应该是 <code class="docutils literal notranslate"><span class="pre">01</span> <span class="pre">03</span> <span class="pre">10</span> <span class="pre">04</span></code> 。</p>
-<p>为了验证一下，Ubuntu下用命令</p>
+<p>为了验证一下， <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下用命令</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">hexdump -C bootsect</span>
 </pre></div></div><p>可以看到：</p>
 <div class="highlight-hexdump notranslate"><div class="highlight"><pre><span></span><span class="nl">00000000</span>  <span class="mh">01</span> <span class="mh">03</span> <span class="mh">10</span> <span class="mh">04</span> <span class="mh">20</span> <span class="mh">00</span> <span class="mh">00</span> <span class="mh">00</span>  <span class="mh">00</span> <span class="mh">02</span> <span class="mh">00</span> <span class="mh">00</span> <span class="mh">00</span> <span class="mh">00</span> <span class="mh">00</span> <span class="mh">00</span>  <span class="p">|</span><span class="s">.... ...........</span><span class="p">|</span>
@@ -390,8 +392,7 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 ！随手编个小的文件读写程序都可以去掉它。不过，懒且聪明的人会在Ubuntu下用命令：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">dd <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="k">if</span><span class="o">=</span>bootsect <span class="nv">of</span><span class="o">=</span>Image <span class="nv">skip</span><span class="o">=</span><span class="m">32</span></span>
 </pre></div></div><p>生成的 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 就是去掉文件头的 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 。</p>
-<p>Windows下可以用UltraEdit直接删除（选中这 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节，然后按 <code class="docutils literal notranslate"><span class="pre">Ctrl+X</span></code> ）。</p>
-<p>去掉这32个字节后，将生成的文件拷贝到linux-0.11目录下，并一定要命名为 <strong>Image</strong> （注意大小写）。
+<p>去掉这32个字节后，将生成的文件拷贝到 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录下，并一定要命名为 <strong>Image</strong> （注意大小写）。
 然后就 <code class="docutils literal notranslate"><span class="pre">run</span></code> 吧！</p>
 <p><img alt="图1 bootsect引导后的系统启动情况" src="../_images/lab01bootsect.png" /></p>
 <p>图1 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 引导后的系统启动情况</p>
@@ -526,8 +527,8 @@ ASCII码与十六进制数字的对应关系为： <code class="docutils literal
 然后屏蔽掉当前高 <code class="docutils literal notranslate"><span class="pre">12</span></code> 位，对当前余下的 <code class="docutils literal notranslate"><span class="pre">4</span></code> 位（即 <code class="docutils literal notranslate"><span class="pre">1</span></code> 位十六进制数）求其 <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码，
 要判断它是 <code class="docutils literal notranslate"><span class="pre">0~9</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">a~f</span></code> ，是前者则加 <code class="docutils literal notranslate"><span class="pre">0x30</span></code> 得对应的 <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码，后者则要加 <code class="docutils literal notranslate"><span class="pre">0x37</span></code> 才行，最后送显示器输出。
 以上步骤重复 <code class="docutils literal notranslate"><span class="pre">4</span></code> 次，就可以完成 <code class="docutils literal notranslate"><span class="pre">bx</span></code> 中数以 <code class="docutils literal notranslate"><span class="pre">4</span></code> 位十六进制的形式显示出来。</p>
-<p>下面是完成显示16进制数的汇编语言程序的关键代码，
-其中用到的BIOS中断为 <code class="docutils literal notranslate"><span class="pre">INT</span> <span class="pre">0x10</span></code> ，功能号 <code class="docutils literal notranslate"><span class="pre">0x0E</span></code> （显示一个字符），
+<p>下面是完成显示 <code class="docutils literal notranslate"><span class="pre">16</span></code> 进制数的汇编语言程序的关键代码，
+其中用到的 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 中断为 <code class="docutils literal notranslate"><span class="pre">INT</span> <span class="pre">0x10</span></code> ，功能号 <code class="docutils literal notranslate"><span class="pre">0x0E</span></code> （显示一个字符），
 即 <code class="docutils literal notranslate"><span class="pre">AH=0x0E</span></code> ， <code class="docutils literal notranslate"><span class="pre">AL=要显示字符的ASCII码</span></code> 。</p>
 <div class="highlight-dasm16 notranslate"><div class="highlight"><pre><span></span><span class="c">!以16进制方式打印栈顶的16位数</span>
 <span class="nl">print_hex:</span>
@@ -563,7 +564,7 @@ ASCII码与十六进制数字的对应关系为： <code class="docutils literal
 <p>只要在适当的位置调用 <code class="docutils literal notranslate"><span class="pre">print_hex</span></code> 和 <code class="docutils literal notranslate"><span class="pre">print_nl</span></code> （注意，一定要设置好栈，才能进行函数调用）就能将获得硬件参数打印到屏幕上，完成此次实验的任务。
 但事情往往并不总是顺利的，前面的两个实验大多数实验者可能一次就编译调试通过了（这里要提醒大家：编写操作系统的代码一定要认真，因为要调试操作系统并不是一件很方便的事）。
 但在这个实验中会出现运行结果不对的情况（为什么呢？因为我们给的代码并不是100%好用的）。
-所以接下来要复习一下汇编，并阅读《Bochs使用手册》，学学在Bochs中如何调试操作系统代码。</p>
+所以接下来要复习一下汇编，并阅读《Bochs使用手册》，学学在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 中如何调试操作系统代码。</p>
 <p>我想经过漫长而痛苦的调试后，大家一定能兴奋地得到下面的运行结果：</p>
 <p><img alt="图3 用可以打印硬件参数的setup.s进行引导的结果" src="../_images/lab01_final.png" /></p>
 <p>图3 用可以打印硬件参数的 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 进行引导的结果</p>

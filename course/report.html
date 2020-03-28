@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>5. 实验报告 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gj.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="1. 实验环境" href="../experiments/introduction.html" />
+    <link rel="prev" title="4. 上课时间" href="schedule.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. 实验报告</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux">5.1. Linux 实验报告</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.2. 读书笔记报告</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>5. 实验报告</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>5. 实验报告<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>这里的实验报告建议用 <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> 进行书写。</p>
+<div class="section" id="linux">
+<h2>5.1. Linux 实验报告<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h2>
+<p>总共有 <code class="docutils literal notranslate"><span class="pre">8</span></code> 次实验报告，其格式如下所示：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">|──01-xxx</span>
+<span class="go">    ├─01_lab01</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab02</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab03</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  ├─code</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab04</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  ├─code</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab05</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  ├─code</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab06</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  ├─code</span>
+<span class="go">    │  └─images</span>
+<span class="go">    ├─01_lab07</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  ├─code</span>
+<span class="go">    │  └─images</span>
+<span class="go">    └─01_lab08</span>
+<span class="go">        │  reports.md</span>
+<span class="go">        │</span>
+<span class="go">        ├─code</span>
+<span class="go">        └─images</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">01</span></code> 是 <code class="docutils literal notranslate"><span class="pre">id</span></code> 号，<code class="docutils literal notranslate"><span class="pre">xxx</span></code> 是姓名，详见名单</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reports.md</span></code> 是 <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> 的实验报告</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">images</span></code> 子目录存放的是报告里用到的图片</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">code</span></code> 从实验 <code class="docutils literal notranslate"><span class="pre">3</span></code> 开始提交的存放代码的目录</p></li>
+</ul>
+<p>例如： <code class="docutils literal notranslate"><span class="pre">01</span></code> 号同学第一次实验提交的报告为 <code class="docutils literal notranslate"><span class="pre">01-xxx-lab01.rar</span></code> ，这个压缩文件里应是如下形式：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">|──01-xxx-lab01.rar</span>
+<span class="go">    ├─01_lab01</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  └─images</span>
+<span class="go">    │          img1.png</span>
+<span class="go">    │          img2.png</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>5.2. 读书笔记报告<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>读书笔记如果是电子版的 <code class="docutils literal notranslate"><span class="pre">Markdown</span></code> 格式报告，格式与实验一的报告格式相同， 把 <code class="docutils literal notranslate"><span class="pre">lab01</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">read01</span></code> 即可，如下：</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">|──01-xxx-read01.rar</span>
+<span class="go">    ├─01_read01</span>
+<span class="go">    │  │  reports.md</span>
+<span class="go">    │  │</span>
+<span class="go">    │  └─images</span>
+<span class="go">    │          img1.png</span>
+<span class="go">    │          img2.png</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../experiments/introduction.html" class="btn btn-neutral float-right" title="1. 实验环境" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="schedule.html" class="btn btn-neutral float-left" title="4. 上课时间" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+
+    </p>
+  </div>
+ 
+	<script type="text/javascript">
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1278706363'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1278706363%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));	
+	</script>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

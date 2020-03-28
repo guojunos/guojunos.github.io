@@ -16,17 +16,19 @@
    course/book
    course/software
    course/schedule
+   course/report
 
 .. toctree::
    :maxdepth: 1
    :numbered:
    :caption: 课程实验
 
-   experiments/preface
    experiments/introduction
    experiments/VMware
-   experiments/VirtualBox
-   
+   experiments/BochsInstall
+   experiments/Linux000setup
+   experiments/Linux011setup
+   experiments/Linux011Flow
 
 
 .. toctree::
@@ -84,6 +86,7 @@
 
    appendix/BIOS
    appendix/Bochs
+   appendix/FAQ
 
 
 

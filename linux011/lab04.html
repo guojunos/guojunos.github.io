@@ -90,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -144,6 +146,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -208,7 +211,6 @@
             
   <div class="section" id="id1">
 <h1>4. 信号量的实现和应用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>难度系数：★★★★☆</p>
 <div class="section" id="id2">
 <h2>4.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
@@ -221,8 +223,8 @@
 <h2>4.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>本次实验的基本内容是：</p>
 <ul class="simple">
-<li><p>在Ubuntu下编写程序，用信号量解决生产者——消费者问题；</p></li>
-<li><p>在0.11中实现信号量，用生产者—消费者程序检验之。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下编写程序，用信号量解决生产者——消费者问题；</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 中实现信号量，用生产者—消费者程序检验之。</p></li>
 <li><p>用信号量解决生产者—消费者问题</p></li>
 </ul>
 <p>在Ubuntu上编写应用程序 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> ，解决经典的生产者—消费者问题，完成下面的功能：</p>
@@ -254,11 +256,11 @@
 </div>
 <p>其中 <code class="docutils literal notranslate"><span class="pre">ID</span></code> 的顺序会有较大变化，但冒号后的数字一定是从 <code class="docutils literal notranslate"><span class="pre">0</span></code> 开始递增加一的。</p>
 <p><code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 中将会用到 <code class="docutils literal notranslate"><span class="pre">sem_open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_close()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code> 等信号量相关的系统调用，请查阅相关文档。</p>
-<p>《UNIX环境高级编程》是一本关于Unix/Linux系统级编程的相当经典的教程。
+<p>《UNIX环境高级编程》是一本关于 <code class="docutils literal notranslate"><span class="pre">Unix/Linux</span></code> 系统级编程的相当经典的教程。
 电子版可在网站上下载，后续实验也用得到。如果你对 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 编程感兴趣，建议买一本常备手边。</p>
 <div class="section" id="id4">
 <h3>4.2.1. 实现信号量<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p>Linux在0.11版还没有实现信号量，Linus把这件富有挑战的工作留给了你。
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 版还没有实现信号量，Linus把这件富有挑战的工作留给了你。
 如果能实现一套山寨版的完全符合 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 规范的信号量，无疑是很有成就感的。但时间暂时不允许我们这么做，所以先弄一套缩水版的类 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 信号量，它的函数原型和标准并不完全相同，而且只包含如下系统调用：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">sem_t</span> <span class="o">*</span><span class="nf">sem_open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
 <span class="kt">int</span> <span class="nf">sem_wait</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
@@ -281,7 +283,7 @@
 <h2>4.3. 实验报告<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>完成实验后，在实验报告中回答如下问题：</p>
 <ul class="simple">
-<li><p>在pc.c中去掉所有与信号量有关的代码，再运行程序，执行效果有变化吗？为什么会这样？</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 中去掉所有与信号量有关的代码，再运行程序，执行效果有变化吗？为什么会这样？</p></li>
 <li><p>实验的设计者在第一次编写生产者——消费者程序的时候，是这么做的：</p></li>
 </ul>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">Producer</span><span class="p">()</span>
@@ -323,7 +325,7 @@
 <div class="section" id="id8">
 <h3>4.4.1. 信号量<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <p>信号量，英文为 <code class="docutils literal notranslate"><span class="pre">semaphore</span></code> ，最早由荷兰科学家、图灵奖获得者E. W. Dijkstra设计，任何操作系统教科书的“进程同步”部分都会有详细叙述。</p>
-<p>Linux的信号量秉承 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 规范，用``man sem_overview`` 可以查看相关信息。本次实验涉及到的信号量系统调用包括：
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 的信号量秉承 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 规范，用 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sem_overview</span></code> 可以查看相关信息。本次实验涉及到的信号量系统调用包括：
 <code class="docutils literal notranslate"><span class="pre">sem_open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sem_unlink()</span></code> 。</p>
 <p>生产者—消费者问题</p>
 <p>生产者—消费者问题的解法几乎在所有操作系统教科书上都有，其基本结构为：</p>
@@ -358,7 +360,7 @@
 <li><p>使用系统调用 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">read()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">lseek()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 等；</p></li>
 <li><p>通过内存镜像文件，使用 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 系统调用。</p></li>
 </ul>
-<p>在Linux 0.11上只能使用前两种方法。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上只能使用前两种方法。</p>
 <p><code class="docutils literal notranslate"><span class="pre">fork()</span></code> 调用成功后，子进程会继承父进程拥有的大多数资源，包括父进程打开的文件。所以子进程可以直接使用父进程创建的文件指针/描述符/句柄，访问的是与父进程相同的文件。</p>
 <p>使用标准C的文件操作函数要注意，它们使用的是进程空间内的文件缓冲区，父进程和子进程之间不共享这个缓冲区。因此，任何一个进程做完写操作后，必须 <code class="docutils literal notranslate"><span class="pre">fflush()</span></code> 一下，将数据强制更新到磁盘，其它进程才能读到所需数据。</p>
 <p>建议直接使用系统调用进行文件操作。</p>
@@ -370,15 +372,15 @@
 </div>
 <div class="section" id="id11">
 <h3>4.4.4. 原子操作、睡眠和唤醒<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
-<p>Linux 0.11是一个支持并发的现代操作系统，虽然它还没有面向应用实现任何锁或者信号量，
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 是一个支持并发的现代操作系统，虽然它还没有面向应用实现任何锁或者信号量，
 但它内部一定使用了锁机制，即在多个进程访问共享的内核数据时一定需要通过锁来实现互斥和同步。锁必然是一种原子操作。
-通过模仿0.11的锁，就可以实现信号量。</p>
+通过模仿 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 的锁，就可以实现信号量。</p>
 <p>多个进程对磁盘的并发访问是一个需要锁的地方。
-Linux 0.11访问磁盘的基本处理办法是在内存中划出一段磁盘缓存，用来加快对磁盘的访问。
+<code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 访问磁盘的基本处理办法是在内存中划出一段磁盘缓存，用来加快对磁盘的访问。
 进程提出的磁盘访问请求首先要到磁盘缓存中去找，如果找到直接返回；如果没有找到则申请一段空闲的磁盘缓存，以这段磁盘缓存为参数发起磁盘读写请求。
 请求发出后，进程要睡眠等待（因为磁盘读写很慢，应该让出CPU让其他进程执行）。
-这种方法是许多操作系统（包括现代Linux、UNIX等）采用的较通用的方法。
-这里涉及到多个进程共同操作磁盘缓存，而进程在操作过程可能会被调度而失去CPU。
+这种方法是许多操作系统（包括现代 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 、 <code class="docutils literal notranslate"><span class="pre">UNIX</span></code> 等）采用的较通用的方法。
+这里涉及到多个进程共同操作磁盘缓存，而进程在操作过程可能会被调度而失去 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 。
 因此操作磁盘缓存时需要考虑互斥问题，所以其中必定用到了锁。而且也一定用到了让进程睡眠和唤醒。</p>
 <p>下面是从 <code class="docutils literal notranslate"><span class="pre">kernel/blk_drv/ll_rw_blk.c</span></code> 文件中取出的两个函数：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kr">inline</span> <span class="kt">void</span> <span class="nf">lock_buffer</span><span class="p">(</span><span class="k">struct</span> <span class="n">buffer_head</span> <span class="o">*</span> <span class="n">bh</span><span class="p">)</span>
@@ -399,9 +401,8 @@ Linux 0.11访问磁盘的基本处理办法是在内存中划出一段磁盘缓�
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>分析 <code class="docutils literal notranslate"><span class="pre">lock_buffer()</span></code> 可以看出，访问锁变量时用开、关中断来实现原子操作，阻止进程切换的发生。当然这种方法有缺点，且不适合用于多处理器环境中，但对于Linux
-0.11，它是一种简单、直接而有效的机制。</p>
-<p>另外，上面的函数表明Linux 0.11提供了这样的接口：
+<p>分析 <code class="docutils literal notranslate"><span class="pre">lock_buffer()</span></code> 可以看出，访问锁变量时用开、关中断来实现原子操作，阻止进程切换的发生。当然这种方法有缺点，且不适合用于多处理器环境中，但对于 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，它是一种简单、直接而有效的机制。</p>
+<p>另外，上面的函数表明 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 提供了这样的接口：
 用 <code class="docutils literal notranslate"><span class="pre">sleep_on()</span></code> 实现进程的睡眠，用 <code class="docutils literal notranslate"><span class="pre">wake_up()</span></code> 实现进程的唤醒。
 它们的参数都是一个结构体指针—— <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">task_struct</span> <span class="pre">*</span></code> ，
 即进程都睡眠或唤醒在该参数指向的一个进程 <code class="docutils literal notranslate"><span class="pre">PCB</span></code> 结构链表上。</p>
@@ -416,7 +417,7 @@ Linux 0.11访问磁盘的基本处理办法是在内存中划出一段磁盘缓�
 <h3>4.4.6. string.h<a class="headerlink" href="#string-h" title="永久链接至标题">¶</a></h3>
 <p>下面描述的问题未必具有普遍意义，仅做为提醒，请实验者注意。</p>
 <p><code class="docutils literal notranslate"><span class="pre">include/string.h</span></code> 实现了全套的C语言字符串操作，而且都是采用 <code class="docutils literal notranslate"><span class="pre">汇编+inline</span></code> 方式优化。但在使用中，某些情况下可能会遇到一些奇怪的问题。比如某人就遇到 <code class="docutils literal notranslate"><span class="pre">strcmp()</span></code> 会破坏参数内容的问题。如果调试中遇到有些“诡异”的情况，可以试试不包含头文件，一般都能解决。不包含 <code class="docutils literal notranslate"><span class="pre">string.h</span></code> ，就不会用 <code class="docutils literal notranslate"><span class="pre">inline</span></code> 方式调用这些函数，它们工作起来就趋于正常了。</p>
-<p>如果遇到类似问题，欢迎到论坛说明，进行更深入的分析。</p>
+<p>如果遇到类似问题，应该记录下来，进行更深入的分析。</p>
 </div>
 </div>
 </div>

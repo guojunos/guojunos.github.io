@@ -90,14 +90,16 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/preface.html">1. 前言</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html#id2">3. 主要平台和工具简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -133,6 +135,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -197,7 +200,6 @@
             
   <div class="section" id="id1">
 <h1>6. 打印进程地址转换过程<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
-<p>难度系数：★★★★☆</p>
 <div class="section" id="id2">
 <h2>6.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
@@ -259,7 +261,7 @@
 <p>完成实验后，在实验报告中回答如下问题：</p>
 <ul class="simple">
 <li><p>页表中正在使用的页表项是连续的吗？这体现了分页的什么优点？</p></li>
-<li><p>你觉的分段是必要的吗？现在的Linux (x86-64) 是怎么处理分段的？</p></li>
+<li><p>你觉的分段是必要的吗？现在的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">(x86-64)</span></code> 是怎么处理分段的？</p></li>
 </ul>
 <div class="section" id="id5">
 <h3>6.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
@@ -271,7 +273,7 @@
 </div>
 <div class="section" id="id6">
 <h2>6.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
-<p>《注释》中的4.3和4.4节描述了8086下的分段和分页机制，第13章讲解了Linux 0.11下的内存管理（分段和分页管理）和分配机制，值得参考。</p>
+<p>《注释》中的 <code class="docutils literal notranslate"><span class="pre">4.3</span></code> 和 <code class="docutils literal notranslate"><span class="pre">4.4</span></code> 节描述了 <code class="docutils literal notranslate"><span class="pre">8086</span></code> 下的分段和分页机制，第 <code class="docutils literal notranslate"><span class="pre">13</span></code> 章讲解了 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下的内存管理（分段和分页管理）和分配机制，值得参考。</p>
 <p>例如页转换和地址分配：</p>
 <p><img alt="Demo3" src="../_images/lab06_demo3.png" /></p>
 <p><img alt="Demo4" src="../_images/lab06_demo4.png" /></p>

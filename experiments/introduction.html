@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. 实验环境 &mdash; Guojunos 1.0.0 文档</title>
+  <title>1. 实验环境 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="4. 虚拟机环境 VMware + Ubuntu" href="VMware.html" />
-    <link rel="prev" title="1. 前言" href="preface.html" /> 
+    <link rel="next" title="2. 虚拟机环境安装" href="VMware.html" />
+    <link rel="prev" title="5. 实验报告" href="../course/report.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -90,19 +90,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="preface.html">1. 前言</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 实验环境</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#id2">3. 主要平台和工具简介</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#x86bochs">3.1. x86模拟器Bochs虚拟机</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#gcc">3.2. GCC编译器</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#db">3.3. DB调试器</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 实验环境</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#x86bochs">1.1. x86模拟器Bochs虚拟机</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gcc">1.2. GCC编译器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#db">1.3. DB调试器</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="VMware.html">4. 虚拟机环境 VMware + Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="VirtualBox.html">5. 虚拟机环境 VirtualBox + Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -129,6 +131,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -174,7 +177,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>2. 实验环境</li>
+      <li>1. 实验环境</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -192,13 +195,10 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>2. 实验环境<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>1. 实验环境<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <p>本操作系统实验的硬件环境是 <code class="docutils literal notranslate"><span class="pre">IA-32(x86)</span></code> 架构的 <code class="docutils literal notranslate"><span class="pre">PC</span></code> 机（就是你现在正在使用的计算机），主要软件环境是 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> + <code class="docutils literal notranslate"><span class="pre">GCC</span></code> + 你最喜欢的编辑器/IDE + 你最喜欢的操作系统 + <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 源代码。实验的基本流程是根据实验要求编写应用程序、修改 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的源代码，用 <code class="docutils literal notranslate"><span class="pre">GCC</span></code> 编译后，在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的虚拟环境中运行、调试目标代码。</p>
-</div>
-<div class="section" id="id2">
-<h1>3. 主要平台和工具简介<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h1>
 <div class="section" id="x86bochs">
-<h2>3.1. x86模拟器Bochs虚拟机<a class="headerlink" href="#x86bochs" title="永久链接至标题">¶</a></h2>
+<h2>1.1. x86模拟器Bochs虚拟机<a class="headerlink" href="#x86bochs" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 是一个能够仿真整个 <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">x86</span></code> 计算机的程序。
 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 能够仿真 <code class="docutils literal notranslate"><span class="pre">386</span></code>， <code class="docutils literal notranslate"><span class="pre">486</span></code> ， <code class="docutils literal notranslate"><span class="pre">Pentium</span></code> ， <code class="docutils literal notranslate"><span class="pre">Pentium</span> <span class="pre">III</span></code> ， <code class="docutils literal notranslate"><span class="pre">Pentium</span> <span class="pre">4</span></code> 乃至 <code class="docutils literal notranslate"><span class="pre">x86-64</span> <span class="pre">CPU</span></code> 。
 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 解释从开机到重启的每一条指令，且支持所有的标准 <code class="docutils literal notranslate"><span class="pre">PC</span></code> 外设的驱动模型：键盘，鼠标，VGA显卡/显示器，磁盘，时钟芯片，网卡，无不在其仿真之列。
@@ -210,11 +210,11 @@
 <p>关于 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的更详细的介绍请访问它的主页及 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 使用手册。</p>
 </div>
 <div class="section" id="gcc">
-<h2>3.2. GCC编译器<a class="headerlink" href="#gcc" title="永久链接至标题">¶</a></h2>
+<h2>1.2. GCC编译器<a class="headerlink" href="#gcc" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">GCC</span></code> 是和 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 一起成长起来的编译器。 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 最初的版本就是由 <code class="docutils literal notranslate"><span class="pre">GCC</span></code> 编译的。现在 <code class="docutils literal notranslate"><span class="pre">GCC</span></code> 也是在自由软件领域应用最广泛的编译器。所以，我们也选择 <code class="docutils literal notranslate"><span class="pre">GCC</span></code> 做为本书实验的指定编译器。</p>
 </div>
 <div class="section" id="db">
-<h2>3.3. DB调试器<a class="headerlink" href="#db" title="永久链接至标题">¶</a></h2>
+<h2>1.3. DB调试器<a class="headerlink" href="#db" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">GDB</span></code> 调试器是 <code class="docutils literal notranslate"><span class="pre">GCC</span></code> 编译器的兄弟。做为自由软件领域几乎是唯一的调试器，它秉承了 <code class="docutils literal notranslate"><span class="pre">*nix</span></code> 类操作系统的一贯风格，采用纯命令行操作，有点儿类似 <code class="docutils literal notranslate"><span class="pre">Dos</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">debug</span></code> 。关于它的使用方法请看 <code class="docutils literal notranslate"><span class="pre">GDB</span></code> 使用手册。</p>
 </div>
 </div>
@@ -227,10 +227,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="VMware.html" class="btn btn-neutral float-right" title="4. 虚拟机环境 VMware + Ubuntu" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="VMware.html" class="btn btn-neutral float-right" title="2. 虚拟机环境安装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="preface.html" class="btn btn-neutral float-left" title="1. 前言" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../course/report.html" class="btn btn-neutral float-left" title="5. 实验报告" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
