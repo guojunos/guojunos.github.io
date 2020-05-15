@@ -251,9 +251,9 @@
 <ul class="simple">
 <li><p>请简述 <code class="docutils literal notranslate"><span class="pre">head.s</span></code> 的工作原理</p></li>
 <li><p>请记录 <code class="docutils literal notranslate"><span class="pre">head.s</span></code> 的内存分布状况，写明每个数据段，代码段，栈段的起始与终止的内存地址</p></li>
-<li><p>简述 <code class="docutils literal notranslate"><span class="pre">head.s</span></code>  <code class="docutils literal notranslate"><span class="pre">57</span></code> 和 <code class="docutils literal notranslate"><span class="pre">62</span></code> 行在做什么？</p></li>
+<li><p>简述 <code class="docutils literal notranslate"><span class="pre">head.s</span></code>  <code class="docutils literal notranslate"><span class="pre">57</span></code> 至 <code class="docutils literal notranslate"><span class="pre">62</span></code> 行在做什么？</p></li>
 <li><p>简述 <code class="docutils literal notranslate"><span class="pre">iret</span></code> 执行后， <code class="docutils literal notranslate"><span class="pre">pc</span></code> 如何找到下一条指令？</p></li>
-<li><p>记录iret执行前后，栈是如何变化的？</p></li>
+<li><p>记录 <code class="docutils literal notranslate"><span class="pre">iret</span></code> 执行前后，栈是如何变化的？</p></li>
 <li><p>当任务进行系统调用时，即 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 时，记录栈的变化情况。</p></li>
 </ul>
 </div>
@@ -263,7 +263,7 @@
 <ul class="simple">
 <li><p>当执行完 <code class="docutils literal notranslate"><span class="pre">system_interrupt</span></code> 函数，执行 <code class="docutils literal notranslate"><span class="pre">153</span></code> 行 <code class="docutils literal notranslate"><span class="pre">iret</span></code> 时，记录栈的变化情况</p></li>
 <li><p>当进入和退出 <code class="docutils literal notranslate"><span class="pre">system_interrupt</span></code> 时，都发生了模式切换，请总结模式切换时，特权级是如何改变的？栈切换吗？如何进行切换的？</p></li>
-<li><p>当时钟中断发生，进入到 <code class="docutils literal notranslate"><span class="pre">system_interrupt</span></code> 程序，请详细记录从任务 <code class="docutils literal notranslate"><span class="pre">0</span></code> 切换到任务 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的过程。</p></li>
+<li><p>当时钟中断发生，进入到 <code class="docutils literal notranslate"><span class="pre">timer_interrupt</span></code> 程序，请详细记录从任务 <code class="docutils literal notranslate"><span class="pre">0</span></code> 切换到任务 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的过程。</p></li>
 <li><p>又过了 <code class="docutils literal notranslate"><span class="pre">10ms</span></code> ，从任务1切换回到任务 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，整个流程是怎样的？ <code class="docutils literal notranslate"><span class="pre">TSS</span></code> 是如何变化的？各个寄存器的值是如何变化的？</p></li>
 <li><p>请详细总结任务切换的过程。</p></li>
 </ul>
