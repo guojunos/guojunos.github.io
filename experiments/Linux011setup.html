@@ -203,7 +203,7 @@
 如果想更改安装目录，可以仔细读这个文件。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
-  content: "# ";
+  content: "$ ";
 }
 </style><span class="prompt1">git clone https://gitee.com/guojunos/hit-oslab.git ~/hit-oslab</span>
 <span class="prompt1"><span class="nb">cd</span> ~/hit-oslab</span>
@@ -216,7 +216,9 @@ span.prompt1:before {
 </ul>
 </div>
 <p>如果想要跳过软件源更新步骤，请在 <code class="docutils literal notranslate"><span class="pre">./setup.sh</span></code> 后加上参数 <code class="docutils literal notranslate"><span class="pre">-s</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--skip-update</span></code>。</p>
-</div>
+<p>此外，老师推荐大家尝试安装郭子阳同学搭建的一个实验环境，采用了最新的 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 版本，同时，支持 Linux 的多种发行版。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone https://gitee.com/cn-guoziyang/oslab.git ~/oslab</span>
+</pre></div></div></div>
 <div class="section" id="linux-0-11">
 <h2>5.2. 复原 linux-0.11<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h2>
 <p>考虑到实验每次需要重置 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录，因此，增加了重置功能，如下：</p>

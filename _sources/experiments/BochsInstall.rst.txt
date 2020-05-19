@@ -11,24 +11,24 @@ Ubuntu 下编译安装
 
 先安装一些必要的包，否则编译的时候会报错
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     sudo apt-get install build-essential xorg-dev libgtk2.0-dev 
 
 配置，也可以查看编译命令 http://bochs.sourceforge.net/doc/docbook/user/compiling.html
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     ./configure --enable-debugger --enable-disasm
 
 
 编译并安装
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     make
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     sudo make install
 

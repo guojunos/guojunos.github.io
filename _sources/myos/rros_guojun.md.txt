@@ -3,7 +3,7 @@ theme: gaia
 _class: lead
 paginate: true
 backgroundColor: #fff
-marp: true
+marp: false
 backgroundImage: url('https://marp.app/assets/hero-background.jpg')
 ---
 
@@ -29,13 +29,16 @@ Dr. GuoJun LIU
 
 ---
 
-## Rust 简介
+## TODO
 
-- why
-- 特性
-- 简单语法
-- 安全性
-- 集众家所长
+- GDB debug
+- Folk() 
+- 系统调用
+- 内存管理
+- 文件系统
+- 调试程序
+- 教案
+- 查阅Linux 0.11 中文版
   
 ---
 

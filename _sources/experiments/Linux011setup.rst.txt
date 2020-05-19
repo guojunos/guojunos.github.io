@@ -9,7 +9,7 @@ Linux 0.11 on Ubuntu
 从网站上下载源代码，相应目录里有 ``setup.sh``,
 如果想更改安装目录，可以仔细读这个文件。
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     git clone https://gitee.com/guojunos/hit-oslab.git ~/hit-oslab
     cd ~/hit-oslab
@@ -25,6 +25,11 @@ Linux 0.11 on Ubuntu
 
 如果想要跳过软件源更新步骤，请在 ``./setup.sh`` 后加上参数 ``-s`` 或 ``--skip-update``。
 
+此外，老师推荐大家尝试安装郭子阳同学搭建的一个实验环境，采用了最新的 ``Bochs`` 版本，同时，支持 Linux 的多种发行版。
+
+.. prompt:: bash $
+
+    git clone https://gitee.com/cn-guoziyang/oslab.git ~/oslab
 
 
 复原 linux-0.11
@@ -32,7 +37,7 @@ Linux 0.11 on Ubuntu
 
 考虑到实验每次需要重置 ``linux-0.11`` 目录，因此，增加了重置功能，如下：
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     cd ~/hit-oslab
     ./run init

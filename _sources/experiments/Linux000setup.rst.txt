@@ -7,7 +7,7 @@ Linux 0.00
 
 从网站上下载源代码，
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     git clone https://gitee.com/guojunos/Linux000.git
 
@@ -24,7 +24,7 @@ Linux 0.00
 
 参见 ``Linux000 code/`` 目录下的 ``Makefile``，执行
 
-.. prompt:: bash #
+.. prompt:: bash $
 
     make all
 

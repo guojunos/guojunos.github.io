@@ -1,0 +1,410 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>6. Linux 0.11 的使用方法 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gj.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="7. Linux 0.11 的工作模式" href="Linux011Flow.html" />
+    <link rel="prev" title="5. Linux 0.11 on Ubuntu" href="Linux011setup.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Linux 0.11 的使用方法</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">6.1. 安装</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">6.1.1. 新版本实验环境</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">6.2. 进入安装目录</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">6.3. 编译内核</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">6.4. 程序运行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">6.5. 程序调试</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">6.5.1. 汇编级调试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#c">6.5.2. <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">6.6. 复原 linux-0.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">6.7. 问题及反馈</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">1. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">2. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">4. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">5. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>6. Linux 0.11 的使用方法</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux-0-11">
+<h1>6. Linux 0.11 的使用方法<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>6.1. 安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<p>确保你的 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 安装和配置都正确以后，现在可以安装实验环境了。
+从网站上下载源代码，相应目录里有 <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code>,
+如果想更改安装目录，可以仔细读这个文件。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git clone https://gitee.com/guojunos/oslab2020.git ~/hit-oslab</span>
+<span class="prompt1"><span class="nb">cd</span> ~/hit-oslab</span>
+<span class="prompt1">./setup.sh</span>
+</pre></div></div><div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>请不要使用超级用户执行此安装命令，当有需要时 <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> 会请求超级用户权限。</p></li>
+<li><p>确认安装之前最好将软件的更新源换成国内的镜像源，更新速度会显著提升。</p></li>
+</ul>
+</div>
+<p>如果想要跳过软件源更新步骤，请在 <code class="docutils literal notranslate"><span class="pre">./setup.sh</span></code> 后加上参数 <code class="docutils literal notranslate"><span class="pre">-s</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--skip-update</span></code>。</p>
+<div class="section" id="id2">
+<h3>6.1.1. 新版本实验环境<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>可以使用高版本的 <code class="docutils literal notranslate"><span class="pre">gcc</span></code> 和 <code class="docutils literal notranslate"><span class="pre">gdb</span></code> ；</p></li>
+<li><p>支持 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的汇编级调试：命令行与 <code class="docutils literal notranslate"><span class="pre">GUI</span></code> 模式；</p></li>
+<li><p>支持 <code class="docutils literal notranslate"><span class="pre">QEMU</span> <span class="pre">+</span> <span class="pre">GDB</span></code> 的 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">boot\bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">boot\setup.s</span></code> 由 <code class="docutils literal notranslate"><span class="pre">AS</span> <span class="pre">86</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">GNU</span> <span class="pre">AS</span></code>；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tools\build.c</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> ；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 做了相应改动；</p></li>
+</ul>
+<p>因此，实验报告中有些涉及上述改动的部分，大家对照理解后，不影响实验。</p>
+<div class="admonition note">
+<p class="admonition-title">注解</p>
+<p><code class="docutils literal notranslate"><span class="pre">oslab2020</span></code> 的实验环境是老师重新整理，因改动较大，难免不会有 <code class="docutils literal notranslate"><span class="pre">bug</span></code> ，如果调试使用中出现什么问题，做好记录，及时沟通。</p>
+</div>
+</div>
+</div>
+<div class="section" id="id3">
+<h2>6.2. 进入安装目录<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~/oslab</span>
+</pre></div></div><p>把当前目录切换到 <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 下，用 <code class="docutils literal notranslate"><span class="pre">pwd</span></code> 命令确认，用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 列目录内容。
+本实验的所有内容都在本目录或其下级目录内完成。</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">.</span>
+<span class="go">├── [4.0K]  bochs</span>
+<span class="go">│   ├── [ 342]  linux-0.11.bxrc</span>
+<span class="go">│   └── [ 341]  linux-0.11-gui.bxrc</span>
+<span class="go">├── [  98]  dbg-bochs</span>
+<span class="go">├── [ 102]  dbg-bochsgui</span>
+<span class="go">├── [ 153]  dbg-qemu</span>
+<span class="go">├── [4.0K]  files</span>
+<span class="go">│   ├── [ 13K]  memtest</span>
+<span class="go">│   ├── [1.4K]  process.c</span>
+<span class="go">│   ├── [8.3K]  stat_log.py</span>
+<span class="go">│   ├── [4.9K]  testlab2.c</span>
+<span class="go">│   └── [ 762]  testlab2.sh</span>
+<span class="go">├── [  75]  gdb-cmd.txt</span>
+<span class="go">├── [4.0K]  hdc</span>
+<span class="go">│   └── [   0]  umounted</span>
+<span class="go">├── [ 61M]  hdc-0.11.img</span>
+<span class="go">├── [ 414]  init</span>
+<span class="go">├── [4.0K]  linux-0.11</span>
+<span class="go">│   ├── [4.0K]  boot</span>
+<span class="go">│   ├── [4.0K]  fs</span>
+<span class="go">│   ├── [4.0K]  include</span>
+<span class="go">│   ├── [4.0K]  init</span>
+<span class="go">│   ├── [4.0K]  kernel</span>
+<span class="go">│   ├── [4.0K]  lib</span>
+<span class="go">│   ├── [3.2K]  Makefile</span>
+<span class="go">│   ├── [ 785]  Makefile.header</span>
+<span class="go">│   ├── [4.0K]  mm</span>
+<span class="go">│   └── [4.0K]  tools</span>
+<span class="go">├── [ 95K]  linux-0.11.tar.gz</span>
+<span class="go">├── [ 131]  mount-hdc</span>
+<span class="go">└── [ 256]  rungdb</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>6.3. 编译内核<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>编译内核比编写内核要简单得多。首先要进入 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录，然后执行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~/linux-0.11</span>
+<span class="prompt1">make all</span>
+</pre></div></div><p>因为 <code class="docutils literal notranslate"><span class="pre">all</span></code> 是最常用的参数，所以可以省略，只用 <code class="docutils literal notranslate"><span class="pre">make</span></code> ，效果一样。</p>
+<p>在多处理器的系统上，可以用 <code class="docutils literal notranslate"><span class="pre">-j</span></code> 参数进行并行编译，加快速度。例如双 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 的系统可以：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make -j <span class="m">2</span></span>
+</pre></div></div><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 命令会显示很多很多很多的信息，你可以尽量去看懂，也可以装作没看见。只要最后几行中没有 <code class="docutils literal notranslate"><span class="pre">error</span></code> 就说明编译成功。最后生成的目标文件是一个软盘镜像文件 <code class="docutils literal notranslate"><span class="pre">linux-0.11/Image</span></code> 。如果将此镜像文件写到一张 <code class="docutils literal notranslate"><span class="pre">1.44MB</span></code> 的软盘上，就可以启动一台真正的计算机。</p>
+<p><code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录下是全部的源代码，很多实验内容都是要靠修改这些代码来完成。修改后需要重新编译内核，还是执行命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make all</span>
+</pre></div></div><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 命令会自动跳过未被修改的文件，链接时直接使用上次编译生成的目标文件，从而节约编译时间。但如果重新编译后，你的修改貌似没有生效，可以试试</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make clean</span>
+<span class="prompt1">make all</span>
+</pre></div></div><p><code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> 是删除上一次编译生成的所有中间文件和目标文件，确保是在全新的状态下编译整个工程。</p>
+</div>
+<div class="section" id="id5">
+<h2>6.4. 程序运行<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 中运行最新编译好的内核很简单，在 <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 目录下执行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./dbg-bochs</span>
+</pre></div></div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">========================================================================</span>
+<span class="go">                        Bochs x86 Emulator 2.6</span>
+<span class="go">            Built from SVN snapshot on September 2nd, 2012</span>
+<span class="go">========================================================================</span>
+<span class="go">Next at t=0</span>
+<span class="go">(0) [0x00000000fffffff0] f000:fff0 (unk. ctxt): jmp far f000:e05b         ; ea5be000f0</span>
+<span class="go">&lt;bochs:1&gt;</span>
+</pre></div>
+</div>
+<p>如果出现 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的窗口，继续输入命令 <code class="docutils literal notranslate"><span class="pre">c</span></code>,里面显示 <code class="docutils literal notranslate"><span class="pre">linux</span></code> 的引导过程，最后停止在 <code class="docutils literal notranslate"><span class="pre">[/usr/root/]#</span></code> ，表示运行成功。</p>
+</div>
+<div class="section" id="id6">
+<h2>6.5. 程序调试<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<p>内核调试分为两种模式：汇编级调试和 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试。</p>
+<div class="section" id="id7">
+<h3>6.5.1. 汇编级调试<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 汇编级调试需要执行命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./dbg-bochs</span>
+</pre></div></div><p>这是命令行调试界面。也可以输入</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./dbg-bochsgui</span>
+</pre></div></div><p>进入可视化界面进行调试。二者没有差别。
+可以用命令 <code class="docutils literal notranslate"><span class="pre">help</span></code> 来查看调试系统用的基本命令。更详细的信息请查阅 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 使用手册。</p>
+</div>
+<div class="section" id="c">
+<h3>6.5.2. <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试稍微复杂一些。由于  <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 自带的  <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 调试安装很繁琐，需要额外编译。因此，这里可以采用 <code class="docutils literal notranslate"><span class="pre">qemu</span></code> 来进行 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言级调试。</p>
+<p>首先，执行如下命令：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">./dbg-qemu</span>
+</pre></div></div><p>然后，再打开一个中断窗口，进入 <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 目录，执行：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~/oslab</span>
+<span class="prompt1">./rungdb</span>
+</pre></div></div><p>整体效果如下图，现在可以进行 <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 调试。
+有关 <code class="docutils literal notranslate"><span class="pre">gdb</span></code> 的使用和调试技巧，大家可以在网上进行搜索。</p>
+<p><img alt="图1 qemu进行gdb调试" src="../_images/gdb.png" /></p>
+<p>图1 qemu进行gdb调试</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>6.6. 复原 linux-0.11<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h2>
+<p>考虑到实验每次需要重置 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录，因此，增加了重置功能，如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~/hit-oslab</span>
+<span class="prompt1">./init</span>
+</pre></div></div></div>
+<div class="section" id="id9">
+<h2>6.7. 问题及反馈<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<p>目前在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">64</span></code> 位机器上可以确保 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 和程序能够正常运行，但如果使用其他 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 某些 <code class="docutils literal notranslate"><span class="pre">64</span></code> 位系统时，出现编译 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 缺少某些文件提示时，或是安装高版本的 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 出现问题时，建议大家多在网上搜索解决方案，并尝试将成功的方案记录下来，以便分享。</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Linux011Flow.html" class="btn btn-neutral float-right" title="7. Linux 0.11 的工作模式" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Linux011setup.html" class="btn btn-neutral float-left" title="5. Linux 0.11 on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+
+    </p>
+  </div>
+ 
+	<script type="text/javascript">
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1278706363'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1278706363%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));	
+	</script>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

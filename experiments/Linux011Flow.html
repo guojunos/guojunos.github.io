@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>6. Linux 0.11 的工作模式 &mdash; Guojunos 1.0.0 文档</title>
+  <title>7. Linux 0.11 的工作模式 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="1. x86系统架构概览" href="../Intelx86/chap02.html" />
-    <link rel="prev" title="5. Linux 0.11 on Ubuntu" href="Linux011setup.html" /> 
+    <link rel="prev" title="6. Linux 0.11 的使用方法" href="Linux011Use.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -99,10 +99,11 @@
 <li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Linux 0.11 的工作模式</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#image">6.1. Image 的生成与加载</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#hdc-0-11-img">6.2. hdc-0.11.img 文件系统</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#ubuntu-linux-0-11">6.3. Ubuntu 和 Linux 0.11 文件交换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Linux 0.11 的工作模式</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image">7.1. Image 的生成与加载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#hdc-0-11-img">7.2. hdc-0.11.img 文件系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ubuntu-linux-0-11">7.3. Ubuntu 和 Linux 0.11 文件交换</a></li>
 </ul>
 </li>
 </ul>
@@ -177,7 +178,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>6. Linux 0.11 的工作模式</li>
+      <li>7. Linux 0.11 的工作模式</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -195,14 +196,14 @@
            <div itemprop="articleBody">
             
   <div class="section" id="linux-0-11">
-<h1>6. Linux 0.11 的工作模式<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h1>
+<h1>7. Linux 0.11 的工作模式<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h1>
 <div class="section" id="image">
-<h2>6.1. Image 的生成与加载<a class="headerlink" href="#image" title="永久链接至标题">¶</a></h2>
+<h2>7.1. Image 的生成与加载<a class="headerlink" href="#image" title="永久链接至标题">¶</a></h2>
 <p>在宿主操作系统之上完成对 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的开发、修改和编译之后，在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 目录下会生产一个名为 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 的文件，它就是编译之后的目标文件。该文件内已经包含 <strong>引导和所有内核</strong> 的二进制代码。如果拿来一张软盘，从它的 <code class="docutils literal notranslate"><span class="pre">0</span></code> 扇区开始，逐字节写入 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 文件的内容，就可以用这张软盘启动一台真正的计算机，并进入 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核。 <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 采用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 模拟器加载这个文件，模拟执行 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，这样省却了重新启动计算机的麻烦。</p>
 <p><code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 目录下是与 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 相关的执行文件、数据文件和配置文件。 <code class="docutils literal notranslate"><span class="pre">run</span></code> 是运行 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的脚本命令。运行后 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 会自动在它的虚拟软驱 <code class="docutils literal notranslate"><span class="pre">A</span></code> 和虚拟硬盘上各挂载一个镜像文件，软驱上挂载是 <code class="docutils literal notranslate"><span class="pre">linux-0.11/Image</span></code> ，硬盘上挂载的是 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 。因为 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 配置文件中的设置是从软驱 <code class="docutils literal notranslate"><span class="pre">A</span></code> 启动，所以 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 会被自动加载。而 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 会驱动硬盘，并 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 硬盘上的文件系统，也就是将 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 内镜像的文件系统挂载到 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 系统内的根目录—— <code class="docutils literal notranslate"><span class="pre">/</span></code>。在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下访问文件系统，访问的就是 <code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 文件内虚拟的文件系统。</p>
 </div>
 <div class="section" id="hdc-0-11-img">
-<h2>6.2. hdc-0.11.img 文件系统<a class="headerlink" href="#hdc-0-11-img" title="永久链接至标题">¶</a></h2>
+<h2>7.2. hdc-0.11.img 文件系统<a class="headerlink" href="#hdc-0-11-img" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 文件的格式是 <code class="docutils literal notranslate"><span class="pre">Minix</span></code> 文件系统的镜像。
 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 所有版本都支持这种格式的文件系统，所以可以直接在宿主 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 上通过 <code class="docutils literal notranslate"><span class="pre">mount</span></code> 命令访问此文件内的文件，达到宿主系统和 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 内运行的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 之间交换文件的效果。</p>
 <p><code class="docutils literal notranslate"><span class="pre">hdc-0.11.img</span></code> 内包含有：</p>
@@ -217,7 +218,7 @@
 </ul>
 </div>
 <div class="section" id="ubuntu-linux-0-11">
-<h2>6.3. Ubuntu 和 Linux 0.11 文件交换<a class="headerlink" href="#ubuntu-linux-0-11" title="永久链接至标题">¶</a></h2>
+<h2>7.3. Ubuntu 和 Linux 0.11 文件交换<a class="headerlink" href="#ubuntu-linux-0-11" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">oslab</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">hdc-0.11-new.img</span></code> 是 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 内核启动后的根文件系统镜像文件，相当于在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 虚拟机里装载的硬盘。在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 上访问其内容的方法是：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -248,7 +249,7 @@ span.prompt1:before {
         <a href="../Intelx86/chap02.html" class="btn btn-neutral float-right" title="1. x86系统架构概览" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Linux011setup.html" class="btn btn-neutral float-left" title="5. Linux 0.11 on Ubuntu" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Linux011Use.html" class="btn btn-neutral float-left" title="6. Linux 0.11 的使用方法" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

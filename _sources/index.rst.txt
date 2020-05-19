@@ -28,6 +28,7 @@
    experiments/BochsInstall
    experiments/Linux000setup
    experiments/Linux011setup
+   experiments/Linux011Use
    experiments/Linux011Flow
 
 
