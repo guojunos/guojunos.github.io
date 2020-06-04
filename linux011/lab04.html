@@ -99,7 +99,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -227,7 +228,7 @@
 <li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 中实现信号量，用生产者—消费者程序检验之。</p></li>
 <li><p>用信号量解决生产者—消费者问题</p></li>
 </ul>
-<p>在Ubuntu上编写应用程序 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> ，解决经典的生产者—消费者问题，完成下面的功能：</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 上编写应用程序 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> ，解决经典的生产者—消费者问题，完成下面的功能：</p>
 <ul class="simple">
 <li><p>建立一个生产者进程， <code class="docutils literal notranslate"><span class="pre">N</span></code> 个消费者进程（ <code class="docutils literal notranslate"><span class="pre">N&gt;1</span></code> ）；</p></li>
 <li><p>用文件建立一个共享缓冲区；</p></li>
@@ -260,7 +261,7 @@
 电子版可在网站上下载，后续实验也用得到。如果你对 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 编程感兴趣，建议买一本常备手边。</p>
 <div class="section" id="id4">
 <h3>4.2.1. 实现信号量<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 版还没有实现信号量，Linus把这件富有挑战的工作留给了你。
+<p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 版还没有实现信号量，Linus 把这件富有挑战的工作留给了你。
 如果能实现一套山寨版的完全符合 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 规范的信号量，无疑是很有成就感的。但时间暂时不允许我们这么做，所以先弄一套缩水版的类 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 信号量，它的函数原型和标准并不完全相同，而且只包含如下系统调用：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">sem_t</span> <span class="o">*</span><span class="nf">sem_open</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">name</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">value</span><span class="p">);</span>
 <span class="kt">int</span> <span class="nf">sem_wait</span><span class="p">(</span><span class="n">sem_t</span> <span class="o">*</span><span class="n">sem</span><span class="p">);</span>
@@ -276,7 +277,7 @@
 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 就是信号量的 <code class="docutils literal notranslate"><span class="pre">P</span></code> 原子操作。如果继续运行的条件不满足，则令调用进程等待在信号量 <code class="docutils literal notranslate"><span class="pre">sem</span></code> 上。返回 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示成功，返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 表示失败。</p>
 <p><code class="docutils literal notranslate"><span class="pre">sem_post()</span></code> 就是信号量的 <code class="docutils literal notranslate"><span class="pre">V</span></code> 原子操作。如果有等待 <code class="docutils literal notranslate"><span class="pre">sem</span></code> 的进程，它会唤醒其中的一个。返回 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示成功，返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 表示失败。</p>
 <p><code class="docutils literal notranslate"><span class="pre">sem_unlink()</span></code> 的功能是删除名为 <code class="docutils literal notranslate"><span class="pre">name</span></code> 的信号量。返回 <code class="docutils literal notranslate"><span class="pre">0</span></code> 表示成功，返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 表示失败。</p>
-<p>在 <code class="docutils literal notranslate"><span class="pre">kernel</span></code> 目录下新建 <code class="docutils literal notranslate"><span class="pre">sem.c</span></code> 文件实现如上功能。然后将 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 从Ubuntu移植到0.11下，测试自己实现的信号量。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">kernel</span></code> 目录下新建 <code class="docutils literal notranslate"><span class="pre">sem.c</span></code> 文件实现如上功能。然后将 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 从 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 移植到 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 下，测试自己实现的信号量。</p>
 </div>
 </div>
 <div class="section" id="id5">
@@ -324,7 +325,7 @@
 <h2>4.4. 实验提示<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
 <div class="section" id="id8">
 <h3>4.4.1. 信号量<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
-<p>信号量，英文为 <code class="docutils literal notranslate"><span class="pre">semaphore</span></code> ，最早由荷兰科学家、图灵奖获得者E. W. Dijkstra设计，任何操作系统教科书的“进程同步”部分都会有详细叙述。</p>
+<p>信号量，英文为 <code class="docutils literal notranslate"><span class="pre">semaphore</span></code> ，最早由荷兰科学家、图灵奖获得者 E. W. Dijkstra 设计，任何操作系统教科书的 <strong>进程同步</strong> 部分都会有详细叙述。</p>
 <p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 的信号量秉承 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 规范，用 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">sem_overview</span></code> 可以查看相关信息。本次实验涉及到的信号量系统调用包括：
 <code class="docutils literal notranslate"><span class="pre">sem_open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_wait()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sem_post()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sem_unlink()</span></code> 。</p>
 <p>生产者—消费者问题</p>
@@ -354,15 +355,15 @@
 </div>
 <div class="section" id="id9">
 <h3>4.4.2. 多进程共享文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
-<p>在Linux下使用C语言，可以通过三种方法进行文件的读写：</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下使用 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言，可以通过三种方法进行文件的读写：</p>
 <ul class="simple">
-<li><p>使用标准C的 <code class="docutils literal notranslate"><span class="pre">fopen()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fread()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fwrite()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fseek()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">fclose()</span></code> 等；</p></li>
+<li><p>使用标准 <code class="docutils literal notranslate"><span class="pre">C</span></code> 的 <code class="docutils literal notranslate"><span class="pre">fopen()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fread()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fwrite()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">fseek()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">fclose()</span></code> 等；</p></li>
 <li><p>使用系统调用 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">read()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">write()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">lseek()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 等；</p></li>
 <li><p>通过内存镜像文件，使用 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 系统调用。</p></li>
 </ul>
 <p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上只能使用前两种方法。</p>
 <p><code class="docutils literal notranslate"><span class="pre">fork()</span></code> 调用成功后，子进程会继承父进程拥有的大多数资源，包括父进程打开的文件。所以子进程可以直接使用父进程创建的文件指针/描述符/句柄，访问的是与父进程相同的文件。</p>
-<p>使用标准C的文件操作函数要注意，它们使用的是进程空间内的文件缓冲区，父进程和子进程之间不共享这个缓冲区。因此，任何一个进程做完写操作后，必须 <code class="docutils literal notranslate"><span class="pre">fflush()</span></code> 一下，将数据强制更新到磁盘，其它进程才能读到所需数据。</p>
+<p>使用标准 <code class="docutils literal notranslate"><span class="pre">C</span></code> 的文件操作函数要注意，它们使用的是进程空间内的文件缓冲区，父进程和子进程之间不共享这个缓冲区。因此，任何一个进程做完写操作后，必须 <code class="docutils literal notranslate"><span class="pre">fflush()</span></code> 一下，将数据强制更新到磁盘，其它进程才能读到所需数据。</p>
 <p>建议直接使用系统调用进行文件操作。</p>
 </div>
 <div class="section" id="id10">
@@ -378,7 +379,7 @@
 <p>多个进程对磁盘的并发访问是一个需要锁的地方。
 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 访问磁盘的基本处理办法是在内存中划出一段磁盘缓存，用来加快对磁盘的访问。
 进程提出的磁盘访问请求首先要到磁盘缓存中去找，如果找到直接返回；如果没有找到则申请一段空闲的磁盘缓存，以这段磁盘缓存为参数发起磁盘读写请求。
-请求发出后，进程要睡眠等待（因为磁盘读写很慢，应该让出CPU让其他进程执行）。
+请求发出后，进程要睡眠等待（因为磁盘读写很慢，应该让出 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 让其他进程执行）。
 这种方法是许多操作系统（包括现代 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 、 <code class="docutils literal notranslate"><span class="pre">UNIX</span></code> 等）采用的较通用的方法。
 这里涉及到多个进程共同操作磁盘缓存，而进程在操作过程可能会被调度而失去 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 。
 因此操作磁盘缓存时需要考虑互斥问题，所以其中必定用到了锁。而且也一定用到了让进程睡眠和唤醒。</p>
@@ -387,7 +388,7 @@
 <span class="p">{</span>
     <span class="n">cli</span><span class="p">();</span>        <span class="c1">//关中断</span>
     <span class="k">while</span> <span class="p">(</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_lock</span><span class="p">)</span>
-        <span class="n">sleep_on</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_wait</span><span class="p">);</span>    <span class="c1">//将当前进程睡眠在bh-&gt;b_wait</span>
+        <span class="n">sleep_on</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_wait</span><span class="p">);</span>    <span class="c1">// 将当前进程睡眠在 bh-&gt;b_wait</span>
     <span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_lock</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
     <span class="n">sti</span><span class="p">();</span>        <span class="c1">//开中断</span>
 <span class="p">}</span>
@@ -397,7 +398,7 @@
     <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_lock</span><span class="p">)</span>
         <span class="n">printk</span><span class="p">(</span><span class="s">&quot;ll_rw_block.c: buffer not locked</span><span class="se">\n\r</span><span class="s">&quot;</span><span class="p">);</span>
     <span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_lock</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="n">wake_up</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_wait</span><span class="p">);</span>    <span class="c1">//唤醒睡眠在bh-&gt;b_wait上的进程</span>
+    <span class="n">wake_up</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bh</span><span class="o">-&gt;</span><span class="n">b_wait</span><span class="p">);</span>    <span class="c1">// 唤醒睡眠在 bh-&gt;b_wait上 的进程</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -411,7 +412,7 @@
 </div>
 <div class="section" id="bochs">
 <h3>4.4.5. 应对混乱的bochs虚拟屏幕<a class="headerlink" href="#bochs" title="永久链接至标题">¶</a></h3>
-<p>不知是Linux 0.11还是 <code class="docutils literal notranslate"><span class="pre">bochs</span></code> 的 <code class="docutils literal notranslate"><span class="pre">bug</span></code> ，如果向终端输出的信息较多， <code class="docutils literal notranslate"><span class="pre">bochs</span></code> 的虚拟屏幕会产生混乱。此时按 <code class="docutils literal notranslate"><span class="pre">ctrl+L</span></code> 可以重新初始化一下屏幕，但输出信息一多，还是会混乱。建议把输出信息重定向到一个文件，然后用 <code class="docutils literal notranslate"><span class="pre">vi</span></code> 、 <code class="docutils literal notranslate"><span class="pre">more</span></code> 等工具按屏查看这个文件，可以基本解决此问题。</p>
+<p>不知是 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 还是 <code class="docutils literal notranslate"><span class="pre">bochs</span></code> 的 <code class="docutils literal notranslate"><span class="pre">bug</span></code> ，如果向终端输出的信息较多， <code class="docutils literal notranslate"><span class="pre">bochs</span></code> 的虚拟屏幕会产生混乱。此时按 <code class="docutils literal notranslate"><span class="pre">ctrl+L</span></code> 可以重新初始化一下屏幕，但输出信息一多，还是会混乱。建议把输出信息重定向到一个文件，然后用 <code class="docutils literal notranslate"><span class="pre">vi</span></code> 、 <code class="docutils literal notranslate"><span class="pre">more</span></code> 等工具按屏查看这个文件，可以基本解决此问题。</p>
 </div>
 <div class="section" id="string-h">
 <h3>4.4.6. string.h<a class="headerlink" href="#string-h" title="永久链接至标题">¶</a></h3>

@@ -97,7 +97,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -510,6 +511,74 @@ auto-scaling: true<a class="headerlink" href="#theme-gaia-class-lead-paginate-tr
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">boot</span></code> 中的三个汇编文件到 <code class="docutils literal notranslate"><span class="pre">main</span></code> 函数之前的过程，如何生成 <code class="docutils literal notranslate"><span class="pre">Image</span></code></p></li>
 <li><p>重点讲解了系统调用，以 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 函数举例</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-15-2020-05-20">
+<h2>OS 15 – 2020-05-20<a class="headerlink" href="#os-15-2020-05-20" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>内存管理</p></li>
+<li><p>分段</p></li>
+<li><p>分页</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buddy</span></code></p></li>
+<li><p>如何放</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-16-2020-05-22">
+<h2>OS 16 – 2020-05-22<a class="headerlink" href="#os-16-2020-05-22" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>虚拟内存管理</p></li>
+<li><p>为什么要进行虚拟内存管理</p>
+<ul>
+<li><p>虚拟的概念</p></li>
+<li><p>数学本质：映射</p></li>
+<li><p>关于映射的几个问题，核心页表的创建，维护，使用</p></li>
+<li><p>硬件相关机制， <code class="docutils literal notranslate"><span class="pre">CR3</span></code> 和 <code class="docutils literal notranslate"><span class="pre">CR2</span></code></p></li>
+<li><p>地址换算并进行演示</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-17-2020-05-27">
+<h2>OS 17 – 2020-05-27<a class="headerlink" href="#os-17-2020-05-27" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>重新讲了一遍段页式管理</p></li>
+<li><p>重点重述：利用缓冲的加速机制，一次地址转换需要访问多次内存</p>
+<ul>
+<li><p>访问段表， <code class="docutils literal notranslate"><span class="pre">CS</span></code> 不变的情况下，寄存器的缓存里基地址值是不变的</p></li>
+<li><p>访问页表， <code class="docutils literal notranslate"><span class="pre">TLB</span></code> 加速页表访问</p></li>
+<li><p>访问内存， <code class="docutils literal notranslate"><span class="pre">cache</span></code> 加速访问内存</p></li>
+</ul>
+</li>
+<li><p>线程：进程和线程的区别，资源分配与调度执行</p>
+<ul>
+<li><p>加速：指令流水，进程并发，线程，不同级别上的并发操作</p></li>
+<li><p>重点讲解了 <code class="docutils literal notranslate"><span class="pre">ULT</span></code> 和 <code class="docutils literal notranslate"><span class="pre">KLT</span></code></p></li>
+</ul>
+</li>
+<li><p>进行了上机小测，段表异常导致栈溢出，最后导致 <code class="docutils literal notranslate"><span class="pre">GDT</span></code> 表异常</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-18-2020-05-29">
+<h2>OS 18 – 2020-05-29<a class="headerlink" href="#os-18-2020-05-29" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>精讲了测试</p>
+<ul>
+<li><p>why 0x134 and why 0x136</p></li>
+<li><p>when and where to stop</p></li>
+<li><p>压栈压到0x9A4，GDT表的第一项，CS=0x08，没有办法取指执行，reset</p></li>
+</ul>
+</li>
+<li><p>讲解了实验配置</p>
+<ul>
+<li><p>新版本的不同之处</p></li>
+<li><p>汇编级调试和C语言调试的不同</p></li>
+<li><p>演示gdb调试，如何看结构体等</p></li>
 </ul>
 </li>
 </ul>

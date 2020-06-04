@@ -99,7 +99,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -240,7 +241,7 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">XXX is booting...</span>
-</pre></div></div><p>其中 <code class="docutils literal notranslate"><span class="pre">XXX</span></code> 是你给自己的操作系统起的名字，也可以显示一个特色``logo`` ，以表示自己操作系统的与众不同。</p>
+</pre></div></div><p>其中 <code class="docutils literal notranslate"><span class="pre">XXX</span></code> 是你给自己的操作系统起的名字，也可以显示一个特色 <code class="docutils literal notranslate"><span class="pre">logo</span></code> ，以表示自己操作系统的与众不同。</p>
 </div>
 <div class="section" id="setup-s">
 <h3>1.2.2. 改写 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 主要完成如下功能：<a class="headerlink" href="#setup-s" title="永久链接至标题">¶</a></h3>
@@ -404,20 +405,20 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">Now we are in SETUP</span>
 </pre></div></div><p>接下来需要编写 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 中载入 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 的关键代码。原版 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 中下面的代码就是做这个的。</p>
 <div class="highlight-dasm16 notranslate"><div class="highlight"><pre><span></span><span class="nl">load_setup:</span>
-    <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">0x0000</span>        <span class="c">!设置驱动器和磁头(drive 0, head 0): 软盘0磁头</span>
-    <span class="nf">mov</span>    <span class="no">cx</span><span class="p">,#</span><span class="mi">0x0002</span>        <span class="c">!设置扇区号和磁道(sector 2, track 0):0磁头、0磁道、2扇区</span>
-    <span class="nf">mov</span>    <span class="no">bx</span><span class="p">,#</span><span class="mi">0x0200</span>        <span class="c">!设置读入的内存地址：BOOTSEG+address = 512，偏移512字节</span>
-    <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0x0200</span><span class="o">+</span><span class="no">SETUPLEN</span>    <span class="c">!设置读入的扇区个数(service 2, nr of sectors)，</span>
-                 <span class="c">!SETUPLEN是读入的扇区个数，Linux 0.11设置的是4，</span>
-                 <span class="c">!我们不需要那么多，我们设置为2</span>
-    <span class="nf">int</span>    <span class="mi">0x13</span>            <span class="c">!应用0x13号BIOS中断读入2个setup.s扇区</span>
-    <span class="nf">jnc</span>    <span class="no">ok_load_setup</span>        <span class="c">!读入成功，跳转到ok_load_setup: ok - continue</span>
-    <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">0x0000</span>         <span class="c">!软驱、软盘有问题才会执行到这里。我们的镜像文件比它们可靠多了</span>
-    <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0x0000</span>        <span class="c">!否则复位软驱 reset the diskette</span>
+    <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">0x0000</span>               <span class="c">!设置驱动器和磁头(drive 0, head 0): 软盘0磁头</span>
+    <span class="nf">mov</span>    <span class="no">cx</span><span class="p">,#</span><span class="mi">0x0002</span>               <span class="c">!设置扇区号和磁道(sector 2, track 0):0磁头、0磁道、2扇区</span>
+    <span class="nf">mov</span>    <span class="no">bx</span><span class="p">,#</span><span class="mi">0x0200</span>               <span class="c">!设置读入的内存地址：BOOTSEG+address = 512，偏移512字节</span>
+    <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0x0200</span><span class="o">+</span><span class="no">SETUPLEN</span>      <span class="c">!设置读入的扇区个数(service 2, nr of sectors)，</span>
+                                    <span class="c">!SETUPLEN是读入的扇区个数，Linux 0.11设置的是4，</span>
+                                    <span class="c">!我们不需要那么多，我们设置为2</span>
+    <span class="nf">int</span>    <span class="mi">0x13</span>                     <span class="c">!应用0x13号BIOS中断读入2个setup.s扇区</span>
+    <span class="nf">jnc</span>    <span class="no">ok_load_setup</span>            <span class="c">!读入成功，跳转到ok_load_setup: ok - continue</span>
+    <span class="nf">mov</span>    <span class="no">dx</span><span class="p">,#</span><span class="mi">0x0000</span>               <span class="c">!软驱、软盘有问题才会执行到这里。我们的镜像文件比它们可靠多了</span>
+    <span class="nf">mov</span>    <span class="no">ax</span><span class="p">,#</span><span class="mi">0x0000</span>               <span class="c">!否则复位软驱 reset the diskette</span>
     <span class="nf">int</span>    <span class="mi">0x13</span>
-    <span class="nf">jmp</span>    <span class="no">load_setup</span>          <span class="c">!重新循环，再次尝试读取</span>
+    <span class="nf">jmp</span>    <span class="no">load_setup</span>               <span class="c">!重新循环，再次尝试读取</span>
 <span class="nl">ok_load_setup:</span>
-       <span class="c">!接下来要干什么？当然是跳到setup执行。</span>
+                                    <span class="c">!接下来要干什么？当然是跳到setup执行。</span>
 </pre></div>
 </div>
 <p>所有需要的功能在原版 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 中都是存在的，我们要做的仅仅是删除那些对我们无用的代码。</p>
@@ -438,7 +439,7 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 <h3>1.4.7. 修改 build.c<a class="headerlink" href="#build-c" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">build.c</span></code> 从命令行参数得到 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 、 <code class="docutils literal notranslate"><span class="pre">setup</span></code> 和 <code class="docutils literal notranslate"><span class="pre">system</span></code> 内核的文件名，
 将三者做简单的整理后一起写入 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 。其中 <code class="docutils literal notranslate"><span class="pre">system</span></code> 是第三个参数（ <code class="docutils literal notranslate"><span class="pre">argv[3]</span></code> ）。
-当 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">makeall</span></code> 的时候，这个参数传过来的是正确的文件名，
+当 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的时候，这个参数传过来的是正确的文件名，
 <code class="docutils literal notranslate"><span class="pre">build.c</span></code> 会打开它，将内容写入 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 。
 而 <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">BootImage</span></code> 时，传过来的是字符串 <code class="docutils literal notranslate"><span class="pre">none</span></code> 。
 所以，改造 <code class="docutils literal notranslate"><span class="pre">build.c</span></code> 的思路就是当 <code class="docutils literal notranslate"><span class="pre">argv[3]</span></code> 是 <code class="docutils literal notranslate"><span class="pre">none</span></code> 的时候，
@@ -452,7 +453,7 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 <h3>1.4.8. setup.s 获取基本硬件参数<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 将获得硬件参数放在内存的 <code class="docutils literal notranslate"><span class="pre">0x90000</span></code> 处。原版 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code>  中已经完成了光标位置、内存大小、显存大小、显卡参数、第一和第二硬盘参数的保存。</p>
 <p>用 <code class="docutils literal notranslate"><span class="pre">ah=#0x03</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">0x10</span></code> 中断可以读出光标的位置，用 <code class="docutils literal notranslate"><span class="pre">ah=#0x88</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">0x15</span></code> 中断可以读出内存的大小。
-有些硬件参数的获取要稍微复杂一些，如磁盘参数表。在PC机中BIOS设定的中断向量表中 <code class="docutils literal notranslate"><span class="pre">int</span>
+有些硬件参数的获取要稍微复杂一些，如磁盘参数表。在 <code class="docutils literal notranslate"><span class="pre">PC</span></code> 机中 <code class="docutils literal notranslate"><span class="pre">BIOS</span></code> 设定的中断向量表中 <code class="docutils literal notranslate"><span class="pre">int</span>
 <span class="pre">0x41</span></code> 的中断向量位置( <code class="docutils literal notranslate"><span class="pre">4*0x41</span> <span class="pre">=</span> <span class="pre">0x0000:0x0104</span></code> )存放的并不是中断程序的地址，而是第一个硬盘的基本参数表。
 第二个硬盘的基本参数表入口地址存于 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x46</span></code> 中断向量位置处。每个硬盘参数表有 <code class="docutils literal notranslate"><span class="pre">16</span></code> 个字节大小。下表给出了硬盘基本参数表的内容：</p>
 <p>表1 磁盘基本参数表</p>
@@ -520,8 +521,8 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 <p>现在已经将硬件参数（只包括光标位置、内存大小和硬盘参数，其他硬件参数取出的方法基本相同，此处略去）
 取出来放在了 <code class="docutils literal notranslate"><span class="pre">0x90000</span></code> 处，接下来的工作是将这些参数显示在屏幕上。
 这些参数都是一些无符号整数，所以需要做的主要工作是用汇编程序在屏幕上将这些整数显示出来。</p>
-<p>以十六进制方式显示比较简单。这是因为十六进制与二进制有很好的对应关系（每 <code class="docutils literal notranslate"><span class="pre">4</span></code> 位二进制数和 <code class="docutils literal notranslate"><span class="pre">1</span></code> 位十六进制数存在一一对应关系），显示时只需将原二进制数每4位划成一组，按组求对应的ASCII码送显示器即可。
-ASCII码与十六进制数字的对应关系为： <code class="docutils literal notranslate"><span class="pre">0x30~0x39</span></code> 对应数字 <code class="docutils literal notranslate"><span class="pre">0~9</span></code> ， <code class="docutils literal notranslate"><span class="pre">0x41~0x46</span></code> 对应数字 <code class="docutils literal notranslate"><span class="pre">a~f</span></code> 。
+<p>以十六进制方式显示比较简单。这是因为十六进制与二进制有很好的对应关系（每 <code class="docutils literal notranslate"><span class="pre">4</span></code> 位二进制数和 <code class="docutils literal notranslate"><span class="pre">1</span></code> 位十六进制数存在一一对应关系），显示时只需将原二进制数每4位划成一组，按组求对应的 <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码送显示器即可。
+<code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码与十六进制数字的对应关系为： <code class="docutils literal notranslate"><span class="pre">0x30~0x39</span></code> 对应数字 <code class="docutils literal notranslate"><span class="pre">0~9</span></code> ， <code class="docutils literal notranslate"><span class="pre">0x41~0x46</span></code> 对应数字 <code class="docutils literal notranslate"><span class="pre">a~f</span></code> 。
 从数字 <code class="docutils literal notranslate"><span class="pre">9</span></code> 到 <code class="docutils literal notranslate"><span class="pre">a</span></code> ，其 <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码间隔了 <code class="docutils literal notranslate"><span class="pre">7h</span></code> ，这一点在转换时要特别注意。
 为使一个十六进制数能按高位到低位依次显示，实际编程中，需对 <code class="docutils literal notranslate"><span class="pre">bx</span></code> 中的数每次循环左移一组（ <code class="docutils literal notranslate"><span class="pre">4</span></code> 位二进制），
 然后屏蔽掉当前高 <code class="docutils literal notranslate"><span class="pre">12</span></code> 位，对当前余下的 <code class="docutils literal notranslate"><span class="pre">4</span></code> 位（即 <code class="docutils literal notranslate"><span class="pre">1</span></code> 位十六进制数）求其 <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> 码，
@@ -544,7 +545,7 @@ ASCII码与十六进制数字的对应关系为： <code class="docutils literal
     <span class="nf">add</span>    <span class="no">al</span><span class="p">,#</span><span class="mi">0x07</span>      <span class="c">! 是a～f，要多加7</span>
 <span class="nl">outp:</span>
     <span class="nf">int</span>    <span class="mi">0x10</span>
-    <span class="nf">loop</span>    <span class="no">print_digit</span>
+    <span class="nf">loop</span>   <span class="no">print_digit</span>
     <span class="nf">ret</span>
 </pre></div>
 </div>
