@@ -242,7 +242,7 @@
 </ul>
 </li>
 <li><p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上实现进程运行轨迹的跟踪。基本任务是在内核中维护一个日志文件 <code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> ，把从操作系统启动到系统关机过程中所有进程的运行轨迹都记录在这一 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件中。</p></li>
-<li><p>在修改过的 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 上运行样本程序，通过分析 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，统计该程序建立的所有进程的等待时间、完成时间（周转时间）和运行时间，然后计算平均等待时间，平均完成时间和吞吐量。可以自己编写统计程序，也可以使用python脚本程序 <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> 进行统计。</p></li>
+<li><p>在修改过的 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 上运行样本程序，通过分析 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，统计该程序建立的所有进程的等待时间、完成时间（周转时间）和运行时间，然后计算平均等待时间，平均完成时间和吞吐量。可以自己编写统计程序，也可以使用 <code class="docutils literal notranslate"><span class="pre">python</span></code> 脚本程序 <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> 进行统计。</p></li>
 <li><p>修改 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 进程调度的时间片，然后再运行同样的样本程序，统计同样的时间数据，和原有的情况对比，体会不同时间片带来的差异。</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> 文件的格式必须为：</p>
@@ -329,9 +329,9 @@
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <ul class="simple">
-<li><p>在Ubuntu下， <code class="docutils literal notranslate"><span class="pre">top</span></code> 命令可以监视即时的进程状态。在 <code class="docutils literal notranslate"><span class="pre">top</span></code> 中，按 <code class="docutils literal notranslate"><span class="pre">u</span></code> ，再输入你的用户名，可以限定只显示以你的身份运行的进程，更方便观察。按 <code class="docutils literal notranslate"><span class="pre">h</span></code> 可得到帮助。</p></li>
-<li><p>在Ubuntu下， <code class="docutils literal notranslate"><span class="pre">ps</span></code> 命令可以显示当时各个进程的状态。 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code> 会显示所有进程； <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xxxx</span></code> 将只显示名为 <code class="docutils literal notranslate"><span class="pre">xxxx</span></code> 的进程。更详细的用法请问 <code class="docutils literal notranslate"><span class="pre">man</span></code> 。</p></li>
-<li><p>在Linux 0.11下，按 <code class="docutils literal notranslate"><span class="pre">F1</span></code> 可以即时显示当前所有进程的状态。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下， <code class="docutils literal notranslate"><span class="pre">top</span></code> 命令可以监视即时的进程状态。在 <code class="docutils literal notranslate"><span class="pre">top</span></code> 中，按 <code class="docutils literal notranslate"><span class="pre">u</span></code> ，再输入你的用户名，可以限定只显示以你的身份运行的进程，更方便观察。按 <code class="docutils literal notranslate"><span class="pre">h</span></code> 可得到帮助。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下， <code class="docutils literal notranslate"><span class="pre">ps</span></code> 命令可以显示当时各个进程的状态。 <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span></code> 会显示所有进程； <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xxxx</span></code> 将只显示名为 <code class="docutils literal notranslate"><span class="pre">xxxx</span></code> 的进程。更详细的用法请问 <code class="docutils literal notranslate"><span class="pre">man</span></code> 。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 下，按 <code class="docutils literal notranslate"><span class="pre">F1</span></code> 可以即时显示当前所有进程的状态。</p></li>
 </ul>
 </div>
 </div>
@@ -350,7 +350,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>这段代码在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中运行，先切换到用户模式，然后全系统第一次调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 建立进程1。进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 。在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中：</p>
+<p>这段代码在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中运行，先切换到用户模式，然后全系统第一次调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 建立进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 。进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 。在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">drive_info</span><span class="p">);</span>        <span class="c1">//加载文件系统</span>
 <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//打开/dev/tty0，建立文件描述符0和/dev/tty0的关联</span>
 <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//让文件描述符1也和/dev/tty0关联</span>
@@ -358,7 +358,7 @@
 </pre></div>
 </div>
 <p>这段代码建立了文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，它们分别就是 <code class="docutils literal notranslate"><span class="pre">stdin</span></code> 、 <code class="docutils literal notranslate"><span class="pre">stdout</span></code> 和 <code class="docutils literal notranslate"><span class="pre">stderr</span></code> 。
-这三者的值是系统标准（Windows也是如此），不可改变。
+这三者的值是系统标准（ <code class="docutils literal notranslate"><span class="pre">Windows</span></code> 也是如此），不可改变。
 可以把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的描述符关联到 <code class="docutils literal notranslate"><span class="pre">3</span></code> 。
 文件系统初始化，描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> 关联之后，才能打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，开始记录进程的运行轨迹。
 为了能尽早访问 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，我们要让上述工作在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中就完成。
@@ -381,7 +381,7 @@
 </pre></div>
 </div>
 <p>打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的参数的含义是建立只写文件，如果文件已存在则清空已有内容。文件的权限是所有人可读可写。</p>
-<p>这样，文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 和 <code class="docutils literal notranslate"><span class="pre">3</span></code> 就在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中建立了。根据 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 的原理，进程1会继承这些文件描述符，所以 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中就不必再 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 它们。此后所有新建的进程都是进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的子孙，也会继承它们。但实际上， <code class="docutils literal notranslate"><span class="pre">init()</span></code> 的后续代码和 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 都会重新初始化它们。所以只有进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的文件描述符肯定关联着 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，这一点在接下来的写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 中很重要。</p>
+<p>这样，文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 和 <code class="docutils literal notranslate"><span class="pre">3</span></code> 就在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中建立了。根据 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 的原理，进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 会继承这些文件描述符，所以 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中就不必再 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 它们。此后所有新建的进程都是进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的子孙，也会继承它们。但实际上， <code class="docutils literal notranslate"><span class="pre">init()</span></code> 的后续代码和 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 都会重新初始化它们。所以只有进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的文件描述符肯定关联着 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，这一点在接下来的写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 中很重要。</p>
 </div>
 <div class="section" id="id9">
 <h4>3.4.2.2. 写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
@@ -443,7 +443,7 @@
 </pre></div>
 </div>
 <p>因为和 <code class="docutils literal notranslate"><span class="pre">printk</span></code> 的功能近似，建议将此函数放入到 <code class="docutils literal notranslate"><span class="pre">kernel/printk.c</span></code> 中。
-<code class="docutils literal notranslate"><span class="pre">fprintk()</span></code> 的使用方式类同与C标准库函数 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> ，唯一的区别是第一个参数是文件描述符，而不是文件指针。例如：</p>
+<code class="docutils literal notranslate"><span class="pre">fprintk()</span></code> 的使用方式与 <code class="docutils literal notranslate"><span class="pre">C</span></code> 标准库函数 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> 相似 ，唯一的区别是第一个参数是文件描述符，而不是文件指针。例如：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">fprintk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;The ID of running process is %ld&quot;</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//向stdout打印正在运行的进程的ID</span>
 <span class="n">fprintk</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&quot;%ld</span><span class="se">\t</span><span class="s">%c</span><span class="se">\t</span><span class="s">%ld</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">pid</span><span class="p">,</span> <span class="sc">&#39;R&#39;</span><span class="p">,</span> <span class="n">jiffies</span><span class="p">);</span> <span class="c1">//向log文件输出</span>
 </pre></div>
@@ -481,7 +481,7 @@
 <span class="cp">#define HZ 100  </span><span class="c1">//在include/linux/sched.h中</span>
 </pre></div>
 </div>
-<p>再加上PC机8253定时芯片的输入时钟频率为 <code class="docutils literal notranslate"><span class="pre">1.193180MHz</span></code> ，即 <code class="docutils literal notranslate"><span class="pre">1193180/每秒</span></code> ， <code class="docutils literal notranslate"><span class="pre">LATCH=1193180/100</span></code> ，
+<p>再加上 <code class="docutils literal notranslate"><span class="pre">PC</span></code> 机 <code class="docutils literal notranslate"><span class="pre">8253</span></code> 定时芯片的输入时钟频率为 <code class="docutils literal notranslate"><span class="pre">1.193180MHz</span></code> ，即 <code class="docutils literal notranslate"><span class="pre">1193180/每秒</span></code> ， <code class="docutils literal notranslate"><span class="pre">LATCH=1193180/100</span></code> ，
 时钟每跳 <code class="docutils literal notranslate"><span class="pre">11931.8</span></code> 下产生一次时钟中断，即每 <code class="docutils literal notranslate"><span class="pre">1/100秒（10ms）</span></code> 产生一次时钟中断，
 所以 <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 实际上记录了从开机以来共经过了多少个 <code class="docutils literal notranslate"><span class="pre">10ms</span></code> 。</p>
 </div>
@@ -592,7 +592,7 @@
 <ol class="arabic simple">
 <li><p>进程退出的最后一步是通知父进程自己的退出，目的是唤醒正在等待此事件的父进程。从时序上来说，应该是子进程先退出，父进程才醒来。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">schedule()</span></code> 找到的 <code class="docutils literal notranslate"><span class="pre">next</span></code> 进程是接下来要运行的进程（注意，一定要分析清楚 <code class="docutils literal notranslate"><span class="pre">next</span></code> 是什么）。如果 <code class="docutils literal notranslate"><span class="pre">next</span></code> 恰好是当前正处于运行态的进程， <code class="docutils literal notranslate"><span class="pre">swith_to(next)</span></code> 也会被调用。这种情况下相当于当前进程的状态没变。</p></li>
-<li><p>系统无事可做的时候，进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 会不停地调用 <code class="docutils literal notranslate"><span class="pre">sys_pause()</span></code> ，以激活调度算法。此时它的状态可以是等待态，等待有其它可运行的进程；也可以叫运行态，因为它是唯一一个在CPU上运行的进程，只不过运行的效果是等待。</p></li>
+<li><p>系统无事可做的时候，进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 会不停地调用 <code class="docutils literal notranslate"><span class="pre">sys_pause()</span></code> ，以激活调度算法。此时它的状态可以是等待态，等待有其它可运行的进程；也可以叫运行态，因为它是唯一一个在 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> 上运行的进程，只不过运行的效果是等待。</p></li>
 </ol>
 </div>
 </div>
@@ -602,8 +602,8 @@
 <ol class="arabic simple">
 <li><p>每次关闭 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 前都要执行一下 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 命令，它会刷新 <code class="docutils literal notranslate"><span class="pre">cache</span></code> ，确保文件确实写入了磁盘。</p></li>
 <li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 下，可以用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span> <span class="pre">/var</span></code> 或 <code class="docutils literal notranslate"><span class="pre">ll</span> <span class="pre">/var</span></code> 查看 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 是否建立，及它的属性和长度。</p></li>
-<li><p>一定要实践《实验环境的搭建与使用》一章中关于文件交换的部分。最终肯定要把 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 文件拷贝到主机环境下处理。</p></li>
-<li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 下，可以用 <code class="docutils literal notranslate"><span class="pre">vi</span> <span class="pre">/var/process.log</span></code> 或 <code class="docutils literal notranslate"><span class="pre">more</span> <span class="pre">/var/process.</span> <span class="pre">log</span></code>  查看整个 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件。不过，还是拷贝到Ubuntu下看，会更舒服。</p></li>
+<li><p>一定要仔细阅读关于 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 文件交换的部分。最终肯定要把 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 文件拷贝到主机环境下处理。</p></li>
+<li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 下，可以用 <code class="docutils literal notranslate"><span class="pre">vi</span> <span class="pre">/var/process.log</span></code> 或 <code class="docutils literal notranslate"><span class="pre">more</span> <span class="pre">/var/process.</span> <span class="pre">log</span></code>  查看整个 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件。不过，还是拷贝到 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下看，会更舒服。</p></li>
 <li><p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 下，可以用 <code class="docutils literal notranslate"><span class="pre">tail</span> <span class="pre">-n</span> <span class="pre">NUM</span> <span class="pre">/var/process.log</span></code> 查看 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的最后 <code class="docutils literal notranslate"><span class="pre">NUM</span></code> 行。</p></li>
 </ol>
 <p>一种可能的情况下，得到的 <code class="docutils literal notranslate"><span class="pre">process.log</span></code> 文件的前几行是：</p>
@@ -823,7 +823,7 @@ span.prompt1:before {
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>

@@ -29,7 +29,7 @@
 
     int debug_paging(pid_t pid, void *address, const char *logPath);
 
-当 ``address`` 为 ``NULL`` 的时候，该系统调用将会打印pid进程所有正在使用的（P位为0，不考虑虚拟存储）页目录项和页表项。否则只输出 ``address`` 对应的页地址转换过程。当 ``logPath`` 为 ``NULL`` 打印输出为标准输出，否则为 ``logPath`` 对应的文本文件。
+当 ``address`` 为 ``NULL`` 的时候，该系统调用将会打印 ``pid`` 进程所有正在使用的页目录项和页表项。否则只输出 ``address`` 对应的页地址转换过程。当 ``logPath`` 为 ``NULL`` 打印输出为标准输出，否则为 ``logPath`` 对应的文本文件。
 
 例如，对于以下测试程序：
 

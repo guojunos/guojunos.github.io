@@ -417,7 +417,7 @@
 <div class="section" id="string-h">
 <h3>4.4.6. string.h<a class="headerlink" href="#string-h" title="永久链接至标题">¶</a></h3>
 <p>下面描述的问题未必具有普遍意义，仅做为提醒，请实验者注意。</p>
-<p><code class="docutils literal notranslate"><span class="pre">include/string.h</span></code> 实现了全套的C语言字符串操作，而且都是采用 <code class="docutils literal notranslate"><span class="pre">汇编+inline</span></code> 方式优化。但在使用中，某些情况下可能会遇到一些奇怪的问题。比如某人就遇到 <code class="docutils literal notranslate"><span class="pre">strcmp()</span></code> 会破坏参数内容的问题。如果调试中遇到有些“诡异”的情况，可以试试不包含头文件，一般都能解决。不包含 <code class="docutils literal notranslate"><span class="pre">string.h</span></code> ，就不会用 <code class="docutils literal notranslate"><span class="pre">inline</span></code> 方式调用这些函数，它们工作起来就趋于正常了。</p>
+<p><code class="docutils literal notranslate"><span class="pre">include/string.h</span></code> 实现了全套的 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言字符串操作，而且都是采用 <code class="docutils literal notranslate"><span class="pre">汇编+inline</span></code> 方式优化。但在使用中，某些情况下可能会遇到一些奇怪的问题。比如某人就遇到 <code class="docutils literal notranslate"><span class="pre">strcmp()</span></code> 会破坏参数内容的问题。如果调试中遇到有些“诡异”的情况，可以试试不包含头文件，一般都能解决。不包含 <code class="docutils literal notranslate"><span class="pre">string.h</span></code> ，就不会用 <code class="docutils literal notranslate"><span class="pre">inline</span></code> 方式调用这些函数，它们工作起来就趋于正常了。</p>
 <p>如果遇到类似问题，应该记录下来，进行更深入的分析。</p>
 </div>
 </div>
@@ -443,7 +443,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>

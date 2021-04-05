@@ -217,7 +217,7 @@
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">debug_paging</span><span class="p">(</span><span class="kt">pid_t</span> <span class="n">pid</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">logPath</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>当 <code class="docutils literal notranslate"><span class="pre">address</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 的时候，该系统调用将会打印pid进程所有正在使用的（P位为0，不考虑虚拟存储）页目录项和页表项。否则只输出 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的页地址转换过程。当 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 打印输出为标准输出，否则为 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 对应的文本文件。</p>
+<p>当 <code class="docutils literal notranslate"><span class="pre">address</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 的时候，该系统调用将会打印 <code class="docutils literal notranslate"><span class="pre">pid</span></code> 进程所有正在使用的页目录项和页表项。否则只输出 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的页地址转换过程。当 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 为 <code class="docutils literal notranslate"><span class="pre">NULL</span></code> 打印输出为标准输出，否则为 <code class="docutils literal notranslate"><span class="pre">logPath</span></code> 对应的文本文件。</p>
 <p>例如，对于以下测试程序：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* test.c */</span>
 <span class="cp">#define   __LIBRARY__</span>
@@ -359,7 +359,7 @@
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>

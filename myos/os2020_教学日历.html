@@ -582,7 +582,121 @@ auto-scaling: true<a class="headerlink" href="#theme-gaia-class-lead-paginate-tr
 </ul>
 </li>
 </ul>
+</div>
 <hr class="docutils" />
+<div class="section" id="os-19-2020-06-03">
+<h2>OS 19 – 2020-06-03<a class="headerlink" href="#os-19-2020-06-03" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>并发的问题</p>
+<ul>
+<li><p>共享变量</p></li>
+<li><p>从进程切换的角度讲，没有机制保证这种共享变量</p></li>
+<li><p>很多进本概念，临界区等</p></li>
+</ul>
+</li>
+<li><p>用信号量解决</p>
+<ul>
+<li><p>信号量定义，结构体</p></li>
+<li><p>讲了两个例子，结合进程切换讲信号量的作用</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-20-2020-06-05">
+<h2>OS 20 – 2020-06-05<a class="headerlink" href="#os-20-2020-06-05" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>生产者和消费者问题</p>
+<ul>
+<li><p>无限缓冲，重点分析了错误原因</p></li>
+<li><p>有界缓冲，分析死锁的原因</p></li>
+<li><p>总结信号量的使用，互斥与同步的区分</p></li>
+</ul>
+</li>
+<li><p>讲解了信号量的实验注意事项</p>
+<ul>
+<li><p>演示 ubuntu 下多线程程序</p></li>
+<li><p>演示 ubuntu 下实验的多进程结果</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-21-2020-06-10">
+<h2>OS 21 – 2020-06-10<a class="headerlink" href="#os-21-2020-06-10" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>调度</p>
+<ul>
+<li><p>长程，中程，短程调度</p></li>
+<li><p>调度的一些准则</p></li>
+</ul>
+</li>
+<li><p>调度算法</p>
+<ul>
+<li><p>各种算法之间内在的优缺点，以及如何过渡的讲解</p></li>
+<li><p>各种算法要求会计算</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-22-2020-06-12">
+<h2>OS 22 – 2020-06-12<a class="headerlink" href="#os-22-2020-06-12" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>IO管理</p>
+<ul>
+<li><p>IO设备特点及其演化</p></li>
+<li><p>IO的几种方式，轮询，中断，DMA</p></li>
+<li><p>缓冲的作用</p></li>
+</ul>
+</li>
+<li><p>磁盘管理</p>
+<ul>
+<li><p>视频演示磁盘的机械构成，机械臂寻道</p></li>
+<li><p>磁盘调度</p>
+<ul>
+<li><p>示例，连续访问和随机访问的巨大差别</p></li>
+<li><p>磁盘调度的几种算法</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-23-2020-06-17">
+<h2>OS 23 – 2020-06-17<a class="headerlink" href="#os-23-2020-06-17" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>文件系统</p>
+<ul>
+<li><p>什么是文件系统</p></li>
+<li><p>文件系统到磁盘块的过渡，页、块、扇区</p></li>
+<li><p>组块，FAT，DAT</p></li>
+</ul>
+</li>
+<li><p>Minix 1.0</p>
+<ul>
+<li><p>磁盘分区</p></li>
+<li><p>Minix 1.0 结构</p>
+<ul>
+<li><p>引导区，超级块，i节点位图，逻辑块位图，i节点，磁盘块</p></li>
+</ul>
+</li>
+<li><p>Linux 0.11 中PCB，文件表，i节点表，到磁盘，缓冲整个转换过程</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="os-24-2020-06-19">
+<h2>OS 24 – 2020-06-19<a class="headerlink" href="#os-24-2020-06-19" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>Minix 1.0 360k的一个示例</p></li>
+<li><p>补充介绍一下死锁</p></li>
+<li><p>知识点总结</p></li>
+<li><p>考试范围绕及题型</p></li>
+<li><p>在线考试注意事项及演练</p></li>
+</ul>
 </div>
 </div>
 
@@ -597,7 +711,7 @@ auto-scaling: true<a class="headerlink" href="#theme-gaia-class-lead-paginate-tr
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2020, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>
