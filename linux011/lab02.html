@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>2. 系统调用 &mdash; Guojunos 1.0.0 文档</title>
+  <title>4. 系统调用 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="3. 进程运行轨迹的跟踪与统计" href="lab03.html" />
-    <link rel="prev" title="1. 操作系统的引导" href="lab01.html" /> 
+    <link rel="next" title="5. 进程运行轨迹的跟踪与统计" href="lab03.html" />
+    <link rel="prev" title="3. 操作系统的引导" href="lab01.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,44 +109,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<p class="caption"><span class="caption-text">Linux 实验</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab01.html">1. 操作系统的引导</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">2. 系统调用</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">2.1. 实验目的</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">2.2. 实验内容</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#iam">2.2.1. <code class="docutils literal notranslate"><span class="pre">iam()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#whoami">2.2.2. <code class="docutils literal notranslate"><span class="pre">whoami()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">2.2.3. 测试程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab01.html">1. 调试分析 Linux 0.00 引导程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab02.html">2. 调试分析 Linux 0.00 多任务切换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab01.html">3. 操作系统的引导</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 系统调用</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">4.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">4.2. 实验内容</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#iam">4.2.1. <code class="docutils literal notranslate"><span class="pre">iam()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#whoami">4.2.2. <code class="docutils literal notranslate"><span class="pre">whoami()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">4.2.3. 测试程序</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id5">2.3. 实验报告</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id6">2.3.1. 评分标准</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">4.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">4.3.1. 评分标准</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">2.4. 实验提示</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">2.4.1. 应用程序如何调用系统调用</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#int-0x80">2.4.2. 从 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 进入内核函数</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sys-iam-sys-whoami">2.4.3. 实现 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_whoami()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#makefile">2.4.4. 修改 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#printk">2.4.5. 用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 调试内核</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id9">2.4.6. 编写测试程序</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">2.4.7. 在用户态和核心态之间传递数据</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">2.4.8. 运行脚本程序</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#errno">2.4.9. errno</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">4.4. 实验提示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">4.4.1. 应用程序如何调用系统调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#int-0x80">4.4.2. 从 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 进入内核函数</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sys-iam-sys-whoami">4.4.3. 实现 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_whoami()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#makefile">4.4.4. 修改 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#printk">4.4.5. 用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 调试内核</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">4.4.6. 编写测试程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">4.4.7. 在用户态和核心态之间传递数据</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">4.4.8. 运行脚本程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errno">4.4.9. errno</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab04.html">4. 信号量的实现和应用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab05.html">5. 地址映射与共享</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab06.html">6. 打印进程地址转换过程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab03.html">5. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab04.html">6. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab05.html">7. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab06.html">8. 打印进程地址转换过程</a></li>
 </ul>
 <p class="caption"><span class="caption-text">附录</span></p>
 <ul>
@@ -198,7 +195,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>2. 系统调用</li>
+      <li>4. 系统调用</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -216,9 +213,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>2. 系统调用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>4. 系统调用<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2>2.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>4.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>建立对系统调用接口的深入认识</p></li>
 <li><p>掌握系统调用的基本过程</p></li>
@@ -227,10 +224,10 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>2.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2>4.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>此次实验的基本内容是：在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上添加两个系统调用，并编写两个简单的应用程序测试它们。</p>
 <div class="section" id="iam">
-<h3>2.2.1. <code class="docutils literal notranslate"><span class="pre">iam()</span></code><a class="headerlink" href="#iam" title="永久链接至标题">¶</a></h3>
+<h3>4.2.1. <code class="docutils literal notranslate"><span class="pre">iam()</span></code><a class="headerlink" href="#iam" title="永久链接至标题">¶</a></h3>
 <p>第一个系统调用是 <code class="docutils literal notranslate"><span class="pre">iam()</span></code> ，其原型为：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">iam</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">name</span><span class="p">);</span>
 </pre></div>
@@ -241,7 +238,7 @@
 <p>在 <code class="docutils literal notranslate"><span class="pre">kernal/who.c</span></code> 中实现此系统调用。</p>
 </div>
 <div class="section" id="whoami">
-<h3>2.2.2. <code class="docutils literal notranslate"><span class="pre">whoami()</span></code><a class="headerlink" href="#whoami" title="永久链接至标题">¶</a></h3>
+<h3>4.2.2. <code class="docutils literal notranslate"><span class="pre">whoami()</span></code><a class="headerlink" href="#whoami" title="永久链接至标题">¶</a></h3>
 <p>第二个系统调用是 <code class="docutils literal notranslate"><span class="pre">whoami()</span></code> ，其原型为：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">whoami</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">size</span><span class="p">);</span>
 </pre></div>
@@ -252,7 +249,7 @@
 <p>也是在 <code class="docutils literal notranslate"><span class="pre">kernal/who.c</span></code> 中实现。</p>
 </div>
 <div class="section" id="id4">
-<h3>2.2.3. 测试程序<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<h3>4.2.3. 测试程序<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
 <p>运行添加过新系统调用的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，在其环境下编写两个测试程序 <code class="docutils literal notranslate"><span class="pre">iam.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">whoami.c</span></code> 。最终的运行结果是：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -266,7 +263,7 @@ span.prompt1:before {
 </div>
 </div>
 <div class="section" id="id5">
-<h2>2.3. 实验报告<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<h2>4.3. 实验报告<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
 <p>在实验报告中回答如下问题：</p>
 <ul class="simple">
 <li><p>从 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 现在的机制看，它的系统调用最多能传递几个参数？</p></li>
@@ -274,7 +271,7 @@ span.prompt1:before {
 <li><p>用文字简要描述向 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 添加一个系统调用 <code class="docutils literal notranslate"><span class="pre">foo()</span></code> 的步骤。</p></li>
 </ul>
 <div class="section" id="id6">
-<h3>2.3.1. 评分标准<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<h3>4.3.1. 评分标准<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
 <li><p>将 <code class="docutils literal notranslate"><span class="pre">testlab2.c</span></code> 在修改过的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 上编译运行，显示的结果即内核程序的得分。满分50%</p></li>
 <li><p>只要至少一个新增的系统调用被成功调用，并且能和用户空间交换参数，可得满分</p></li>
@@ -288,7 +285,7 @@ span.prompt1:before {
 </div>
 </div>
 <div class="section" id="id7">
-<h2>2.4. 实验提示<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<h2>4.4. 实验提示<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
 <p>首先，请将 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的源代码恢复到原始状态。</p>
 <p>《注释》的 <code class="docutils literal notranslate"><span class="pre">5.5</span></code> 节详细讲述了 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 如何处理系统调用，是非常有价值的参考。</p>
 <p>操作系统实现系统调用的基本过程是：</p>
@@ -298,10 +295,10 @@ span.prompt1:before {
 <li><p>内核中的中断处理函数根据系统调用号，调用对应的内核函数（系统调用）；</p></li>
 <li><p>系统调用完成相应功能，将返回值存入 <code class="docutils literal notranslate"><span class="pre">EAX</span></code> ，返回到中断处理函数；</p></li>
 <li><p>中断处理函数返回到 <code class="docutils literal notranslate"><span class="pre">API</span></code> 中；</p></li>
-<li><p>API将 <code class="docutils literal notranslate"><span class="pre">EAX</span></code> 返回给应用程序。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">API</span></code> 将 <code class="docutils literal notranslate"><span class="pre">EAX</span></code> 返回给应用程序。</p></li>
 </ol>
 <div class="section" id="id8">
-<h3>2.4.1. 应用程序如何调用系统调用<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<h3>4.4.1. 应用程序如何调用系统调用<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <p>在通常情况下，调用系统调用和调用一个普通的自定义函数在代码上并没有什么区别，
 但调用后发生的事情有很大不同。
 调用自定义函数是通过 <code class="docutils literal notranslate"><span class="pre">call</span></code> 指令直接跳转到该函数的地址，继续运行。
@@ -313,7 +310,7 @@ span.prompt1:before {
 <li><p>把函数参数存入其它通用寄存器</p></li>
 <li><p>触发 <code class="docutils literal notranslate"><span class="pre">0x80</span></code> 号中断（ <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> ）</p></li>
 </ul>
-<p><code class="docutils literal notranslate"><span class="pre">0.11</span></code> 的 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 目录下有一些已经实现的API。
+<p><code class="docutils literal notranslate"><span class="pre">0.11</span></code> 的 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 目录下有一些已经实现的 <code class="docutils literal notranslate"><span class="pre">API</span></code> 。
 Linus编写它们的原因是在内核加载完毕后，会切换到用户模式下，做一些初始化工作，然后启动 <code class="docutils literal notranslate"><span class="pre">shell</span></code> 。
 而用户模式下的很多工作需要依赖一些系统调用才能完成，因此在内核中实现了这些系统调用的 <code class="docutils literal notranslate"><span class="pre">API</span></code> 。
 我们不妨看看 <code class="docutils literal notranslate"><span class="pre">lib/close.c</span></code> ，研究一下 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 的 <code class="docutils literal notranslate"><span class="pre">API</span></code> ：</p>
@@ -352,10 +349,10 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 </div>
 <p>在 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 环境下编译 <code class="docutils literal notranslate"><span class="pre">C</span></code> 程序，包含的头文件都在 <code class="docutils literal notranslate"><span class="pre">/usr/include</span></code> 目录下。
 该目录下的 <code class="docutils literal notranslate"><span class="pre">unistd.h</span></code> 是标准头文件（它和 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 源码树中的 <code class="docutils literal notranslate"><span class="pre">unistd.h</span></code> 并不是同一个文件，虽然内容可能相同），
-没有 <code class="docutils literal notranslate"><span class="pre">__NR_whoami</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__NR_iam</span></code> 两个宏，需要手工加上它们，也可以直接从修改过的0.11源码树中拷贝新的 <code class="docutils literal notranslate"><span class="pre">unistd.h</span></code> 过来。</p>
+没有 <code class="docutils literal notranslate"><span class="pre">__NR_whoami</span></code> 和 <code class="docutils literal notranslate"><span class="pre">__NR_iam</span></code> 两个宏，需要手工加上它们，也可以直接从修改过的 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 源码树中拷贝新的 <code class="docutils literal notranslate"><span class="pre">unistd.h</span></code> 过来。</p>
 </div>
 <div class="section" id="int-0x80">
-<h3>2.4.2. 从 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 进入内核函数<a class="headerlink" href="#int-0x80" title="永久链接至标题">¶</a></h3>
+<h3>4.4.2. 从 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 进入内核函数<a class="headerlink" href="#int-0x80" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 触发后，接下来就是内核的中断处理了。
 先了解一下 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 处理 <code class="docutils literal notranslate"><span class="pre">0x80</span></code> 号中断的过程。</p>
 <p>在内核初始化时，主函数（在 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 中，<code class="docutils literal notranslate"><span class="pre">Linux</span></code> 实验环境下是 <code class="docutils literal notranslate"><span class="pre">main()</span></code> ， <code class="docutils literal notranslate"><span class="pre">Windows</span></code> 下因编译器兼容性问题被换名为 <code class="docutils literal notranslate"><span class="pre">start()</span></code> ）调用了 <code class="docutils literal notranslate"><span class="pre">sched_init()</span></code> 初始化函数：</p>
@@ -450,7 +447,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 <p>不然，编译会出错的。</p>
 </div>
 <div class="section" id="sys-iam-sys-whoami">
-<h3>2.4.3. 实现 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_whoami()</span></code><a class="headerlink" href="#sys-iam-sys-whoami" title="永久链接至标题">¶</a></h3>
+<h3>4.4.3. 实现 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_whoami()</span></code><a class="headerlink" href="#sys-iam-sys-whoami" title="永久链接至标题">¶</a></h3>
 <p>添加系统调用的最后一步，是在内核中实现函数 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">sys_whoami()</span></code> 。</p>
 <p>每个系统调用都有一个 <code class="docutils literal notranslate"><span class="pre">sys_xxxxxx()</span></code> 与之对应，它们都是我们学习和模仿的好对象。
 比如在 <code class="docutils literal notranslate"><span class="pre">fs/open.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">sys_close(int</span> <span class="pre">fd)</span></code> ：</p>
@@ -464,7 +461,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 <p>它没有什么特别的，都是实实在在地做 <code class="docutils literal notranslate"><span class="pre">close()</span></code> 该做的事情。所以只要自己创建一个文件： <code class="docutils literal notranslate"><span class="pre">kernel/who.c</span></code> ，然后实现两个函数就万事大吉了。</p>
 </div>
 <div class="section" id="makefile">
-<h3>2.4.4. 修改 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#makefile" title="永久链接至标题">¶</a></h3>
+<h3>4.4.4. 修改 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code><a class="headerlink" href="#makefile" title="永久链接至标题">¶</a></h3>
 <p>要想让我们添加的 <code class="docutils literal notranslate"><span class="pre">kernel/who.c</span></code> 可以和其它Linux代码编译链接到一起，必须要修改 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 文件。
 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 里记录的是所有源程序文件的编译、链接规则，《注释》 <code class="docutils literal notranslate"><span class="pre">3.6</span></code> 节有简略介绍。
 我们之所以简单地运行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 就可以编译整个代码树，是因为 <code class="docutils literal notranslate"><span class="pre">make</span></code> 完全按照 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 里的指示工作。</p>
@@ -505,7 +502,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 所以，有意或无意地制造一两个错误也不完全是坏事，至少能证明 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 是对的。</p>
 </div>
 <div class="section" id="printk">
-<h3>2.4.5. 用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 调试内核<a class="headerlink" href="#printk" title="永久链接至标题">¶</a></h3>
+<h3>4.4.5. 用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 调试内核<a class="headerlink" href="#printk" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">oslab</span></code> 实验环境提供了基于 <code class="docutils literal notranslate"><span class="pre">C</span></code> 语言和汇编语言的两种调试手段。
 除此之外，适当地向屏幕输出一些程序运行状态的信息，也是一种很高效、便捷的调试方法，
 有时甚至是唯一的方法，被称为 <code class="docutils literal notranslate"><span class="pre">printf</span></code> 法。</p>
@@ -537,7 +534,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 查看 <code class="docutils literal notranslate"><span class="pre">printf()</span></code> 可以看到，它最终也要落实到这个函数上。</p>
 </div>
 <div class="section" id="id9">
-<h3>2.4.6. 编写测试程序<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
+<h3>4.4.6. 编写测试程序<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
 <p>激动地运行一下由你亲手修改过的 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span> <span class="pre">pro++</span></code> ！然后编写一个简单的应用程序进行测试。
 比如在 <code class="docutils literal notranslate"><span class="pre">sys_iam()</span></code> 中向终端 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 一些信息，让应用程序调用 <code class="docutils literal notranslate"><span class="pre">iam()</span></code> ，从结果可以看出系统调用是否被真的调用到了。</p>
 <p>可以直接在Linux 0.11环境下用 <code class="docutils literal notranslate"><span class="pre">vi</span></code> 编写（别忘了经常执行 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 以确保内存缓冲区的数据写入磁盘），
@@ -548,7 +545,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 </pre></div></div><p>如果如愿输出了你的信息，就说明你添加的系统调用生效了。否则，就还要继续调试，祝你好运！</p>
 </div>
 <div class="section" id="id10">
-<h3>2.4.7. 在用户态和核心态之间传递数据<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<h3>4.4.7. 在用户态和核心态之间传递数据<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
 <p>指针参数传递的是应用程序所在地址空间的逻辑地址，在内核中如果直接访问这个地址，访问到的是内核空间中的数据，不会是用户空间的。所以这里还需要一点儿特殊工作，才能在内核中从用户空间得到数据。</p>
 <p>要实现的两个系统调用参数中都有字符串指针，
 非常象 <code class="docutils literal notranslate"><span class="pre">open(char</span> <span class="pre">*filename,</span> <span class="pre">……)</span></code> ，所以我们看一下 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 系统调用是如何处理的。</p>
@@ -630,7 +627,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 <p>他俩以及所有 <code class="docutils literal notranslate"><span class="pre">put_fs_xxx()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">get_fs_xxx()</span></code> 都是用户空间和内核空间之间的桥梁，在后面的实验中还要经常用到。</p>
 </div>
 <div class="section" id="id11">
-<h3>2.4.8. 运行脚本程序<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<h3>4.4.8. 运行脚本程序<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
 <p>Linux的一大特色是可以编写功能强大的 <code class="docutils literal notranslate"><span class="pre">shell</span></code> 脚本，提高工作效率。
 本实验的部分评分工作由脚本 <code class="docutils literal notranslate"><span class="pre">testlab2.sh</span></code> 完成。它的功能是测试 <code class="docutils literal notranslate"><span class="pre">iam.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">whoami.c</span></code> 。</p>
 <p>首先将 <code class="docutils literal notranslate"><span class="pre">iam.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">whoami.c</span></code> 分别编译成 <code class="docutils literal notranslate"><span class="pre">iam</span></code> 和 <code class="docutils literal notranslate"><span class="pre">whoami</span></code> ，然后将 <code class="docutils literal notranslate"><span class="pre">testlab2.sh</span></code>
@@ -642,7 +639,7 @@ Linus编写它们的原因是在内核加载完毕后，会切换到用户模式
 </pre></div></div><p>根据输出，可知 <code class="docutils literal notranslate"><span class="pre">iam.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">whoami.c</span></code> 的得分。</p>
 </div>
 <div class="section" id="errno">
-<h3>2.4.9. errno<a class="headerlink" href="#errno" title="永久链接至标题">¶</a></h3>
+<h3>4.4.9. errno<a class="headerlink" href="#errno" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">errno</span></code> 是一种传统的错误代码返回机制。当一个函数调用出错时，通常会返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 给调用者。
 但 <code class="docutils literal notranslate"><span class="pre">-1</span></code> 只能说明出错，不能说明错是什么。为解决此问题，全局变量 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 登场了。
 错误值被存放到 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 中，于是调用者就可以通过判断 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 来决定如何应对错误了。
@@ -660,10 +657,10 @@ Linux下用 <code class="docutils literal notranslate"><span class="pre">man</sp
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lab03.html" class="btn btn-neutral float-right" title="3. 进程运行轨迹的跟踪与统计" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="lab03.html" class="btn btn-neutral float-right" title="5. 进程运行轨迹的跟踪与统计" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lab01.html" class="btn btn-neutral float-left" title="1. 操作系统的引导" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lab01.html" class="btn btn-neutral float-left" title="3. 操作系统的引导" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

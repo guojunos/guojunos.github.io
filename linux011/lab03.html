@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. 进程运行轨迹的跟踪与统计 &mdash; Guojunos 1.0.0 文档</title>
+  <title>5. 进程运行轨迹的跟踪与统计 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="4. 信号量的实现和应用" href="lab04.html" />
-    <link rel="prev" title="2. 系统调用" href="lab02.html" /> 
+    <link rel="next" title="6. 信号量的实现和应用" href="lab04.html" />
+    <link rel="prev" title="4. 系统调用" href="lab02.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,44 +109,41 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<p class="caption"><span class="caption-text">Linux 实验</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab01.html">1. 操作系统的引导</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab02.html">2. 系统调用</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">3. 进程运行轨迹的跟踪与统计</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">3.1. 实验目的</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">3.2. 实验内容</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">3.3. 实验报告</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">3.3.1. 评分标准</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab01.html">1. 调试分析 Linux 0.00 引导程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab02.html">2. 调试分析 Linux 0.00 多任务切换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab01.html">3. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab02.html">4. 系统调用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. 进程运行轨迹的跟踪与统计</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. 实验内容</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">5.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.3.1. 评分标准</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id6">3.4. 实验提示</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id7">3.4.1. 编写样本程序</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#log">3.4.2. <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id8">3.4.2.1. 打开 log 文件</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id9">3.4.2.2. 写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">5.4. 实验提示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.4.1. 编写样本程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#log">5.4.2. <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id8">5.4.2.1. 打开 log 文件</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">5.4.2.2. 写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id10">3.4.3. 跟踪进程运行轨迹</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#jiffies">3.4.3.1. <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 滴答</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id11">3.4.3.2. 寻找状态切换点</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id10">5.4.3. 跟踪进程运行轨迹</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jiffies">5.4.3.1. <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 滴答</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">5.4.3.2. 寻找状态切换点</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">3.4.4. 管理 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">3.4.5. 数据统计</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">3.4.6. 修改时间片</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">5.4.4. 管理 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">5.4.5. 数据统计</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">5.4.6. 修改时间片</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lab04.html">4. 信号量的实现和应用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab05.html">5. 地址映射与共享</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab06.html">6. 打印进程地址转换过程</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab04.html">6. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab05.html">7. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab06.html">8. 打印进程地址转换过程</a></li>
 </ul>
 <p class="caption"><span class="caption-text">附录</span></p>
 <ul>
@@ -198,7 +195,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>3. 进程运行轨迹的跟踪与统计</li>
+      <li>5. 进程运行轨迹的跟踪与统计</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -216,9 +213,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>3. 进程运行轨迹的跟踪与统计<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>5. 进程运行轨迹的跟踪与统计<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2>3.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>5.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>掌握 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下的多进程编程技术；</p></li>
 <li><p>通过对进程运行轨迹的跟踪来形象化进程的概念；</p></li>
@@ -227,7 +224,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>3.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2>5.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>进程从创建（ <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> ）到结束的整个过程就是进程的生命期，
 进程在其生命期中的运行轨迹实际上就表现为进程状态的多次切换，如进程创建以后会成为就绪态；
 当该进程被调度以后会切换到运行态；在运行的过程中如果启动了一个文件读写操作，
@@ -276,14 +273,14 @@
 </div>
 </div>
 <div class="section" id="id4">
-<h2>3.3. 实验报告<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<h2>5.3. 实验报告<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
 <p>完成实验后，在实验报告中回答如下问题：</p>
 <ol class="arabic simple">
 <li><p>结合自己的体会，谈谈从程序设计者的角度看，单进程编程和多进程编程最大的区别是什么？</p></li>
 <li><p>你是如何修改时间片的？仅针对样本程序建立的进程，在修改时间片前后， <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的统计结果（不包括Graphic）都是什么样？结合你的修改分析一下为什么会这样变化，或者为什么没变化？</p></li>
 </ol>
 <div class="section" id="id5">
-<h3>3.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<h3>5.3.1. 评分标准<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> ，50%</p></li>
 <li><p>日志文件建立成功，5%</p></li>
@@ -295,10 +292,10 @@
 </div>
 </div>
 <div class="section" id="id6">
-<h2>3.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
+<h2>5.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> 的编写涉及到 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">wait()</span></code> 系统调用，请自行查阅相关文献。 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 内核修改涉及到 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 、 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> ，开始实验前如果能详细阅读《注释》一书的相关部分，会大有裨益。</p>
 <div class="section" id="id7">
-<h3>3.4.1. 编写样本程序<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
+<h3>5.4.1. 编写样本程序<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">process.c</span></code> 是样本程序的模板。它主要实现了一个函数：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
 <span class="cm">* 此函数按照参数占用CPU和I/O时间</span>
@@ -336,13 +333,13 @@
 </div>
 </div>
 <div class="section" id="log">
-<h3>3.4.2. <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#log" title="永久链接至标题">¶</a></h3>
+<h3>5.4.2. <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#log" title="永久链接至标题">¶</a></h3>
 <p>操作系统启动后先要打开 <code class="docutils literal notranslate"><span class="pre">/var/process.log</span></code> ，然后在每个进程发生状态切换的时候向 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件内写入一条记录，
 其过程和用户态的应用程序没什么两样。然而，因为内核状态的存在，使过程中的很多细节变得完全不一样。</p>
 <div class="section" id="id8">
-<h4>3.4.2.1. 打开 log 文件<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h4>
+<h4>5.4.2.1. 打开 log 文件<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h4>
 <p>为了能尽早开始记录，应当在内核启动时就打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件。
-内核的入口是 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">main()</span></code> （Windows环境下是 <code class="docutils literal notranslate"><span class="pre">start()</span></code> ），
+内核的入口是 <code class="docutils literal notranslate"><span class="pre">init/main.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">main()</span></code> （ <code class="docutils literal notranslate"><span class="pre">Windows</span></code> 环境下是 <code class="docutils literal notranslate"><span class="pre">start()</span></code> ），
 其中一段代码是：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">move_to_user_mode</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>        <span class="cm">/* we count on this going ok */</span>
@@ -352,39 +349,28 @@
 </div>
 <p>这段代码在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中运行，先切换到用户模式，然后全系统第一次调用 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 建立进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 。进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 调用 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 。在 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">setup</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">drive_info</span><span class="p">);</span>        <span class="c1">//加载文件系统</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//打开/dev/tty0，建立文件描述符0和/dev/tty0的关联</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//让文件描述符1也和/dev/tty0关联</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                <span class="c1">//让文件描述符2也和/dev/tty0关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>  <span class="c1">//打开/dev/tty0，建立文件描述符0和/dev/tty0的关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                      <span class="c1">//让文件描述符1也和/dev/tty0关联</span>
+<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                      <span class="c1">//让文件描述符2也和/dev/tty0关联</span>
 </pre></div>
 </div>
 <p>这段代码建立了文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> ，它们分别就是 <code class="docutils literal notranslate"><span class="pre">stdin</span></code> 、 <code class="docutils literal notranslate"><span class="pre">stdout</span></code> 和 <code class="docutils literal notranslate"><span class="pre">stderr</span></code> 。
 这三者的值是系统标准（ <code class="docutils literal notranslate"><span class="pre">Windows</span></code> 也是如此），不可改变。
 可以把 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的描述符关联到 <code class="docutils literal notranslate"><span class="pre">3</span></code> 。
-文件系统初始化，描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> 关联之后，才能打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，开始记录进程的运行轨迹。
-为了能尽早访问 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，我们要让上述工作在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中就完成。
-所以把这一段代码从 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 移动到 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 中，放在 <code class="docutils literal notranslate"><span class="pre">move_to_user_mode()</span></code> 之后（不能再靠前了），
-同时加上打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的代码。
-修改后的 <code class="docutils literal notranslate"><span class="pre">main()</span></code> 如下：</p>
-<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">move_to_user_mode</span><span class="p">();</span>
-
-<span class="cm">/***************添加开始***************/</span>
-<span class="n">setup</span><span class="p">((</span><span class="kt">void</span> <span class="o">*</span><span class="p">)</span> <span class="o">&amp;</span><span class="n">drive_info</span><span class="p">);</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/dev/tty0&quot;</span><span class="p">,</span><span class="n">O_RDWR</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">//建立文件描述符0和/dev/tty0的关联</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">//文件描述符1也和/dev/tty0关联</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">dup</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>        <span class="c1">//文件描述符2也和/dev/tty0关联</span>
-<span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">open</span><span class="p">(</span><span class="s">&quot;/var/process.log&quot;</span><span class="p">,</span><span class="n">O_CREAT</span><span class="o">|</span><span class="n">O_TRUNC</span><span class="o">|</span><span class="n">O_WRONLY</span><span class="p">,</span><span class="mo">0666</span><span class="p">);</span>
-<span class="cm">/***************添加结束***************/</span>
-
-<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">fork</span><span class="p">())</span> <span class="p">{</span>        <span class="cm">/* we count on this going ok */</span>
-    <span class="n">init</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+文件系统初始化，描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 和 <code class="docutils literal notranslate"><span class="pre">2</span></code> 关联之后，才能打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，开始记录进程的运行轨迹。</p>
 <p>打开 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件的参数的含义是建立只写文件，如果文件已存在则清空已有内容。文件的权限是所有人可读可写。</p>
-<p>这样，文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 和 <code class="docutils literal notranslate"><span class="pre">3</span></code> 就在进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 中建立了。根据 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 的原理，进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 会继承这些文件描述符，所以 <code class="docutils literal notranslate"><span class="pre">init()</span></code> 中就不必再 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 它们。此后所有新建的进程都是进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的子孙，也会继承它们。但实际上， <code class="docutils literal notranslate"><span class="pre">init()</span></code> 的后续代码和 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 都会重新初始化它们。所以只有进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 和进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的文件描述符肯定关联着 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，这一点在接下来的写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 中很重要。</p>
+<p>这样，文件描述符 <code class="docutils literal notranslate"><span class="pre">0</span></code> 、 <code class="docutils literal notranslate"><span class="pre">1</span></code> 、 <code class="docutils literal notranslate"><span class="pre">2</span></code> 和 <code class="docutils literal notranslate"><span class="pre">3</span></code> 就在进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 中建立了。根据 <code class="docutils literal notranslate"><span class="pre">fork()</span></code> 的原理，进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 之后的进程会继承这些文件描述符，所以就不必再 <code class="docutils literal notranslate"><span class="pre">open()</span></code> 它们。
+但实际上， <code class="docutils literal notranslate"><span class="pre">init()</span></code> 的后续代码和 <code class="docutils literal notranslate"><span class="pre">/bin/sh</span></code> 都会重新初始化它们。
+所以只有进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 的文件描述符肯定关联着 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件，这一点在接下来的写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 中很重要。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>由于采用老师新改版的实验环境，打印进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的相关内容会产生bug，可能是虚拟机或是其他原因引起的。
+因此，后续所有的打印输出都是从进程 <code class="docutils literal notranslate"><span class="pre">1</span></code> 开始，后续指导书上出现有关进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的相关内容都可以忽略。
+修改完程序之后，需要修改 <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> 进行相关统计输出。</p>
+</div>
 </div>
 <div class="section" id="id9">
-<h4>3.4.2.2. 写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
+<h4>5.4.2.2. 写 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">log</span></code> 文件将被用来记录进程的状态转移轨迹。所有的状态转移都是在内核进行的。
 在内核状态下， <code class="docutils literal notranslate"><span class="pre">write()</span></code> 功能失效，其原理等同于《系统调用》实验中不能在内核状态调用 <code class="docutils literal notranslate"><span class="pre">printf()</span></code> ，
 只能调用 <code class="docutils literal notranslate"><span class="pre">printk()</span></code> 。
@@ -421,8 +407,14 @@
     <span class="p">}</span>
     <span class="k">else</span>    <span class="cm">/* 假定&gt;=3的描述符都与文件关联。事实上，还存在很多其它情况，这里并没有考虑。*/</span>
     <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">]))</span>    <span class="cm">/* 从进程0的文件描述符表中得到文件句柄 */</span>
+        <span class="c1">// if (!(file=task[0]-&gt;filp[fd]))    /* 从进程0的文件描述符表中得到文件句柄 */</span>
+        <span class="c1">//    return 0;</span>
+        
+        <span class="c1">// 修改为如下：</span>
+        <span class="c1">// task[1]-&gt;filp is not ready or f_inode-&gt;i_dev is not ready</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">])</span> <span class="o">||</span> <span class="o">!</span><span class="n">task</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">filp</span><span class="p">[</span><span class="n">fd</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="o">-&gt;</span><span class="n">i_dev</span><span class="p">)</span> <span class="p">{</span>   <span class="cm">/* 从进程1的文件描述符表中得到文件句柄 */</span>
             <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
         <span class="n">inode</span><span class="o">=</span><span class="n">file</span><span class="o">-&gt;</span><span class="n">f_inode</span><span class="p">;</span>
 
         <span class="n">__asm__</span><span class="p">(</span><span class="s">&quot;push %%fs</span><span class="se">\n\t</span><span class="s">&quot;</span>
@@ -442,6 +434,13 @@
 <span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<ul class="simple">
+<li><p>问题： <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">panic:</span> <span class="pre">trying</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">new</span> <span class="pre">block</span> <span class="pre">from</span> <span class="pre">nonexistant</span> <span class="pre">device</span></code></p></li>
+<li><p>解决：在 <code class="docutils literal notranslate"><span class="pre">if</span></code> 语句增加了判断 <code class="docutils literal notranslate"><span class="pre">task[1]</span></code> 的描述符为fd的文件指针指向的设备是否准备好，如果没准备好这个 <code class="docutils literal notranslate"><span class="pre">i_dev</span></code> 就是 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，然后就会 <code class="docutils literal notranslate"><span class="pre">return</span></code> ，不打印。</p></li>
+</ul>
+</div>
 <p>因为和 <code class="docutils literal notranslate"><span class="pre">printk</span></code> 的功能近似，建议将此函数放入到 <code class="docutils literal notranslate"><span class="pre">kernel/printk.c</span></code> 中。
 <code class="docutils literal notranslate"><span class="pre">fprintk()</span></code> 的使用方式与 <code class="docutils literal notranslate"><span class="pre">C</span></code> 标准库函数 <code class="docutils literal notranslate"><span class="pre">fprintf()</span></code> 相似 ，唯一的区别是第一个参数是文件描述符，而不是文件指针。例如：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">fprintk</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&quot;The ID of running process is %ld&quot;</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">pid</span><span class="p">);</span> <span class="c1">//向stdout打印正在运行的进程的ID</span>
@@ -451,9 +450,9 @@
 </div>
 </div>
 <div class="section" id="id10">
-<h3>3.4.3. 跟踪进程运行轨迹<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<h3>5.4.3. 跟踪进程运行轨迹<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
 <div class="section" id="jiffies">
-<h4>3.4.3.1. <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 滴答<a class="headerlink" href="#jiffies" title="永久链接至标题">¶</a></h4>
+<h4>5.4.3.1. <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 滴答<a class="headerlink" href="#jiffies" title="永久链接至标题">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 文件中定义为一个全局变量：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="k">volatile</span> <span class="n">jiffies</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 </pre></div>
@@ -469,7 +468,7 @@
     <span class="nf">incl</span> <span class="no">jiffies</span>     <span class="c">#增加jiffies计数值</span>
 </pre></div>
 </div>
-<p>这说明 <strong>jiffies</strong> 表示从开机时到现在发生的时钟中断次数，这个数也被称为“滴答数”。</p>
+<p>这说明 <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 表示从开机时到现在发生的时钟中断次数，这个数也被称为 <strong>滴答数</strong>。</p>
 <p>另外，在 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">sched_init()</span></code> 中有下面的代码：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">outb_p</span><span class="p">(</span><span class="mh">0x36</span><span class="p">,</span> <span class="mh">0x43</span><span class="p">);</span> <span class="c1">//设置8253模式</span>
 <span class="n">outb_p</span><span class="p">(</span><span class="n">LATCH</span><span class="o">&amp;</span><span class="mh">0xff</span><span class="p">,</span> <span class="mh">0x40</span><span class="p">);</span>
@@ -486,7 +485,7 @@
 所以 <code class="docutils literal notranslate"><span class="pre">jiffies</span></code> 实际上记录了从开机以来共经过了多少个 <code class="docutils literal notranslate"><span class="pre">10ms</span></code> 。</p>
 </div>
 <div class="section" id="id11">
-<h4>3.4.3.2. 寻找状态切换点<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
+<h4>5.4.3.2. 寻找状态切换点<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h4>
 <p>必须找到所有发生进程状态切换的代码点，并在这些点添加适当的代码，来输出进程状态变化的情况到 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件中。
 此处要面对的情况比较复杂，需要对 <code class="docutils literal notranslate"><span class="pre">kernel</span></code> 下的 <code class="docutils literal notranslate"><span class="pre">fork.c</span></code> 、 <code class="docutils literal notranslate"><span class="pre">sched.c</span></code> 有通盘的了解，而 <code class="docutils literal notranslate"><span class="pre">exit.c</span></code> 也会涉及到。
 我们给出两个例子描述这个工作该如何做，其他情况实验者可仿照完成。</p>
@@ -518,8 +517,8 @@
     <span class="n">p</span><span class="o">-&gt;</span><span class="n">start_time</span> <span class="o">=</span> <span class="n">jiffies</span><span class="p">;</span>    <span class="c1">//设置start_time为jiffies</span>
     <span class="c1">// ……</span>
     <span class="n">p</span><span class="o">-&gt;</span><span class="n">state</span> <span class="o">=</span> <span class="n">TASK_RUNNING</span><span class="p">;</span>    <span class="c1">//设置进程状态为就绪。所有就绪进程的状态都是</span>
-								<span class="c1">//TASK_RUNNING(0），被全局变量current指向的</span>
-								<span class="c1">//是正在运行的进程。</span>
+                                <span class="c1">//TASK_RUNNING(0），被全局变量current指向的</span>
+                                <span class="c1">//是正在运行的进程。</span>
     <span class="k">return</span> <span class="n">last_pid</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -597,7 +596,7 @@
 </div>
 </div>
 <div class="section" id="id12">
-<h3>3.4.4. 管理 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<h3>5.4.4. 管理 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
 <p>日志文件的管理与代码编写无关，有几个要点要注意：</p>
 <ol class="arabic simple">
 <li><p>每次关闭 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 前都要执行一下 <code class="docutils literal notranslate"><span class="pre">sync</span></code> 命令，它会刷新 <code class="docutils literal notranslate"><span class="pre">cache</span></code> ，确保文件确实写入了磁盘。</p></li>
@@ -644,7 +643,7 @@
 </div>
 </div>
 <div class="section" id="id13">
-<h3>3.4.5. 数据统计<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<h3>5.4.5. 数据统计<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
 <p>为展示实验结果，需要编写一个数据统计程序，它从 <code class="docutils literal notranslate"><span class="pre">log</span></code> 文件读入原始数据，然后计算平均周转时间、平均等待时间和吞吐率。任何语言都可以编写这样的程序，实验者可自行设计。我们用 <code class="docutils literal notranslate"><span class="pre">python</span></code> 语言编写了一个—— <code class="docutils literal notranslate"><span class="pre">stat_log.py</span></code> （这是 <code class="docutils literal notranslate"><span class="pre">python</span></code> 源程序，可以用任意文本编辑器打开）。</p>
 <p><code class="docutils literal notranslate"><span class="pre">python</span></code> 是一种跨平台的脚本语言，号称“可执行的伪代码”，非常强大，非常好用，也非常有用，建议闲着的时候学习一下。
 其解释器免费且开源， <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下这样安装：</p>
@@ -657,7 +656,10 @@ span.prompt1:before {
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">chmod +x stat_log.py</span>
 </pre></div></div><div class="admonition warning">
 <p class="admonition-title">警告</p>
-<p>此程序是 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">2.x</span></code> 版本，如果使用 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.x</span></code> 版本，需要简单修改此程序。</p>
+<ul class="simple">
+<li><p>此程序是 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">2.x</span></code> 版本，如果使用 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">3.x</span></code> 版本，需要简单修改此程序。</p></li>
+<li><p>不用打印进程 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的相关内容。</p></li>
+</ul>
 </div>
 <p>此程序必须在命令行下加参数执行，直接运行会打印使用说明。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Usage</span><span class="p">:</span>
@@ -736,7 +738,7 @@ span.prompt1:before {
 </div>
 </div>
 <div class="section" id="id14">
-<h3>3.4.6. 修改时间片<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<h3>5.4.6. 修改时间片<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
 <p>下面是 <code class="docutils literal notranslate"><span class="pre">0.11</span></code> 的调度函数 <code class="docutils literal notranslate"><span class="pre">schedule</span></code> ，在文件 <code class="docutils literal notranslate"><span class="pre">kernel/sched.c</span></code> 中定义为：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">c</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">next</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">NR_TASKS</span><span class="p">;</span> <span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">task</span><span class="p">[</span><span class="n">NR_TASKS</span><span class="p">];</span>
@@ -811,10 +813,10 @@ span.prompt1:before {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lab04.html" class="btn btn-neutral float-right" title="4. 信号量的实现和应用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="lab04.html" class="btn btn-neutral float-right" title="6. 信号量的实现和应用" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lab02.html" class="btn btn-neutral float-left" title="2. 系统调用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lab02.html" class="btn btn-neutral float-left" title="4. 系统调用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

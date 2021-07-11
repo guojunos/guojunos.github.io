@@ -27,7 +27,6 @@
    experiments/VMware
    experiments/BochsInstall
    experiments/Linux000setup
-   experiments/Linux011setup
    experiments/Linux011Use
    experiments/Linux011Flow
 
@@ -45,23 +44,24 @@
 
 
 
-   
+..  
+   .. toctree::
+      :maxdepth: 1
+      :numbered:
+      :caption: Linux 0.00 实验
+
+      linux000/linux000
+
+
+
 .. toctree::
    :maxdepth: 1
    :numbered:
-   :caption: Linux 0.00 实验
-
-   linux000/linux000
+   :caption: Linux 实验
 
 
-
-.. toctree::
-   :maxdepth: 1
-   :numbered:
-   :caption: Linux 0.11 实验
-
-
-
+   linux000/lab01
+   linux000/lab02
    linux011/lab01
    linux011/lab02
    linux011/lab03
@@ -87,6 +87,7 @@
 
    appendix/BIOS
    appendix/Bochs
+   appendix/gdb
    appendix/FAQ
 
 

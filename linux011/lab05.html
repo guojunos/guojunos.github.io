@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. 地址映射与共享 &mdash; Guojunos 1.0.0 文档</title>
+  <title>7. 地址映射与共享 &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="6. 打印进程地址转换过程" href="lab06.html" />
-    <link rel="prev" title="4. 信号量的实现和应用" href="lab04.html" /> 
+    <link rel="next" title="8. 打印进程地址转换过程" href="lab06.html" />
+    <link rel="prev" title="6. 信号量的实现和应用" href="lab04.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -109,51 +109,52 @@
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Linux 0.00 实验</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html">1. 实验目的</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../linux000/linux000.html#id3">2. 实验内容</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<p class="caption"><span class="caption-text">Linux 实验</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="lab01.html">1. 操作系统的引导</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab02.html">2. 系统调用</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab03.html">3. 进程运行轨迹的跟踪与统计</a></li>
-<li class="toctree-l1"><a class="reference internal" href="lab04.html">4. 信号量的实现和应用</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. 地址映射与共享</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id2">5.1. 实验目的</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">5.2. 实验内容</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">5.2.1. 跟踪地址翻译过程</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">5.2.2. 基于共享内存的生产者—消费者程序</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">5.2.3. 共享内存的实现</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#shmget">5.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#shmat">5.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab01.html">1. 调试分析 Linux 0.00 引导程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux000/lab02.html">2. 调试分析 Linux 0.00 多任务切换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab01.html">3. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab02.html">4. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab03.html">5. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lab04.html">6. 信号量的实现和应用</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. 地址映射与共享</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2">7.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">7.2. 实验内容</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">7.2.1. 跟踪地址翻译过程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">7.2.2. 基于共享内存的生产者—消费者程序</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">7.2.3. 共享内存的实现</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shmget">7.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shmat">7.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id7">5.3. 实验报告</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id8">5.3.1. 评分标准</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">7.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id8">7.3.1. 评分标准</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#id9">5.4. 实验提示</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id10">5.4.1. 准备</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id11">5.4.2. 暂停</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id12">5.4.3. 段表</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id13">5.4.4. 段描述符</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id14">5.4.5. 段基址和线性地址</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id15">5.4.6. 页表</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id16">5.4.7. 物理地址</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux">5.4.8. Linux 中的共享内存</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#linux-0-11">5.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id17">5.4.9.1. 获得空闲物理页面</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id18">5.4.9.2. 地址映射</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id19">5.4.9.3. 寻找空闲的虚拟地址空间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id9">7.4. 实验提示</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id10">7.4.1. 准备</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id11">7.4.2. 暂停</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id12">7.4.3. 段表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id13">7.4.4. 段描述符</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id14">7.4.5. 段基址和线性地址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id15">7.4.6. 页表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id16">7.4.7. 物理地址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux">7.4.8. Linux 中的共享内存</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#linux-0-11">7.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id17">7.4.9.1. 获得空闲物理页面</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">7.4.9.2. 地址映射</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">7.4.9.3. 寻找空闲的虚拟地址空间</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#id20">7.5. 可能遇到的问题</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#trying-to-free-free-page">7.5.1. trying to free free page</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="lab06.html">6. 打印进程地址转换过程</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lab06.html">8. 打印进程地址转换过程</a></li>
 </ul>
 <p class="caption"><span class="caption-text">附录</span></p>
 <ul>
@@ -205,7 +206,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>5. 地址映射与共享</li>
+      <li>7. 地址映射与共享</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -223,9 +224,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="id1">
-<h1>5. 地址映射与共享<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<h1>7. 地址映射与共享<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id2">
-<h2>5.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>7.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li><p>深入理解操作系统的段、页式内存管理，深入理解段表、页表、逻辑地址、线性地址、物理地址等概念；</p></li>
 <li><p>实践段、页式内存管理的地址映射过程；</p></li>
@@ -233,7 +234,7 @@
 </ul>
 </div>
 <div class="section" id="id3">
-<h2>5.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<h2>7.2. 实验内容<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
 <p>本次实验的基本内容是：</p>
 <ul class="simple">
 <li><p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 调试工具跟踪 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的地址翻译（地址映射）过程，了解 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 和 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的内存管理机制；</p></li>
@@ -241,7 +242,7 @@
 <li><p>在信号量实验的基础上，为 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 增加共享内存功能，并将生产者-消费者程序移植到 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 。</p></li>
 </ul>
 <div class="section" id="id4">
-<h3>5.2.1. 跟踪地址翻译过程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<h3>7.2.1. 跟踪地址翻译过程<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
 <p>首先以汇编级调试的方式启动 <code class="docutils literal notranslate"><span class="pre">bochs</span></code> ，引导 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> ，并在其下编译和运行 <code class="docutils literal notranslate"><span class="pre">test.c</span></code> 。
 它是一个无限循环的程序，永远不会主动退出。
 然后在调试器中通过查看各项系统参数，从逻辑地址、 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> 表、 <code class="docutils literal notranslate"><span class="pre">GDT</span></code> 表、线性地址到页表，计算出变量 <code class="docutils literal notranslate"><span class="pre">i</span></code> 的物理地址。
@@ -264,7 +265,7 @@
 </div>
 </div>
 <div class="section" id="id5">
-<h3>5.2.2. 基于共享内存的生产者—消费者程序<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
+<h3>7.2.2. 基于共享内存的生产者—消费者程序<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h3>
 <p>本项实验在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下完成，与信号量实验中的 <code class="docutils literal notranslate"><span class="pre">pc.c</span></code> 的功能要求基本一致，仅有两点不同：</p>
 <ul class="simple">
 <li><p>不用文件做缓冲区，而是使用共享内存；</p></li>
@@ -273,7 +274,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下，可以通过 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 两个系统调用使用共享内存。</p>
 </div>
 <div class="section" id="id6">
-<h3>5.2.3. 共享内存的实现<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<h3>7.2.3. 共享内存的实现<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
 <p>进程之间可以通过页共享进行通信，被共享的页叫做共享内存，结构如下图所示：</p>
 <p><img alt="共享内存" src="../_images/lab05_ShareMemory.svg" /></p>
 <p>图1. 共享内存</p>
@@ -283,7 +284,7 @@
 <p>具体要求在 <code class="docutils literal notranslate"><span class="pre">mm/shm.c</span></code> 中实现 <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shmat()</span></code> 两个系统调用。它们能支持 <code class="docutils literal notranslate"><span class="pre">producer.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">consumer.c</span></code> 的运行即可，不需要完整地实现 <code class="docutils literal notranslate"><span class="pre">POSIX</span></code> 所规定的功能。</p>
 </div>
 <div class="section" id="shmget">
-<h3>5.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code><a class="headerlink" href="#shmget" title="永久链接至标题">¶</a></h3>
+<h3>7.2.4. <code class="docutils literal notranslate"><span class="pre">shmget()</span></code><a class="headerlink" href="#shmget" title="永久链接至标题">¶</a></h3>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">shmget</span><span class="p">(</span><span class="kt">key_t</span> <span class="n">key</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -294,7 +295,7 @@
 如果系统无空闲内存，返回 <code class="docutils literal notranslate"><span class="pre">-1</span></code> ，并置 <code class="docutils literal notranslate"><span class="pre">errno</span></code> 为 <code class="docutils literal notranslate"><span class="pre">ENOMEM</span></code> 。 <code class="docutils literal notranslate"><span class="pre">shmflg</span></code> 参数可忽略。</p>
 </div>
 <div class="section" id="shmat">
-<h3>5.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code><a class="headerlink" href="#shmat" title="永久链接至标题">¶</a></h3>
+<h3>7.2.5. <code class="docutils literal notranslate"><span class="pre">shmat()</span></code><a class="headerlink" href="#shmat" title="永久链接至标题">¶</a></h3>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="o">*</span><span class="nf">shmat</span><span class="p">(</span><span class="kt">int</span> <span class="n">shmid</span><span class="p">,</span> <span class="k">const</span> <span class="kt">void</span> <span class="o">*</span><span class="n">shmaddr</span><span class="p">,</span> <span class="kt">int</span> <span class="n">shmflg</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -303,14 +304,14 @@
 </div>
 </div>
 <div class="section" id="id7">
-<h2>5.3. 实验报告<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
+<h2>7.3. 实验报告<a class="headerlink" href="#id7" title="永久链接至标题">¶</a></h2>
 <p>完成实验后，在实验报告中回答如下问题：</p>
 <ul class="simple">
 <li><p>对于地址映射实验部分，列出你认为最重要的那几步（不超过 <code class="docutils literal notranslate"><span class="pre">4</span></code> 步），并给出你获得的实验数据。</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test.c</span></code> 退出后，如果马上再运行一次，并再进行地址跟踪，你发现有哪些异同？为什么？</p></li>
 </ul>
 <div class="section" id="id8">
-<h3>5.3.1. 评分标准<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
+<h3>7.3.1. 评分标准<a class="headerlink" href="#id8" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
 <li><p>跟踪地址映射的过程，20%</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">shmget()</span></code> ，10%</p></li>
@@ -322,7 +323,7 @@
 </div>
 </div>
 <div class="section" id="id9">
-<h2>5.4. 实验提示<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
+<h2>7.4. 实验提示<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h2>
 <p>《注释》中的 <code class="docutils literal notranslate"><span class="pre">5.3</span></code> 节和第 <code class="docutils literal notranslate"><span class="pre">13</span></code> 章对 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 的内存管理有详细分析、讲解，很值得一看。</p>
 <p><code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 的地址翻译过程</p>
 <blockquote>
@@ -333,7 +334,7 @@
 <p>用 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 汇编级调试功能进行人工地址翻译</p>
 <p>此过程比较机械，基本不消耗脑细胞，做一下有很多好处。</p>
 <div class="section" id="id10">
-<h3>5.4.1. 准备<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
+<h3>7.4.1. 准备<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
 <p>编译好 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 后，首先通过运行 <code class="docutils literal notranslate"><span class="pre">./run</span></code> 启动调试器，此时 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的窗口处于黑屏状态，而命令行窗口显示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">========================================================================</span>
                         <span class="n">Bochs</span> <span class="n">x86</span> <span class="n">Emulator</span> <span class="mf">2.6</span>
@@ -353,7 +354,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">test</span></code> 是一个死循环，只会不停占用 <code class="docutils literal notranslate"><span class="pre">CPU</span></code> ，不会退出。</p>
 </div>
 <div class="section" id="id11">
-<h3>5.4.2. 暂停<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
+<h3>7.4.2. 暂停<a class="headerlink" href="#id11" title="永久链接至标题">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">test</span></code> 运行的时候，在命令行窗口按 <code class="docutils literal notranslate"><span class="pre">Ctrl+c</span></code> ， <code class="docutils literal notranslate"><span class="pre">Bochs``会暂停运行，进入调试状态。绝大多数情况下都会停在</span> <span class="pre">``test</span></code> 内，显示类似如下信息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">[</span><span class="mh">0x00fc8031</span><span class="p">]</span> <span class="mi">000</span><span class="n">f</span><span class="p">:</span><span class="mi">00000031</span> <span class="p">(</span><span class="n">unk</span><span class="o">.</span> <span class="n">ctxt</span><span class="p">):</span> <span class="nb">cmp</span> <span class="n">dword</span> <span class="n">ptr</span> <span class="n">ds</span><span class="p">:</span><span class="mh">0x3004</span><span class="p">,</span> <span class="mh">0x00000000</span> <span class="p">;</span> <span class="mi">833</span><span class="n">d0430000000</span>
 </pre></div>
@@ -373,7 +374,7 @@
 <p>现在，开始寻找 <code class="docutils literal notranslate"><span class="pre">ds:0x3004</span></code> 对应的物理地址。</p>
 </div>
 <div class="section" id="id12">
-<h3>5.4.3. 段表<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
+<h3>7.4.3. 段表<a class="headerlink" href="#id12" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ds:0x3004</span></code> 是虚拟地址， <code class="docutils literal notranslate"><span class="pre">ds</span></code> 表明这个地址属于 <code class="docutils literal notranslate"><span class="pre">ds</span></code> 段。首先要找到段表，然后通过 <code class="docutils literal notranslate"><span class="pre">ds</span></code> 的值在段表中找到 <code class="docutils literal notranslate"><span class="pre">ds</span></code> 段的具体信息，才能继续进行地址翻译。每个在 <code class="docutils literal notranslate"><span class="pre">IA-32</span></code> 上运行的应用程序都有一个段表，叫 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> ，段的信息叫段描述符。</p>
 <p><code class="docutils literal notranslate"><span class="pre">LDT</span></code> 在哪里呢？ <code class="docutils literal notranslate"><span class="pre">ldtr</span></code> 寄存器是线索的起点，通过它可以在 <code class="docutils literal notranslate"><span class="pre">GDT</span></code> （全局描述符表）中找到 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> 的物理地址。</p>
 <p>用 <code class="docutils literal notranslate"><span class="pre">sreg</span></code> 命令：</p>
@@ -417,7 +418,7 @@
 <p>这就是 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> 表的前 <code class="docutils literal notranslate"><span class="pre">4</span></code> 项内容了。</p>
 </div>
 <div class="section" id="id13">
-<h3>5.4.4. 段描述符<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
+<h3>7.4.4. 段描述符<a class="headerlink" href="#id13" title="永久链接至标题">¶</a></h3>
 <p>在保护模式下，段寄存器有另一个名字，叫段选择子，因为它保存的信息主要是该段在段表里索引值，用这个索引值可以从段表中“选择”出相应的段描述符。</p>
 <p>先看看 <code class="docutils literal notranslate"><span class="pre">ds</span></code> 选择子的内容，还是用 <code class="docutils literal notranslate"><span class="pre">sreg</span></code> 命令：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cs</span><span class="p">:</span><span class="n">s</span><span class="o">=</span><span class="mh">0x000f</span><span class="p">,</span> <span class="n">dl</span><span class="o">=</span><span class="mh">0x00000002</span><span class="p">,</span> <span class="n">dh</span><span class="o">=</span><span class="mh">0x10c0fa00</span><span class="p">,</span> <span class="n">valid</span><span class="o">=</span><span class="mi">1</span>
@@ -444,14 +445,14 @@
 <p>可以看到，段描述符是一个 <code class="docutils literal notranslate"><span class="pre">64</span></code> 位二进制的数，存放了段基址和段限长等重要的数据。其中位 <code class="docutils literal notranslate"><span class="pre">P</span></code> （Present）是段是否存在的标记；位 <code class="docutils literal notranslate"><span class="pre">S</span></code> 用来表示是系统段描述符（ <code class="docutils literal notranslate"><span class="pre">S=0</span></code> ）还是代码或数据段描述符（ <code class="docutils literal notranslate"><span class="pre">S=1</span></code> ）；四位 <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> 用来表示段的类型，如数据段、代码段、可读、可写等； <code class="docutils literal notranslate"><span class="pre">DPL</span></code> 是段的权限，和 <code class="docutils literal notranslate"><span class="pre">CPL</span></code> 、 <code class="docutils literal notranslate"><span class="pre">RPL</span></code> 对应使用；位 <code class="docutils literal notranslate"><span class="pre">G</span></code> 是粒度， <code class="docutils literal notranslate"><span class="pre">G=0</span></code> 表示段限长以位为单位， <code class="docutils literal notranslate"><span class="pre">G=1</span></code> 表示段限长以 <code class="docutils literal notranslate"><span class="pre">4KB</span></code> 为单位；其他内容就不详细解释了。</p>
 </div>
 <div class="section" id="id14">
-<h3>5.4.5. 段基址和线性地址<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
+<h3>7.4.5. 段基址和线性地址<a class="headerlink" href="#id14" title="永久链接至标题">¶</a></h3>
 <p>费了很大的劲，实际上我们需要的只有段基址一项数据，即段描述符 <code class="docutils literal notranslate"><span class="pre">0x00003fff</span> <span class="pre">0x10c0f300</span></code> 中加粗部分组合成的 <code class="docutils literal notranslate"><span class="pre">0x10000000</span></code> 。这就是ds段在线性地址空间中的起始地址。用同样的方法也可以算算其它段的基址，都是这个数。</p>
 <p><strong>段基址+段内偏移</strong> ，就是 <strong>线性地址</strong> 了。所以 <code class="docutils literal notranslate"><span class="pre">ds:0x3004</span></code> 的线性地址就是：
 <code class="docutils literal notranslate"><span class="pre">0x10000000</span> <span class="pre">+</span> <span class="pre">0x3004</span> <span class="pre">=</span> <span class="pre">0x10003004</span></code>
 用 <code class="docutils literal notranslate"><span class="pre">calc</span> <span class="pre">ds:0x3004</span></code> 命令可以验证这个结果。</p>
 </div>
 <div class="section" id="id15">
-<h3>5.4.6. 页表<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
+<h3>7.4.6. 页表<a class="headerlink" href="#id15" title="永久链接至标题">¶</a></h3>
 <p>从线性地址计算物理地址，需要查找页表。线性地址变成物理地址的过程如下：</p>
 <p><img alt="线性地址变成物理地址" src="../_images/lab05_pagingTranslation.png" /></p>
 <p>图5. 线性地址变成物理地址</p>
@@ -498,7 +499,7 @@
 <p>其中 <code class="docutils literal notranslate"><span class="pre">067</span></code> 是属性，显然 <code class="docutils literal notranslate"><span class="pre">P=1</span></code> ，应该是这样。</p>
 </div>
 <div class="section" id="id16">
-<h3>5.4.7. 物理地址<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
+<h3>7.4.7. 物理地址<a class="headerlink" href="#id16" title="永久链接至标题">¶</a></h3>
 <p>最终结果马上就要出现了！</p>
 <p>线性地址 <code class="docutils literal notranslate"><span class="pre">0x10003004</span></code> 对应的物理页框号为 <code class="docutils literal notranslate"><span class="pre">0x00fa7</span></code> ，和页内偏移 <code class="docutils literal notranslate"><span class="pre">0x004</span></code> 接到一起，得到 <code class="docutils literal notranslate"><span class="pre">0x00fa7004</span></code> ，这就是变量 <code class="docutils literal notranslate"><span class="pre">i</span></code> 的物理地址。可以通过两种方法验证。</p>
 <p>第一种方法是用命令 <code class="docutils literal notranslate"><span class="pre">page</span> <span class="pre">0x10003004</span></code> ，可以得到信息：</p>
@@ -513,7 +514,7 @@
 <p>现在，通过直接修改内存来改变 <code class="docutils literal notranslate"><span class="pre">i</span></code> 的值为 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，命令是： <code class="docutils literal notranslate"><span class="pre">setpmem</span> <span class="pre">0x00fa7004</span> <span class="pre">4</span> <span class="pre">0</span></code> ，表示从 <code class="docutils literal notranslate"><span class="pre">0x00fa7004</span></code> 地址开始的 <code class="docutils literal notranslate"><span class="pre">4</span></code> 个字节都设为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 。然后再用 <code class="docutils literal notranslate"><span class="pre">c</span></code> 命令继续 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 的运行，可以看到 <code class="docutils literal notranslate"><span class="pre">test</span></code> 退出了，说明i的修改成功了，此项实验结束。</p>
 </div>
 <div class="section" id="linux">
-<h3>5.4.8. Linux 中的共享内存<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
+<h3>7.4.8. Linux 中的共享内存<a class="headerlink" href="#linux" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Linux</span></code> 支持两种方式的共享内存:</p>
 <ul class="simple">
 <li><p>一种方式是 <code class="docutils literal notranslate"><span class="pre">shm_open()</span></code> 、 <code class="docutils literal notranslate"><span class="pre">mmap()</span></code> 和 <code class="docutils literal notranslate"><span class="pre">shm_unlink()</span></code> 的组合；</p></li>
@@ -524,9 +525,9 @@
 <p>特别提醒：没有父子关系的进程之间进行共享内存， <code class="docutils literal notranslate"><span class="pre">shmget()</span></code> 的第一个参数 <code class="docutils literal notranslate"><span class="pre">key</span></code> 不要用 <code class="docutils literal notranslate"><span class="pre">IPC_PRIVATE</span></code> ，否则无法共享。用什么数字可视心情而定。</p>
 </div>
 <div class="section" id="linux-0-11">
-<h3>5.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
+<h3>7.4.9. 在 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中实现共享内存<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
 <div class="section" id="id17">
-<h4>5.4.9.1. 获得空闲物理页面<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
+<h4>7.4.9.1. 获得空闲物理页面<a class="headerlink" href="#id17" title="永久链接至标题">¶</a></h4>
 <p>实验者需要考虑如何实现页面共享。首先看一下 <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 如何操作页面，如何管理进程地址空间。</p>
 <p>在 <code class="docutils literal notranslate"><span class="pre">kernel/fork.c</span></code> 文件中有：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">copy_process</span><span class="p">(</span> <span class="cm">/* …*/</span> <span class="p">)</span>
@@ -562,7 +563,7 @@
 <p>显然 <code class="docutils literal notranslate"><span class="pre">get_free_page</span></code> 函数就是在 <code class="docutils literal notranslate"><span class="pre">mem_map</span></code> 位图中寻找值为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 的项（空闲页面），该函数返回的是该页面的起始物理地址。</p>
 </div>
 <div class="section" id="id18">
-<h4>5.4.9.2. 地址映射<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
+<h4>7.4.9.2. 地址映射<a class="headerlink" href="#id18" title="永久链接至标题">¶</a></h4>
 <p>有了空闲的物理页面，接下来需要完成线性地址和物理页面的映射， <code class="docutils literal notranslate"><span class="pre">Linux</span> <span class="pre">0.11</span></code> 中也有这样的代码，看看 <code class="docutils literal notranslate"><span class="pre">mm/memory.c</span></code> 中的
 <code class="docutils literal notranslate"><span class="pre">do_no_page(unsigned</span> <span class="pre">long</span> <span class="pre">address)</span></code> ，
 该函数用来处理线性地址 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的物理页面无效的情况（即缺页中断）， <code class="docutils literal notranslate"><span class="pre">do_no_page</span></code> 函数中调用一个重要的函数 <code class="docutils literal notranslate"><span class="pre">get_empty_page(address)</span></code> ，其中有：</p>
@@ -573,7 +574,7 @@
 <p>显然这两条语句就用来获得空闲物理页面，然后填写线性地址 <code class="docutils literal notranslate"><span class="pre">address</span></code> 对应的页目录和页表。</p>
 </div>
 <div class="section" id="id19">
-<h4>5.4.9.3. 寻找空闲的虚拟地址空间<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h4>
+<h4>7.4.9.3. 寻找空闲的虚拟地址空间<a class="headerlink" href="#id19" title="永久链接至标题">¶</a></h4>
 <p>有了空闲物理页面，也有了建立线性地址和物理页面的映射，但要完成本实验还需要能获得一段空闲的虚拟地址空间。要从数据段中划出一段空间，首先需要了解进程数据段空间的分布，而这个分布显然是由 <code class="docutils literal notranslate"><span class="pre">exec</span></code> 系统调用决定的，所以要详细看一看 <code class="docutils literal notranslate"><span class="pre">exec</span></code> 的核心代码， <code class="docutils literal notranslate"><span class="pre">do_execve</span></code> （在文件 <code class="docutils literal notranslate"><span class="pre">fs/exec.c</span></code> 中）。在函数 <code class="docutils literal notranslate"><span class="pre">do_execve()</span></code> 中，修改数据段（当然是修改 <code class="docutils literal notranslate"><span class="pre">LDT</span></code> ）的地方是 <code class="docutils literal notranslate"><span class="pre">change_ldt</span></code> ，函数 <code class="docutils literal notranslate"><span class="pre">change_ldt</span></code> 实现如下：</p>
 <div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">change_ldt</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">text_size</span><span class="p">,</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="o">*</span> <span class="n">page</span><span class="p">)</span>
 <span class="p">{</span>
@@ -615,6 +616,39 @@ span.prompt1:before {
 </div>
 </div>
 </div>
+<div class="section" id="id20">
+<h2>7.5. 可能遇到的问题<a class="headerlink" href="#id20" title="永久链接至标题">¶</a></h2>
+<div class="section" id="trying-to-free-free-page">
+<h3>7.5.1. trying to free free page<a class="headerlink" href="#trying-to-free-free-page" title="永久链接至标题">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 下添加系统调用实现共享内存并编写完程序后，运行过程中可能会发现消费者程序运行结束后终端打印了  <code class="docutils literal notranslate"><span class="pre">trying</span> <span class="pre">to</span> <span class="pre">free</span> <span class="pre">free</span> <span class="pre">page</span></code> 并死机，
+通过简单的调试可以发现这是程序调用 <code class="docutils literal notranslate"><span class="pre">memory.c</span></code> 中的 <code class="docutils literal notranslate"><span class="pre">free_page()</span></code> 函数导致的，<code class="docutils literal notranslate"><span class="pre">panic</span></code> 会打印传入的参数字符串并死循环。</p>
+<p>查看 <code class="docutils literal notranslate"><span class="pre">free_page()</span></code> 的实现方式</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/*</span>
+<span class="cm">* Free a page of memory at physical address &#39;addr&#39;. Used by</span>
+<span class="cm">* &#39;free_page_tables()&#39;</span>
+<span class="cm">*/</span>
+<span class="kt">void</span> <span class="nf">free_page</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">addr</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">addr</span> <span class="o">&lt;</span> <span class="n">LOW_MEM</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">addr</span> <span class="o">&gt;=</span> <span class="n">HIGH_MEMORY</span><span class="p">)</span>
+        <span class="n">panic</span><span class="p">(</span><span class="s">&quot;trying to free nonexistent page&quot;</span><span class="p">);</span>
+    <span class="n">addr</span> <span class="o">-=</span> <span class="n">LOW_MEM</span><span class="p">;</span>
+    <span class="n">addr</span> <span class="o">&gt;&gt;=</span> <span class="mi">12</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">mem_map</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span><span class="o">--</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="n">mem_map</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="n">panic</span><span class="p">(</span><span class="s">&quot;trying to free free page&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>很容易发现 <code class="docutils literal notranslate"><span class="pre">panic</span></code> 的发生是由于 <code class="docutils literal notranslate"><span class="pre">mem_map[addr]=0</span></code> 时，<code class="docutils literal notranslate"><span class="pre">return</span></code> 不执行，继续往下执行到 <code class="docutils literal notranslate"><span class="pre">panic</span></code> 导致的；
+也就是在 <code class="docutils literal notranslate"><span class="pre">mem_map[addr]</span></code> 为 <code class="docutils literal notranslate"><span class="pre">0</span></code> 时尝试释放物理页导致的，即重复释放物理页。</p>
+<p>我们考虑共享内存的实现方式，可以猜测，是共享一个物理页的多个进程中中的某一个将物理页释放了，
+而这个变化没有反应到与它共享该段物理内存的进程中，致使后续其他进程再一次尝试释放它们共享的物理内存，导致了重复释放的错误。
+在本次实验的 <code class="docutils literal notranslate"><span class="pre">produce.c</span></code> 和 <code class="docutils literal notranslate"><span class="pre">consum.c</span></code> 程序中，它们不会主动释放物理内存，那么必然是某个进程结束时资源的释放导致的。</p>
+<p>这时问题的解决方案已经很明显了，既然 <code class="docutils literal notranslate"><span class="pre">panic</span></code> 是由进程错误地重复释放物理内存导致的，我们只要不让它重复释放即可。</p>
+<p>思考一下，可以考虑修改这个 <code class="docutils literal notranslate"><span class="pre">bug</span></code> ，并记录修改过程。</p>
+</div>
+</div>
 </div>
 
 
@@ -625,10 +659,10 @@ span.prompt1:before {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="lab06.html" class="btn btn-neutral float-right" title="6. 打印进程地址转换过程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="lab06.html" class="btn btn-neutral float-right" title="8. 打印进程地址转换过程" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="lab04.html" class="btn btn-neutral float-left" title="4. 信号量的实现和应用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="lab04.html" class="btn btn-neutral float-left" title="6. 信号量的实现和应用" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -523,6 +523,61 @@ Linux的 ``shell`` 有后台运行程序的功能。只要在命令的最后输�
 当运行 ``./consumer`` 的时候， ``producer`` 正在后台运行。
 
 
+
+
+
+可能遇到的问题
+---------------------------------------------------------------------------
+
+
+trying to free free page
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+``linux-0.11`` 下添加系统调用实现共享内存并编写完程序后，运行过程中可能会发现消费者程序运行结束后终端打印了  ``trying to free free page`` 并死机，
+通过简单的调试可以发现这是程序调用 ``memory.c`` 中的 ``free_page()`` 函数导致的，``panic`` 会打印传入的参数字符串并死循环。
+
+查看 ``free_page()`` 的实现方式
+
+.. code-block:: C
+
+    /*
+    * Free a page of memory at physical address 'addr'. Used by
+    * 'free_page_tables()'
+    */
+    void free_page(unsigned long addr)
+    {
+        if (addr < LOW_MEM) return;
+        if (addr >= HIGH_MEMORY)
+            panic("trying to free nonexistent page");
+        addr -= LOW_MEM;
+        addr >>= 12;
+        if (mem_map[addr]--) return;
+        mem_map[addr]=0;
+        panic("trying to free free page");
+    }
+
+
+很容易发现 ``panic`` 的发生是由于 ``mem_map[addr]=0`` 时，``return`` 不执行，继续往下执行到 ``panic`` 导致的；
+也就是在 ``mem_map[addr]`` 为 ``0`` 时尝试释放物理页导致的，即重复释放物理页。
+
+
+我们考虑共享内存的实现方式，可以猜测，是共享一个物理页的多个进程中中的某一个将物理页释放了，
+而这个变化没有反应到与它共享该段物理内存的进程中，致使后续其他进程再一次尝试释放它们共享的物理内存，导致了重复释放的错误。
+在本次实验的 ``produce.c`` 和 ``consum.c`` 程序中，它们不会主动释放物理内存，那么必然是某个进程结束时资源的释放导致的。
+
+这时问题的解决方案已经很明显了，既然 ``panic`` 是由进程错误地重复释放物理内存导致的，我们只要不让它重复释放即可。
+
+思考一下，可以考虑修改这个 ``bug`` ，并记录修改过程。
+
+..
+    通过为每个物理页再维护一个整数，表示有多少个线性地址通过页表结构指向自己，然后只有当该整数被减到 ``0`` 时才对物理页面进行释放，具体的，只需要在 ``memory.c`` 中修改一点点即可。
+
+
+
+
+
+
 .. |共享内存| image:: ../_static/img/lab05/lab05_ShareMemory.svg
 .. |段页式| image:: ../_static/img/lab05/lab05_SegmentationPaging.png
 .. |段选择子| image:: ../_static/img/lab05/lab05_SegmentSelector.png
