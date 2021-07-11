@@ -1,0 +1,642 @@
+GDB Cheat Sheet
+================================================================================
+
+``gdb [options] [PROGRAM [COREFILE or PID]]``
+``gdb [options] --args PROGRAM [INFARGS...]`` to pass any arguments
+after the executable file to the inferior
+
+Options
+-------
+
+-  ``--silent`` [or ``-q``/``--quiet``] to start without printing the
+   front material
+-  ``--core COREFILE`` [or ``-c``] to analyze a core dump
+-  ``--pid PID`` [or ``-p``] to debug a running process (as with the
+   ``attach`` command)
+-  ``--command EXECFILE`` [or ``-x``] to execute `commands from
+   file <https://sourceware.org/gdb/current/onlinedocs/gdb/Command-Files.html#Command-Files>`__
+   (as with the ``source`` command)
+-  ``--symbols SYMFILE`` [or ``-s``] to read symbol table from file
+
+Examples
+--------
+
+-  ``gdb -q --args gcc -O2 -c foo.c``
+
+Examples of `command-lists <https://sourceware.org/gdb/current/onlinedocs/gdb/Break-Commands.html#Break-Commands>`__ from a command file
+----------------------------------------------------------------------------------------------------------------------------------------
+
+::
+
+   b main
+   commands 1
+     print argc
+     continue
+   end
+
+   b *0xdeadbeef if x > 0
+   commands 2
+     p i
+     p b
+     continue
+   end
+
+   run
+
+
+.. contents:: Table of Contents
+    :depth: 3
+
+
+`Getting In and Out of gdb <https://sourceware.org/gdb/current/onlinedocs/gdb/Invocation.html#Invocation>`__
+--------------------------------------------------------------------------------------------------------------
+
+`Quitting gdb <https://sourceware.org/gdb/current/onlinedocs/gdb/Quitting-GDB.html#Quitting-GDB>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``quit`` [or ``q``] to exit gdb. An interrupt (often ``Ctrl-c``) does
+   not exit from gdb, but rather terminates the action of any gdb
+   command that is in progress and returns to gdb command level. It is
+   safe to type the interrupt character at any time because gdb does not
+   allow it to take effect until a time when it is safe
+
+`Shell Commands <https://sourceware.org/gdb/current/onlinedocs/gdb/Shell-Commands.html#Shell-Commands>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``shell COMMAND`` [or ``!COMMAND``] to invoke a standard shell to
+   execute COMMAND
+
+`Logging Output <https://sourceware.org/gdb/current/onlinedocs/gdb/Logging-Output.html#Logging-Output>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``set logging on|off`` to enable/disable logging
+-  ``set logging file FILE``\ to change the name of the current logfile.
+   The default logfile is ``gdb.txt``
+
+`gdb Commands <https://sourceware.org/gdb/current/onlinedocs/gdb/Commands.html#Commands>`__
+---------------------------------------------------------------------------------------------
+
+`Getting Help <https://sourceware.org/gdb/current/onlinedocs/gdb/Help.html#Help>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``help`` [or ``h``] to display a short list of named classes of
+   commands
+-  ``help COMMAND`` to display a short paragraph on how to use that
+   command
+-  ``apropos ARGS`` to searche through all of the gdb commands and their
+   documentation for the regular expression specified in ARGS
+-  ``complete ARGS`` to list all the possible completions for the
+   beginning of a command specified by ARGS
+-  ``info`` [or ``i``] to describe the state of your program. You can
+   get a complete list of the info sub-commands with ``help info``
+-  ``info files`` [or ``info target``] to display info on the debugged
+   program (useful to find the entry point)
+-  ``info functions [REGEXP]`` to list all defined functions or whose
+   matching REGEXP
+-  ``info address SYMBOL`` to find address of SYMBOL
+-  ``info proc mappings`` to display the list of mapped memory regions
+-  ``info registers [REGISTER]`` to display the contents of all the
+   general-purpose processor registers or the content of register
+   REGISTER
+-  ``info sharedlibrary`` to display information about loaded libraries
+-  ``info symbol ADDR`` to display the name of the symbol residing at a
+   given address ADDR
+-  ``info types [REGEXP]`` to display the list of types defined in the
+   currently loaded modules or the list of types matching REGEXP
+-  ``info variables [REGEXP]`` to display the list of global/static
+   variables or whose matching REGEXP
+
+.. _examples-1:
+
+Examples
+^^^^^^^^
+
+-  ``help status``
+-  ``apropos alias``
+-  ``complete i``
+-  ``info addr system``
+
+`Running Programs Under gdb <https://sourceware.org/gdb/current/onlinedocs/gdb/Running.html#Running>`__
+---------------------------------------------------------------------------------------------------------
+
+`Compiling for Debugging <https://sourceware.org/gdb/current/onlinedocs/gdb/Compilation.html#Compilation>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To request debugging information, specify the ``-g`` option when you run
+the compiler.
+
+`Starting your Program <https://sourceware.org/gdb/current/onlinedocs/gdb/Starting.html#Starting>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``run`` [or ``r``] to start your program under gdb
+-  ``start`` to set a temporary breakpoint at the beginning of the main
+   procedure and then invoke the ``run`` command
+-  ``set exec-wrapper WRAPPER`` to set the wrapper used to launch
+   programs for debugging, with a shell command of the form
+   ``exec WRAPPER program``. You can use any program that eventually
+   calls ``execve`` with its arguments as a wrapper
+-  ``show exec-wrapper``
+-  ``set disable-randomization on|off`` to enable/disable address
+   randomization
+
+.. _examples-2:
+
+Examples
+^^^^^^^^
+
+-  ``set exec-wrapper env 'LD_PRELOAD=custom_libc.so'`` (to pass an
+   environment variable to the debugged program without setting the
+   variable in your shell’s environment)
+
+`Your Program’s Arguments <https://sourceware.org/gdb/current/onlinedocs/gdb/Arguments.html#Arguments>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``set args`` to specify the arguments to be used the next time your
+   program is run. If ``set args`` has no arguments, run executes your
+   program with no arguments. Once you have run your program with
+   arguments, using ``set args`` before the next run is the only way to
+   run it again without arguments
+-  ``show args``
+
+`Your Program’s Environment <https://sourceware.org/gdb/current/onlinedocs/gdb/Environment.html#Environment>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``set environment VARNAME [VALUE]`` to set environment variable
+   VARNAME to VALUE
+-  ``show environment [VARNAME]`` to print the value of environment
+   variable VARNAME. If VARNAME is not specified, print the names and
+   values of all environment variables
+-  ``unset environment [VARNAME]`` to remove variable VARNAME from the
+   environment. If VARNAME is not specified, remove all environment
+   variables
+
+.. _examples-3:
+
+Examples
+^^^^^^^^
+
+-  ``set environment LD_PRELOAD=./yourso.so``
+
+`Debugging an Already-running Process <https://sourceware.org/gdb/current/onlinedocs/gdb/Attach.html#Attach>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``attach`` to attach to a running process started outside gdb
+
+`Debugging Multiple Inferiors and Programs <https://sourceware.org/gdb/current/onlinedocs/gdb/Inferiors-and-Programs.html#Inferiors-and-Programs>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``info inferiors`` to print a list of all inferiors currently being
+   managed by gdb
+-  ``inferior INFNO`` to make inferior number INFNO the current inferior
+-  ``kill inferiors INFNO...`` to kill the inferior or inferiors
+   identified by gdb inferior number(s)
+
+`Debugging Programs with Multiple Threads <https://sourceware.org/gdb/current/onlinedocs/gdb/Threads.html#Threads>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``thread THREADID`` to switch among threads
+-  ``info threads`` to inquire about existing threads
+
+`Debugging Forks <https://sourceware.org/gdb/current/onlinedocs/gdb/Forks.html#Forks>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``set follow-fork-mode MODE`` to set the debugger response to a
+   program call of ``fork`` or ``vfork``. The MODE argument can be
+   ``parent`` (the original process is debugged after a fork) or
+   ``child`` (the new process is debugged after a fork)
+-  ``show follow-fork-mode``
+-  ``set detach-on-fork MODE`` to detach one of the processes after a
+   fork or retain debugger control over them both. The MODE argument can
+   be ``on`` (the child process (or parent process, depending on the
+   value of ``follow-fork-mode``) will be detached and allowed to run
+   independently) or ``off`` (both processes will be held under the
+   control of gdb, one debugged and the other held suspended)
+-  ``show detach-on-fork``
+-  ``set follow-exec-mode MODE`` to set debugger response to a program
+   call of ``exec``. The MODE argument can be ``new`` (gdb creates a new
+   inferior and rebinds the process to this new inferior. The program
+   the process was running before the ``exec`` call can be restarted
+   afterwards by restarting the original inferior) or ``same`` (gdb
+   keeps the process bound to the same inferior. The new executable
+   image replaces the previous executable loaded in the inferior.
+   Restarting the inferior after the ``exec`` call, with e.g., the
+   ``run`` command, restarts the executable the process was running
+   after the ``exec`` call)
+-  ``show follow-exec-mode``
+
+`Setting a Bookmark to Return to Later <https://sourceware.org/gdb/current/onlinedocs/gdb/Checkpoint_002fRestart.html#Checkpoint_002fRestart>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``checkpoint`` save a snapshot of the debugged program’s current
+   execution state
+-  ``info checkpoints`` to list the checkpoints that have been saved in
+   the current debugging session
+-  ``restart CHKID`` to restore the program state that was saved as
+   checkpoint number CHKID
+-  ``delete checkpoint CHKID`` to delete the previously-saved checkpoint
+   identified by CHKID
+
+`Stopping and Continuing <https://sourceware.org/gdb/current/onlinedocs/gdb/Stopping.html#Stopping>`__
+--------------------------------------------------------------------------------------------------------
+
+`Breakpoints, Watchpoints, and Catchpoints <https://sourceware.org/gdb/current/onlinedocs/gdb/Breakpoints.html#Breakpoints>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``break [LOCATION]`` to a breakpoint at the given LOCATION. If
+   LOCATION is not specified, set a breakpoint at the next instruction
+   to be executed in the selected stack frame
+-  ``break ... if COND`` to set a `breakpoint with
+   condition <https://sourceware.org/gdb/current/onlinedocs/gdb/Conditions.html#Conditions>`__
+   COND
+-  ``tbreak ARGS`` to set a breakpoint enabled only for one stop (ARGS
+   are the same as for the ``break`` command)
+-  ``hbreak ARGS`` to set a hardware-assisted breakpoint (ARGS are the
+   same as for the ``break`` command)
+-  ``thbreak ARGS`` to set a hardware-assisted breakpoint enabled only
+   for one stop (ARGS are the same as for the ``hbreak`` command)
+-  ``rbreak REGEX`` to set breakpoints on all functions matching the
+   regular expression REGEX
+-  ``break ARGS thread THREADNO`` to set breakpoints on a particular
+   thread
+-  ``info breakpoints`` to print a table of all breakpoints,
+   watchpoints, and catchpoints set and not deleted
+
+Use a watchpoint to stop execution whenever the value of an expression
+changes.
+
+-  ``watch EXPR`` to set a watchpoint that will break when the
+   expression EXPR is **written** into by the program and its value
+   changes
+-  ``rwatch EXPR`` to set a watchpoint that will break when the value of
+   EXPR is **read** by the program
+-  ``awatch EXPR`` to set a watchpoint that will break when EXPR is
+   either **read** from or **written** into by the program
+-  ``info watchpoints`` to print a list of watchpoints
+
+gdb sets a hardware watchpoint if possible. Hardware watchpoints execute
+very quickly, and the debugger reports a change in value at the exact
+instruction where the change occurs. If gdb cannot set a hardware
+watchpoint, it sets a software watchpoint, which executes more slowly
+and reports the change in value at the next statement, not the
+instruction, after the change occurs. -
+``set can-use-hw-watchpoints 0|1`` to set whether or not to use hardware
+watchpoints - ``show can-use-hw-watchpoints`` to show the current mode
+of using hardware watchpoints
+
+In multi-threaded programs, watchpoints will detect changes to the
+watched expression from every thread.
+
+-  ``delete [RANGE...]`` to delete the breakpoints, watchpoints, or
+   catchpoints of the breakpoint ranges. If RANGE… is not specified,
+   delete all breakpoints, watchpoints or catchpoints
+
+-  ``disable [RANGE...]`` to disable the specified breakpoints. If
+   RANGE… is not specified, disable all breakpoints
+
+-  ``enable [RANGE...]`` to enable the specified breakpoints. If RANGE…
+   is not specified, enable all breakpoints
+
+-  ``enable once RANGE...`` to enable the specified breakpoints
+   temporarily and then disable them after stopping your program
+
+-  ``enable delete RANGE...`` to enable the specified breakpoints
+   temporarily and then delete them after stopping your program
+
+-  ``save breakpoints [FILE]`` to save breakpoint definitions to a file
+
+.. _examples-4:
+
+Examples
+^^^^^^^^
+
+-  ``watch x``
+-  ``watch *0x600850``
+-  ``watch *(int *)0x12345678`` (to watch a 4-byte region at the
+   specified address)
+-  ``watch a*b + c/d``
+-  ``delete 1 2 3``
+-  ``delete 1-3 5-6``
+-  ``disable 1 2 3``
+-  ``enable delete 1 2``
+
+`Continuing and Stepping <https://sourceware.org/gdb/current/onlinedocs/gdb/Continuing-and-Stepping.html#Continuing-and-Stepping>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``continue`` [or ``c``] to resume program execution after a stop
+-  ``finish`` to continue running until just after function in the
+   selected stack frame returns
+-  ``until`` [or ``u``] to continue execution until the program counter
+   is greater than the address of the jump (very useful to continue
+   execution until loop exit)
+-  ``advance LOCATION`` to continue running the program up to the given
+   location
+-  ``stepi`` [or ``si``] to execute one machine instruction
+-  ``nexti`` [or ``ni``] to execute one machine instruction stepping
+   over function calls
+
+`Signals <https://sourceware.org/gdb/current/onlinedocs/gdb/Signals.html#Signals>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``info signals`` [or ``info handle``] to print a table of all the
+   kinds of signals and how gdb has been told to handle each one
+-  ``handle SIGNAL [KEYWORDS...]`` to change the way gdb handles signal
+   SIGNAL. The keywords can be:
+
+   -  ``nostop`` to not stop your program when this signal happens
+   -  ``stop`` to stop your program when this signal happens. This
+      implies the ``print`` keyword as well
+   -  ``print`` to print a message when this signal happens
+   -  ``noprint`` to not mention the occurrence of the signal at all.
+      This implies the ``nostop`` keyword as well
+   -  ``pass`` [or ``noignore``] to allow your program to see this
+      signal
+   -  ``nopass`` [or ``ignore``] to not allow your program to see this
+      signal
+
+.. _examples-5:
+
+Examples
+^^^^^^^^
+
+-  ``handle SIGUSR1``
+
+`Running Programs Backward <https://sourceware.org/gdb/current/onlinedocs/gdb/Reverse-Execution.html#Reverse-Execution>`__
+----------------------------------------------------------------------------------------------------------------------------
+
+-  ``reverse-continue`` [or ``rc``] to start executing in reverse
+   beginning at the point where your program last stopped
+-  ``reverse-stepi`` to reverse-execute one machine instruction
+-  ``reverse-nexti`` to reverse-execute a single instruction in reverse
+   (called functions are “un-executed” atomically)
+-  ``reverse-finish`` to take you to the point where the current
+   function was called
+
+`Examining the Stack <https://sourceware.org/gdb/current/onlinedocs/gdb/Stack.html#Stack>`__
+----------------------------------------------------------------------------------------------
+
+`Backtraces <https://sourceware.org/gdb/current/onlinedocs/gdb/Backtrace.html#Backtrace>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``backtrace [N]`` [or ``bt``] to print a backtrace of the entire
+   stack
+-  ``backtrace full [N]`` to print the values of the local variables
+   also
+
+`Selecting a Frame <https://sourceware.org/gdb/current/onlinedocs/gdb/Selection.html#Selection>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``frame N`` [or ``f``] to select frame number N (frame zero is the
+   innermost (currently executing) frame)
+-  ``frame STACKADDR`` to select the frame at address STACKADDR
+-  ``up [N]`` to move N frames up the stack. N defaults to ``1``
+-  ``down [N]`` to move N frames down the stack. N defaults to ``1``
+-  ``select-frame [N]`` to silently select a stack frame
+
+`Information About a Frame <https://sourceware.org/gdb/current/onlinedocs/gdb/Frame-Info.html#Frame-Info>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``frame`` [or ``f``] to print a brief description of the currently
+   selected stack frame
+-  ``info frame`` to print a verbose description of the selected stack
+   frame
+-  ``info args`` to print the arguments of the selected frame
+-  ``info locals`` to print the local variables of the selected frame
+
+`Examining Data <https://sourceware.org/gdb/current/onlinedocs/gdb/Data.html#Data>`__
+----------------------------------------------------------------------------------------
+
+-  ``print [/F] [EXPR]`` [or ``inspect``] to evaluate and print the
+   value of an expression of the language your program is written in.
+   You can choose a different format by specifying ``/F``, where F is a
+   letter specifying the
+   `format <https://sourceware.org/gdb/current/onlinedocs/gdb/Output-Formats.html#Output-Formats>`__.
+   If you omit EXPR, gdb displays the last value again (useful to
+   inspect the same value in an alternative format)
+-  ``explore ARG`` to explore either an expression (in the source
+   language), or a type visible in the current context of the program
+   being debugged
+
+.. _examples-6:
+
+Examples
+~~~~~~~~
+
+-  ``p filename[0] = 'a'``
+-  ``p strlen(filename)``
+-  ``explore arr``
+-  ``explore struct ComplexStruct``
+
+`Program Variables <https://sourceware.org/gdb/current/onlinedocs/gdb/Variables.html#Variables>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _examples-7:
+
+Examples
+^^^^^^^^
+
+-  ``p 'f2.c'::x`` (to refer to static variables)
+-  ``p i@entry`` (to get value of variable ``i`` at the time the
+   function got called)
+
+`Artificial Arrays <https://sourceware.org/gdb/current/onlinedocs/gdb/Arrays.html#Arrays>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _examples-8:
+
+Examples
+^^^^^^^^
+
+-  ``p *array@len``
+-  ``p/x (short[])0x12345678`` (to create artificial arrays)
+
+`Examining Memory <https://sourceware.org/gdb/current/onlinedocs/gdb/Memory.html#Memory>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``x[/NFU] ADDR`` to examine memory. N, F, and U are all optional
+   parameters that specify how much memory to display and how to format
+   it
+
+.. _examples-9:
+
+Examples
+^^^^^^^^
+
+-  ``x/3uh 0x54320`` (to display three halfwords (``h``) of memory,
+   formatted as unsigned decimal integers (``u``), starting at address
+   ``0x54320``)
+-  ``x/4xw $sp`` (to print the four words (``w``) of memory above the
+   stack pointer (``$sp``) in hexadecimal (``x``))
+-  ``x/5i $pc-6``
+-  ``x/s *environ`` (to get the address of the first environment
+   variable (or, alternatively, EBP of main + 16/32 bytes))
+
+`Automatic Display <https://sourceware.org/gdb/current/onlinedocs/gdb/Auto-Display.html#Auto-Display>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``display[/FMT] EXPR`` to add the expression EXPR to the list of
+   expressions to display each time your program stops. FMT is used to
+   specify a `display
+   format <https://sourceware.org/gdb/current/onlinedocs/gdb/Output-Formats.html#Output-Formats>`__
+
+.. _examples-10:
+
+Examples
+^^^^^^^^
+
+-  ``display/i $pc``
+
+`Value History <https://sourceware.org/gdb/current/onlinedocs/gdb/Value-History.html#Value-History>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To refer to any previous value, use ``$`` followed by the value’s
+history number.
+
+-  ``show values`` to print the last ten values in the value history
+
+.. _examples-11:
+
+Examples
+^^^^^^^^
+
+-  ``p *$``
+
+`Convenience Variables <https://sourceware.org/gdb/current/onlinedocs/gdb/Convenience-Vars.html#Convenience-Vars>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+gdb provides convenience variables that you can use within gdb to hold
+on to a value and refer to it later. Convenience variables are prefixed
+with ``$``.
+
+.. _examples-12:
+
+Examples
+^^^^^^^^
+
+-  ``set $foo = *object_ptr``
+
+`Convenience Functions <https://sourceware.org/gdb/current/onlinedocs/gdb/Convenience-Funs.html#Convenience-Funs>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. _examples-13:
+
+Examples
+^^^^^^^^
+
+-  ``print $_isvoid ($v)``
+-  ``p $_strlen($s)``
+
+`Registers <https://sourceware.org/gdb/current/onlinedocs/gdb/Registers.html#Registers>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``info registers`` to print the names and values of all registers
+   except floating-point and vector registers
+-  ``info all-registers``
+
+gdb has four “standard” register names that are available (in
+expressions) on most machines—whenever they do not conflict with an
+architecture’s canonical mnemonics for registers. The register names
+``$pc`` and ``$sp`` are used for the program counter register and the
+stack pointer. ``$fp`` is used for a register that contains a pointer to
+the current stack frame, and ``$ps`` is used for a register that
+contains the processor status.
+
+.. _examples-14:
+
+Examples
+^^^^^^^^
+
+-  ``set $sp += 4``
+
+`Copy Between Memory and a File <https://sourceware.org/gdb/current/onlinedocs/gdb/Dump_002fRestore-Files.html#Dump_002fRestore-Files>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``dump [FORMAT] memory FILE START_ADDR END_ADDR`` to dump the
+   contents of memory from START_ADDR to END_ADDR, or the value of expr,
+   to FILE in the given format
+-  ``restore FILE [binary] BIAS START END`` to restore the contents of
+   file FILE into memory
+
+`How to Produce a Core File from Your Program <https://sourceware.org/gdb/current/onlinedocs/gdb/Core-File-Generation.html#Core-File-Generation>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``generate-core-file [FILE]`` [or ``gcore``] to produce a core dump
+   of the inferior process
+
+`Character Sets <https://sourceware.org/gdb/current/onlinedocs/gdb/Character-Sets.html#Character-Sets>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``set charset CHARSET`` to set the current host and target character
+   sets to CHARSET. If you type ``set charset <TAB><TAB>``, gdb will
+   list the names of the character sets that can be used for both host
+   and target
+
+`Search Memory <https://sourceware.org/gdb/current/onlinedocs/gdb/Searching-Memory.html#Searching-Memory>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``find [/SN] START_ADDR, +LEN|END_ADDR, VAL1 [, VAL2, ...]`` to
+   search memory for the sequence of bytes specified by VAL1, VAL2, etc.
+   The search begins at address START_ADDR and continues for either LEN
+   bytes or through to END_ADDR inclusive
+
+`Altering Execution <https://sourceware.org/gdb/current/onlinedocs/gdb/Altering.html#Altering>`__
+----------------------------------------------------------------------------------------------------
+
+`Assignment to Variables <https://sourceware.org/gdb/current/onlinedocs/gdb/Assignment.html#Assignment>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+``set`` is really the same as ``print`` except that the expression’s
+value is not printed and is not put in the value history.
+
+.. _examples-15:
+
+Examples
+^^^^^^^^
+
+-  ``print x=4``
+-  ``whatis width``
+-  ``set var width=47``
+-  ``set {int}0x83040 = 4``
+
+`Continuing at a Different Address <https://sourceware.org/gdb/current/onlinedocs/gdb/Jumping.html#Jumping>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``jump LOCATION``\ [or ``j``] to resume execution at location. The
+   ``jump`` command does not change the current stack frame, or the
+   stack pointer, or the contents of any memory location or any register
+   other than the program counter
+
+.. _examples-16:
+
+Examples
+^^^^^^^^
+
+-  ``jump *0x4028ba``
+
+`Giving your Program a Signal <https://sourceware.org/gdb/current/onlinedocs/gdb/Signaling.html#Signaling>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``signal SIGNAL`` to resume execution where your program is stopped,
+   but immediately give it the signal SIGNAL. The signal can be the name
+   or the number of a signal
+
+.. _examples-17:
+
+Examples
+^^^^^^^^
+
+-  ``signal SIGINT``
+-  ``signal 2``
+
+`Returning from a Function <https://sourceware.org/gdb/current/onlinedocs/gdb/Returning.html#Returning>`__
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  ``return [EXPR]`` to discard the selected stack frame (and all frames
+   within it). If you wish to specify a value to be returned, give that
+   value as EXPR
+
+.. _examples-18:
+
+Examples
+^^^^^^^^
+
+-  ``return -1``

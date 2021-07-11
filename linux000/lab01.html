@@ -1,0 +1,325 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. 调试分析 Linux 0.00 引导程序 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/gj.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script type="text/javascript" src="../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="2. 调试分析 Linux 0.00 多任务切换" href="lab02.html" />
+    <link rel="prev" title="4. 任务管理" href="../Intelx86/chap05.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../course/slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011setup.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../experiments/Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 0.11 实验</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. 调试分析 Linux 0.00 引导程序</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.1. 实验目的</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.2. 实验内容</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bochs">1.2.1. 掌握如何手写Bochs虚拟机的配置文件</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1.2.2. 掌握Bochs虚拟机的调试技巧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.2.3. 计算机引导程序</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.3. 实验报告</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">1.3.1. 评分标准</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lab02.html">2. 调试分析 Linux 0.00 多任务切换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab01.html">3. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab02.html">4. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab03.html">5. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab04.html">6. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab05.html">7. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../linux011/lab06.html">8. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>1. 调试分析 Linux 0.00 引导程序</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="linux-0-00">
+<h1>1. 调试分析 Linux 0.00 引导程序<a class="headerlink" href="#linux-0-00" title="永久链接至标题">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.1. 实验目的<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><p>熟悉实验环境；</p></li>
+<li><p>掌握如何手写Bochs虚拟机的配置文件；</p></li>
+<li><p>掌握Bochs虚拟机的调试技巧；</p></li>
+<li><p>掌握操作系统启动的步骤；</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>1.2. 实验内容<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<div class="section" id="bochs">
+<h3>1.2.1. 掌握如何手写Bochs虚拟机的配置文件<a class="headerlink" href="#bochs" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>简介 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 虚拟机的配置文件</p></li>
+<li><p>如何设置从软驱启动</p></li>
+<li><p>如何设置从硬盘启动</p></li>
+<li><p>如何设置调试选项</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>1.2.2. 掌握Bochs虚拟机的调试技巧<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><p>如何单步跟踪？</p></li>
+<li><p>如何设置断点进行调试？</p></li>
+<li><p>如何查看通用寄存器的值？</p></li>
+<li><p>如何查看系统寄存器的值？</p></li>
+<li><p>如何查看内存指定位置的值？</p></li>
+<li><p>如何查看各种表，如 <code class="docutils literal notranslate"><span class="pre">gdt</span></code> ，<code class="docutils literal notranslate"><span class="pre">idt</span></code> ，<code class="docutils literal notranslate"><span class="pre">ldt</span></code> 等？</p></li>
+<li><p>如何查看 <code class="docutils literal notranslate"><span class="pre">TSS</span></code>？</p></li>
+<li><p>如何查看栈中的内容？</p></li>
+<li><p>如何在内存指定地方进行反汇编？</p></li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h3>1.2.3. 计算机引导程序<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>如何查看 <code class="docutils literal notranslate"><span class="pre">0x7c00</span></code> 处被装载了什么？</p></li>
+<li><p>如何把真正的内核程序从硬盘或软驱装载到自己想要放的地方;</p></li>
+<li><p>如何查看实模式的中断程序？</p></li>
+<li><p>如何静态创建 <code class="docutils literal notranslate"><span class="pre">gdt</span></code> 与 <code class="docutils literal notranslate"><span class="pre">idt</span></code> ？</p></li>
+<li><p>如何从实模式切换到保护模式？</p></li>
+<li><p>调试跟踪 <code class="docutils literal notranslate"><span class="pre">jmpi</span> <span class="pre">0,8</span></code> ，解释如何寻址？</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="id5">
+<h2>1.3. 实验报告<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>通过仔细的调试与跟踪程序，完成以下任务：</p>
+<ol class="arabic simple">
+<li><p>请简述 <code class="docutils literal notranslate"><span class="pre">head.s</span></code> 的工作原理</p></li>
+<li><p>请记录 <code class="docutils literal notranslate"><span class="pre">head.s</span></code> 的内存分布状况，写明每个数据段，代码段，栈段的起始与终止的内存地址</p></li>
+<li><p>简述 <code class="docutils literal notranslate"><span class="pre">head.s</span></code>  <code class="docutils literal notranslate"><span class="pre">57</span></code> 至 <code class="docutils literal notranslate"><span class="pre">62</span></code> 行在做什么？</p></li>
+<li><p>简述 <code class="docutils literal notranslate"><span class="pre">iret</span></code> 执行后， <code class="docutils literal notranslate"><span class="pre">pc</span></code> 如何找到下一条指令？</p></li>
+<li><p>记录 <code class="docutils literal notranslate"><span class="pre">iret</span></code> 执行前后，栈是如何变化的？</p></li>
+<li><p>当任务进行系统调用时，即 <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">0x80</span></code> 时，记录栈的变化情况。</p></li>
+</ol>
+<div class="section" id="id6">
+<h3>1.3.1. 评分标准<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h3>
+<ol class="arabic simple">
+<li><p>记录描述要详细完整，每题 15%，总共 90%</p></li>
+<li><p>格式规范美观，10%</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="lab02.html" class="btn btn-neutral float-right" title="2. 调试分析 Linux 0.00 多任务切换" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../Intelx86/chap05.html" class="btn btn-neutral float-left" title="4. 任务管理" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
+
+    </p>
+  </div>
+ 
+	<script type="text/javascript">
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1278706363'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1278706363%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));	
+	</script>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
