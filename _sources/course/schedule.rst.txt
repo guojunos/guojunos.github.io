@@ -1,29 +1,112 @@
 上课时间
 ===============
 
-课程时间 
+本学期有两个大班课
+
+* 1 班：20G0311,20G0312,20W0314,20W0311,20W0312,20W0313,20W0362,20W0361
+* 2 班：2003101,2003102,2003103,2003104,2003601,2003602
+
+实验课1班分成两个小班：1A 和 1B
+
+* 1A：20W0313,20W0314,20W0361,20W0362
+* 1B：20G0311,20G0312,20W0311,20W0312
+
+实验课2班分成三个小班：2A 、2B 和 2C
+
+* 2A：2003601,2003602
+* 2B：2003101,2003102
+* 2C：2003103,2003104
+
+1班 课程时间 
 ----------
 
-上课地点：正心311
+
+上课地点：正心43
 
 .. csv-table::
-   :file: classtime.csv
+   :file: classtime01.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+1A 实验时间
+----------
+
+上课地点：格物213
+
+.. csv-table::
+   :file: exptime1A.csv
    :header-rows: 1
    :class: longtable
    :align: center
    :widths: 20 25 25 25 30
 
 
-实验时间
+1B 实验时间
 ----------
 
-上课地点：格物214
+上课地点：格物213
 
 .. csv-table::
-   :file: exptime.csv
+   :file: exptime1B.csv
    :header-rows: 1
    :class: longtable
    :align: center
    :widths: 20 25 25 25 30
 
-   
+
+
+
+2班 课程时间 
+----------
+
+
+上课地点：正心43
+
+.. csv-table::
+   :file: classtime02.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+2A 实验时间
+----------
+
+上课地点：格物213
+
+.. csv-table::
+   :file: exptime2A.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+
+2B 实验时间
+----------
+
+上课地点：格物213
+
+.. csv-table::
+   :file: exptime2B.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+
+2C 实验时间
+----------
+
+上课地点：格物213
+
+.. csv-table::
+   :file: exptime2C.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+

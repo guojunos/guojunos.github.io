@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Linux 0.11 on Ubuntu &mdash; Guojunos 1.0.0 文档</title>
+  <title>5. Linux 0.11 on Ubuntu &mdash; Guojunos 1.0.0 文档</title>
   
 
   
@@ -38,7 +38,9 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../_static/guojun.css" type="text/css" />
     <link rel="index" title="索引" href="../genindex.html" />
-    <link rel="search" title="搜索" href="../search.html" /> 
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="6. Linux 0.11 的使用方法" href="Linux011Use.html" />
+    <link rel="prev" title="4. Linux 0.00" href="Linux000setup.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -91,13 +93,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../course/report.html">5. 实验报告</a></li>
 </ul>
 <p class="caption"><span class="caption-text">课程实验</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. 实验环境</a></li>
 <li class="toctree-l1"><a class="reference internal" href="VMware.html">2. 虚拟机环境安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="BochsInstall.html">3. Bochs 安装</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Linux000setup.html">4. Linux 0.00</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Linux011Use.html">5. Linux 0.11 on Ubuntu</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Linux 0.11 on Ubuntu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">5.1. 安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linux-0-11">5.2. 复原 linux-0.11</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">5.3. 问题及反馈</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Use.html">6. Linux 0.11 的使用方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Linux011Flow.html">7. Linux 0.11 的工作模式</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
 <ul>
@@ -121,8 +129,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/BIOS.html">1. 中断向量表</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../appendix/Bochs.html">2. Bochs 手册</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix/gdb.html">3. GDB Cheat Sheet</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">4. FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../appendix/FAQ.html">3. FAQ</a></li>
 </ul>
 
             
@@ -168,7 +175,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Linux 0.11 on Ubuntu</li>
+      <li>5. Linux 0.11 on Ubuntu</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -186,9 +193,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="linux-0-11-on-ubuntu">
-<h1>Linux 0.11 on Ubuntu<a class="headerlink" href="#linux-0-11-on-ubuntu" title="永久链接至标题">¶</a></h1>
+<h1>5. Linux 0.11 on Ubuntu<a class="headerlink" href="#linux-0-11-on-ubuntu" title="永久链接至标题">¶</a></h1>
 <div class="section" id="id1">
-<h2>安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
+<h2>5.1. 安装<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h2>
 <p>确保你的 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 安装和配置都正确以后，现在可以安装实验环境了。
 从网站上下载源代码，相应目录里有 <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code>,
 如果想更改安装目录，可以仔细读这个文件。</p>
@@ -211,13 +218,13 @@ span.prompt1:before {
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone https://gitee.com/cn-guoziyang/oslab.git ~/oslab</span>
 </pre></div></div></div>
 <div class="section" id="linux-0-11">
-<h2>复原 linux-0.11<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h2>
+<h2>5.2. 复原 linux-0.11<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h2>
 <p>考虑到实验每次需要重置 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录，因此，增加了重置功能，如下：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1"><span class="nb">cd</span> ~/hit-oslab</span>
 <span class="prompt1">./run init</span>
 </pre></div></div></div>
 <div class="section" id="id2">
-<h2>问题及反馈<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<h2>5.3. 问题及反馈<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <p>目前在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">64</span></code> 位机器上可以确保 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 和程序能够正常运行，但如果使用其他 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 某些 <code class="docutils literal notranslate"><span class="pre">64</span></code> 位系统时，出现编译 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 缺少某些文件提示时，或是安装高版本的 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 出现问题时，建议大家多在网上搜索解决方案，并尝试将成功的方案记录下来，以便分享。</p>
 </div>
 </div>
@@ -228,12 +235,21 @@ span.prompt1:before {
           </div>
           <footer>
   
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="Linux011Use.html" class="btn btn-neutral float-right" title="6. Linux 0.11 的使用方法" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Linux000setup.html" class="btn btn-neutral float-left" title="4. Linux 0.00" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2022, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2021, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>
