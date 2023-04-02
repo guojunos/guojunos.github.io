@@ -11,57 +11,57 @@ Linux 实验报告
 
 .. code-block:: console
 
-    |──01-xxx
-        ├─01_lab01
+    |──001-xxx
+        ├─001_lab01
         │  │  reports.md
         │  │  
         │  └─images
-        ├─01_lab02
+        ├─001_lab02
         │  │  reports.md
         │  │  
         │  └─images
-        ├─01_lab03
-        │  │  reports.md
-        │  │  
-        │  ├─code
-        │  └─images
-        ├─01_lab04
+        ├─001_lab03
         │  │  reports.md
         │  │  
         │  ├─code
         │  └─images
-        ├─01_lab05
+        ├─001_lab04
         │  │  reports.md
         │  │  
         │  ├─code
         │  └─images
-        ├─01_lab06
+        ├─001_lab05
         │  │  reports.md
         │  │  
         │  ├─code
         │  └─images
-        ├─01_lab07
+        ├─001_lab06
         │  │  reports.md
         │  │  
         │  ├─code
         │  └─images
-        └─01_lab08
+        ├─001_lab07
+        │  │  reports.md
+        │  │  
+        │  ├─code
+        │  └─images
+        └─001_lab08
             │  reports.md
             │  
             ├─code
             └─images
 
-- ``01`` 是 ``id`` 号，``xxx`` 是姓名，详见名单
+- ``001`` 是 ``id`` 号，``xxx`` 是姓名，详见名单
 - ``reports.md`` 是 ``Markdown`` 的实验报告
 - ``images`` 子目录存放的是报告里用到的图片
 - ``code`` 从实验 ``3`` 开始提交的存放代码的目录          
 
-例如： ``01`` 号同学第一次实验提交的报告为 ``01-xxx-lab01.rar`` ，这个压缩文件里应是如下形式：
+例如： ``001`` 号同学第一次实验提交的报告为 ``001-xxx-lab01.rar`` ，这个压缩文件里应是如下形式：
 
 .. code-block:: console
 
-    |──01-xxx-lab01.rar
-        ├─01_lab01
+    |──001-xxx-lab01.rar
+        ├─001_lab01
         │  │  reports.md
         │  │  
         │  └─images
@@ -85,8 +85,8 @@ Linux 实验报告
 
 .. code-block:: console
 
-    |──01-xxx-read01.rar
-        ├─01_read01
+    |──001-xxx-read01.rar
+        ├─001_read01
         │  │  reports.md
         │  │  
         │  └─images
