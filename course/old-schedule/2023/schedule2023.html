@@ -1,0 +1,743 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="zh-CN" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-CN" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>上课时间 &mdash; Guojunos 1.0.0 文档</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/gj.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../../_static/language_data.js"></script>
+        <script type="text/javascript" src="../../../_static/translations.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/guojun.css" type="text/css" />
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Guojunos
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">课程信息</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../slides.html">1. 课件资料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../book.html">2. 使用教材</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software.html">3. 所需软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../schedule.html">4. 上课时间</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../report.html">5. 实验报告</a></li>
+</ul>
+<p class="caption"><span class="caption-text">课程实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/introduction.html">1. 实验环境</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/VMware.html">2. 虚拟机环境安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/BochsInstall.html">3. Bochs 安装</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/Linux000setup.html">4. Linux 0.00</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/Linux011Use.html">5. Linux 0.11 on Ubuntu</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../experiments/Linux011Flow.html">6. Linux 0.11 的工作模式</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Intel手册读书笔记</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Intelx86/chap02.html">1. x86系统架构概览</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Intelx86/chap03.html">2. 保护模式内存管理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Intelx86/chap04.html">3. 中断和异常处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Intelx86/chap05.html">4. 任务管理</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Linux 实验</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux000/lab01.html">1. 调试分析 Linux 0.00 引导程序</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux000/lab02.html">2. 调试分析 Linux 0.00 多任务切换</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab01.html">3. 操作系统的引导</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab02.html">4. 系统调用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab03.html">5. 进程运行轨迹的跟踪与统计</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab04.html">6. 信号量的实现和应用</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab05.html">7. 地址映射与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../linux011/lab06.html">8. 打印进程地址转换过程</a></li>
+</ul>
+<p class="caption"><span class="caption-text">附录</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix/BIOS.html">1. 中断向量表</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix/Bochs.html">2. Bochs 手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix/gdb.html">3. GDB Cheat Sheet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix/FAQ.html">4. FAQ</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Guojunos</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+      <li>上课时间</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>上课时间<a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<p>本学期有两个大班课</p>
+<ul class="simple">
+<li><p>1 班：20G0311,20G0312,20W0314,20W0311,20W0312,20W0313,20W0362,20W0361</p></li>
+<li><p>2 班：2003101,2003102,2003103,2003104,2003601,2003602</p></li>
+</ul>
+<p>实验课1班分成两个小班：1A 和 1B</p>
+<ul class="simple">
+<li><p>1A：20W0313,20W0314,20W0361,20W0362</p></li>
+<li><p>1B：20G0311,20G0312,20W0311,20W0312</p></li>
+</ul>
+<p>实验课2班分成三个小班：2A 、2B 和 2C</p>
+<ul class="simple">
+<li><p>2A：2003601,2003602</p></li>
+<li><p>2B：2003101,2003102</p></li>
+<li><p>2C：2003103,2003104</p></li>
+</ul>
+<div class="section" id="id2">
+<h2>1班 课程时间<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
+<p>上课地点：正心43</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Class 01</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/3</p></td>
+<td><p>Week 07</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 02</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/7</p></td>
+<td><p>Week 07</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 03</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/10</p></td>
+<td><p>Week 08</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 04</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/14</p></td>
+<td><p>Week 08</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 05</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/17</p></td>
+<td><p>Week 09</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 06</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/21</p></td>
+<td><p>Week 09</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 07</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/24</p></td>
+<td><p>Week 10</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 08</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/28</p></td>
+<td><p>Week 10</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 09</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/1</p></td>
+<td><p>Week 11</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 10</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/5</p></td>
+<td><p>Week 11</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 11</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/8</p></td>
+<td><p>Week 12</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 12</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/12</p></td>
+<td><p>Week 12</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 13</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/15</p></td>
+<td><p>Week 13</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 14</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/19</p></td>
+<td><p>Week 13</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 15</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/22</p></td>
+<td><p>Week 14</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 16</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/26</p></td>
+<td><p>Week 14</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 17</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/29</p></td>
+<td><p>Week 15</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 18</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/6/2</p></td>
+<td><p>Week 15</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 19</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/6/5</p></td>
+<td><p>Week 16</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 20</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/6/9</p></td>
+<td><p>Week 16</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="a">
+<h2>1A 实验时间<a class="headerlink" href="#a" title="永久链接至标题">¶</a></h2>
+<p>上课地点：格物213</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exp 01</p></td>
+<td><p>15:00-15:30</p></td>
+<td><p>2023/5/6</p></td>
+<td><p>Week 11</p></td>
+<td><p>Saturday</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exp 02</p></td>
+<td><p>13:00-15:30</p></td>
+<td><p>2023/5/13</p></td>
+<td><p>Week 12</p></td>
+<td><p>Saturday</p></td>
+</tr>
+<tr class="row-even"><td><p>Exp 03</p></td>
+<td><p>13:00-15:30</p></td>
+<td><p>2023/5/20</p></td>
+<td><p>Week 13</p></td>
+<td><p>Saturday</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="b">
+<h2>1B 实验时间<a class="headerlink" href="#b" title="永久链接至标题">¶</a></h2>
+<p>上课地点：格物213</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exp 01</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/7</p></td>
+<td><p>Week 11</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exp 02</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/14</p></td>
+<td><p>Week 12</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-even"><td><p>Exp 03</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/21</p></td>
+<td><p>Week 13</p></td>
+<td><p>Sunday</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id3">
+<h2>2班 课程时间<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h2>
+<p>上课地点：正心43</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Class 01</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/3</p></td>
+<td><p>Week 07</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 02</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/7</p></td>
+<td><p>Week 07</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 03</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/10</p></td>
+<td><p>Week 08</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 04</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/14</p></td>
+<td><p>Week 08</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 05</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/17</p></td>
+<td><p>Week 09</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 06</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/21</p></td>
+<td><p>Week 09</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 07</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/4/24</p></td>
+<td><p>Week 10</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 08</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/4/28</p></td>
+<td><p>Week 10</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 09</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/1</p></td>
+<td><p>Week 11</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 10</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/5</p></td>
+<td><p>Week 11</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 11</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/8</p></td>
+<td><p>Week 12</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 12</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/12</p></td>
+<td><p>Week 12</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 13</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/15</p></td>
+<td><p>Week 13</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 14</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/19</p></td>
+<td><p>Week 13</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 15</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/22</p></td>
+<td><p>Week 14</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 16</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/5/26</p></td>
+<td><p>Week 14</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 17</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/5/29</p></td>
+<td><p>Week 15</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 18</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/6/2</p></td>
+<td><p>Week 15</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Class 19</p></td>
+<td><p>10:00-11:45</p></td>
+<td><p>2023/6/5</p></td>
+<td><p>Week 16</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Class 20</p></td>
+<td><p>13:45-13:30</p></td>
+<td><p>2023/6/9</p></td>
+<td><p>Week 16</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id4">
+<h2>2A 实验时间<a class="headerlink" href="#id4" title="永久链接至标题">¶</a></h2>
+<p>上课地点：格物213</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exp 01</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/6</p></td>
+<td><p>Week 11</p></td>
+<td><p>Saturday</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exp 02</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/13</p></td>
+<td><p>Week 12</p></td>
+<td><p>Saturday</p></td>
+</tr>
+<tr class="row-even"><td><p>Exp 03</p></td>
+<td><p>15:40-18:10</p></td>
+<td><p>2023/5/20</p></td>
+<td><p>Week 13</p></td>
+<td><p>Saturday</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="id5">
+<h2>2B 实验时间<a class="headerlink" href="#id5" title="永久链接至标题">¶</a></h2>
+<p>上课地点：格物213</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exp 01</p></td>
+<td><p>15:00-15:30</p></td>
+<td><p>2023/5/7</p></td>
+<td><p>Week 11</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exp 02</p></td>
+<td><p>15:00-15:30</p></td>
+<td><p>2023/5/14</p></td>
+<td><p>Week 12</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-even"><td><p>Exp 03</p></td>
+<td><p>15:00-15:30</p></td>
+<td><p>2023/5/21</p></td>
+<td><p>Week 13</p></td>
+<td><p>Sunday</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="c">
+<h2>2C 实验时间<a class="headerlink" href="#c" title="永久链接至标题">¶</a></h2>
+<p>上课地点：格物213</p>
+<table class="colwidths-given longtable docutils align-center">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>课次</p></th>
+<th class="head"><p>时间</p></th>
+<th class="head"><p>日期</p></th>
+<th class="head"><p>周次</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Exp 01</p></td>
+<td><p>10:00-12:30</p></td>
+<td><p>2023/5/7</p></td>
+<td><p>Week 11</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-odd"><td><p>Exp 02</p></td>
+<td><p>10:00-12:30</p></td>
+<td><p>2023/5/14</p></td>
+<td><p>Week 12</p></td>
+<td><p>Sunday</p></td>
+</tr>
+<tr class="row-even"><td><p>Exp 03</p></td>
+<td><p>10:00-12:30</p></td>
+<td><p>2023/5/21</p></td>
+<td><p>Week 13</p></td>
+<td><p>Sunday</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2023, Dr. GuoJun LIU. All Rights Reserved.
+
+    </p>
+  </div>
+ 
+	<script type="text/javascript">
+		document.write(unescape("%3Cspan id='cnzz_stat_icon_1278706363'%3E%3C/span%3E%3Cscript src='https://s4.cnzz.com/z_stat.php%3Fid%3D1278706363%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));	
+	</script>
+
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

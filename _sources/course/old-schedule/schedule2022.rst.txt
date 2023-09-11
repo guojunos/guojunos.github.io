@@ -1,0 +1,29 @@
+上课时间
+===============
+
+课程时间 
+----------
+
+上课地点：正心311
+
+.. csv-table::
+   :file: classtime.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+
+实验时间
+----------
+
+上课地点：格物214
+
+.. csv-table::
+   :file: exptime.csv
+   :header-rows: 1
+   :class: longtable
+   :align: center
+   :widths: 20 25 25 25 30
+
+   
