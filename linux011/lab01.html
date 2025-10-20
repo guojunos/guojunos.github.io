@@ -216,7 +216,7 @@
 <div class="section" id="id2">
 <h2>3.1. 实验目的<a class="headerlink" href="#id2" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
-<li><p>熟悉实验环境；</p></li>
+<li><p>熟悉 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 下编译内核源码的实验环境；</p></li>
 <li><p>建立对操作系统引导过程的深入认识；</p></li>
 <li><p>掌握操作系统的基本开发过程；</p></li>
 <li><p>能对操作系统代码进行简单的控制，揭开操作系统的神秘面纱。</p></li>
@@ -248,9 +248,8 @@ span.prompt1:before {
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">Now we are in SETUP</span>
 </pre></div></div><ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 能获取至少一个基本的硬件参数（如内存参数、显卡参数、硬盘参数等），
-将其存放在内存的特定地址，并输出到屏幕上。</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 不再加载Linux内核，保持上述信息显示在屏幕上即可。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 能获取至少一个基本的硬件参数（如内存参数、显卡参数、硬盘参数等），将其存放在内存的特定地址，并输出到屏幕上。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 不再加载 <code class="docutils literal notranslate"><span class="pre">Linux</span></code> 内核，保持上述信息显示在屏幕上即可。</p></li>
 </ol>
 </div>
 </div>
@@ -267,18 +266,18 @@ span.prompt1:before {
 <li><p><code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 正确读入 <code class="docutils literal notranslate"><span class="pre">setup</span></code> ，10%</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setup</span></code> 获取硬件参数正确，20%</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setup</span></code> 正确显示硬件参数，20%</p></li>
-<li><p>实验报告，20%</p></li>
+<li><p>实验报告，要完整记录修改流程并给出实验结果截图，20%</p></li>
 </ol>
 </div>
 </div>
 <div class="section" id="id6">
 <h2>3.4. 实验提示<a class="headerlink" href="#id6" title="永久链接至标题">¶</a></h2>
 <p>操作系统的 <code class="docutils literal notranslate"><span class="pre">boot</span></code> 代码有很多，并且大部分是相似的。
-本实验仿照 <code class="docutils literal notranslate"><span class="pre">Linux-0.11/boot</span></code> 目录下的 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> ，以剪裁它们为主线。当然，如果能完全从头编写，并实现实验所要求的功能，是再好不过了。</p>
+本实验仿照 <code class="docutils literal notranslate"><span class="pre">Linux-0.11/boot</span></code> 目录下的 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> ，以 <strong>剪裁</strong> 它们为主线。当然，如果能完全从头编写，并实现实验所要求的功能，是再好不过了。</p>
 <p>同济大学赵炯博士的《Linux内核0.11完全注释（V5.0）》（以后简称《注释》）的第 <code class="docutils literal notranslate"><span class="pre">6</span></code> 章是非常有帮助的参考，实验中可能遇到的各种问题，几乎都能找到答案。</p>
 <p>需要注意的是， <code class="docutils literal notranslate"><span class="pre">oslab</span></code> 中的汇编代码使用 <code class="docutils literal notranslate"><span class="pre">as86</span></code> 编译，语法和汇编课上所授稍有不同。</p>
 <p>下面将给出一些更具体的 <strong>提示</strong>。这些提示并不是实验的一步一步的指导，而是罗列了一些实验中可能遇到的困难，并给予相关提示。它们肯定不会涵盖所有问题，也不保证其中的每个字都对完成实验有帮助。
-所以，它们更适合在你遇到问题时查阅，而不是当作指南一样地亦步亦趋。本书所有实验的提示都是秉承这个思想编写的。</p>
+所以，它们更适合在你遇到问题时查阅，而不是当作指南一样地亦步亦趋。所有实验的提示都是秉承这个思想编写的。</p>
 <div class="section" id="linux-0-11">
 <h3>3.4.1. Linux 0.11相关代码详解<a class="headerlink" href="#linux-0-11" title="永久链接至标题">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">boot/bootsect.s</span></code> 、 <code class="docutils literal notranslate"><span class="pre">boot/setup.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> 是本实验会涉及到的源文件。
@@ -326,14 +325,14 @@ span.prompt1:before {
 </div>
 <div class="section" id="id9">
 <h3>3.4.4. 编译和运行<a class="headerlink" href="#id9" title="永久链接至标题">¶</a></h3>
-<p>Ubuntu上先从终端进入 <code class="docutils literal notranslate"><span class="pre">~/oslab/linux-0.11/boot/</span></code> 目录。
+<p><code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 上先从终端进入 <code class="docutils literal notranslate"><span class="pre">~/oslab/linux-0.11/boot/</span></code> 目录。
 执行下面两个命令编译和链接 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> ：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">as86 -0 -a -o bootsect.o bootsect.s</span>
 <span class="prompt1">ld86 -0 -s -o bootsect bootsect.o</span>
 </pre></div></div><p>其中：</p>
 <dl class="option-list">
 <dt><kbd><span class="option">-0</span></kbd></dt>
-<dd><p>（注意：这是数字 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，不是字母 <code class="docutils literal notranslate"><span class="pre">O</span></code> ）表示生成 <code class="docutils literal notranslate"><span class="pre">8086</span></code> 的16位目标程序</p>
+<dd><p>（注意：这是数字 <code class="docutils literal notranslate"><span class="pre">0</span></code> ，不是字母 <code class="docutils literal notranslate"><span class="pre">O</span></code> ）表示生成 <code class="docutils literal notranslate"><span class="pre">8086</span></code> 的 <code class="docutils literal notranslate"><span class="pre">16</span></code> 位目标程序</p>
 </dd>
 <dt><kbd><span class="option">-a</span></kbd></dt>
 <dd><p>表示生成与 <code class="docutils literal notranslate"><span class="pre">GNU</span> <span class="pre">as</span></code> 和 <code class="docutils literal notranslate"><span class="pre">ld</span></code> 部分兼容的代码</p>
@@ -343,7 +342,7 @@ span.prompt1:before {
 </dd>
 </dl>
 <p>如果这两个命令没有任何输出，说明编译与链接都通过了。
-Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 可列出下面的信息：</p>
+<code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下用 <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-l</span></code> 可列出下面的信息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">-rw--x--x    <span class="m">1</span>  root  root  <span class="m">544</span>  Jul  <span class="m">25</span>  <span class="m">15</span>:07   bootsect</span>
 <span class="prompt1">-rw------    <span class="m">1</span>  root  root  <span class="m">257</span>  Jul  <span class="m">25</span>  <span class="m">15</span>:07   bootsect.o</span>
 <span class="prompt1">-rw------    <span class="m">1</span>  root  root  <span class="m">686</span>  Jul  <span class="m">25</span>  <span class="m">14</span>:28   bootsect.s</span>
@@ -391,11 +390,11 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 </pre></div>
 </div>
 <p>接下来干什么呢？是的，
-要去掉这 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节的文件头部（ <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> 的功能之一就是这个）
-！随手编个小的文件读写程序都可以去掉它。不过，懒且聪明的人会在Ubuntu下用命令：</p>
+要去掉这 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节的文件头部（ <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> 的功能之一就是这个）！
+随手编个小的文件读写程序都可以去掉它。不过，懒且聪明的人会在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下用命令：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">dd <span class="nv">bs</span><span class="o">=</span><span class="m">1</span> <span class="k">if</span><span class="o">=</span>bootsect <span class="nv">of</span><span class="o">=</span>Image <span class="nv">skip</span><span class="o">=</span><span class="m">32</span></span>
 </pre></div></div><p>生成的 <code class="docutils literal notranslate"><span class="pre">Image</span></code> 就是去掉文件头的 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 。</p>
-<p>去掉这32个字节后，将生成的文件拷贝到 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录下，并一定要命名为 <strong>Image</strong> （注意大小写）。
+<p>去掉这 <code class="docutils literal notranslate"><span class="pre">32</span></code> 个字节后，将生成的文件拷贝到 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录下，并一定要命名为 <strong>Image</strong> （注意大小写）。
 然后就 <code class="docutils literal notranslate"><span class="pre">run</span></code> 吧！</p>
 <p><img alt="图1 bootsect引导后的系统启动情况" src="../_images/lab01bootsect.png" /></p>
 <p>图1 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 引导后的系统启动情况</p>
@@ -428,14 +427,14 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 <div class="section" id="id10">
 <h3>3.4.6. 再次编译<a class="headerlink" href="#id10" title="永久链接至标题">¶</a></h3>
 <p>现在有两个文件都要编译、链接。一个个手工编译，效率低下，所以借助 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 是最佳方式。</p>
-<p>在Ubuntu下，进入 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录后，使用下面命令（注意大小写）：</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">Ubuntu</span></code> 下，进入 <code class="docutils literal notranslate"><span class="pre">linux-0.11</span></code> 目录后，使用下面命令（注意大小写）：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">make BootImage</span>
 </pre></div></div><p>会看到：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">Unable to open <span class="s1">&#39;system&#39;</span></span>
 <span class="prompt1">make: *** <span class="o">[</span>BootImage<span class="o">]</span> Error <span class="m">1</span></span>
 </pre></div></div><p>有 <code class="docutils literal notranslate"><span class="pre">Error</span></code> ！这是因为 <code class="docutils literal notranslate"><span class="pre">make</span></code> 根据 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的指引执行了 <code class="docutils literal notranslate"><span class="pre">tools/build.c</span></code> ，
 它是为生成整个内核的镜像文件而设计的，没考虑我们只需要 <code class="docutils literal notranslate"><span class="pre">bootsect.s</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 的情况。
-它在向我们要“系统”的核心代码。为完成实验，接下来给它打个小补丁。</p>
+它在向我们要 <strong>系统</strong> 的核心代码。为完成实验，接下来给它打个小补丁。</p>
 </div>
 <div class="section" id="build-c-build-sh">
 <h3>3.4.7. 修改 build.c 或 build.sh<a class="headerlink" href="#build-c-build-sh" title="永久链接至标题">¶</a></h3>
@@ -447,7 +446,22 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 所以，改造 <code class="docutils literal notranslate"><span class="pre">build.c</span></code> 的思路就是当 <code class="docutils literal notranslate"><span class="pre">argv[3]</span></code> 是 <code class="docutils literal notranslate"><span class="pre">none</span></code> 的时候，
 只写 <code class="docutils literal notranslate"><span class="pre">bootsect</span></code> 和 <code class="docutils literal notranslate"><span class="pre">setup</span></code> ，忽略所有与 <code class="docutils literal notranslate"><span class="pre">system</span></code> 有关的工作，或者在该写 <code class="docutils literal notranslate"><span class="pre">system</span></code> 的位置都写上 <code class="docutils literal notranslate"><span class="pre">0</span></code> 。</p>
 <p>修改工作主要集中在 <code class="docutils literal notranslate"><span class="pre">build.c</span></code> 的尾部，请斟酌。</p>
-<p>如果使用老师新改的实验环境，则修改 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code>，内核在磁盘上的分布如下图，仔细读 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> 这个脚本，你会发现它就是按照顺序把每一部分写入的，所以，如何改动显而易见。</p>
+<p>如果使用老师新改的实验环境，则修改 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code>，内核在磁盘上的分布如下图，仔细读 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> 这个脚本，你会发现它就是按照顺序把每一部分 <strong>依次写入</strong> 的，所以，如何改动显而易见。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># build.sh 依次写入各个部分，修改起来更加简单</span>
+
+<span class="c1"># Write bootsect (512 bytes, one sector) to stdout</span>
+<span class="o">...</span>
+
+<span class="c1"># Write setup(4 * 512bytes, four sectors) to stdout</span>
+<span class="o">...</span>
+
+<span class="c1"># Write system(&lt; SYS_SIZE) to stdout</span>
+<span class="o">...</span>
+
+<span class="c1"># Set &quot;device&quot; for the root image file</span>
+<span class="o">...</span>
+</pre></div>
+</div>
 <p><img alt="图2 内核在磁盘上的分布情况" src="../_images/lab01boot.png" /></p>
 <p>图2 内核在磁盘上的分布情况</p>
 <p>当按照前一节所讲的编译方法编译成功后， <code class="docutils literal notranslate"><span class="pre">run</span></code> ，就得到了如下图所示的运行结果，和我们想得到的结果完全一样。</p>
@@ -571,7 +585,7 @@ Ubuntu下用 <code class="docutils literal notranslate"><span class="pre">ls</sp
 但事情往往并不总是顺利的，前面的两个实验大多数实验者可能一次就编译调试通过了（这里要提醒大家：编写操作系统的代码一定要认真，因为要调试操作系统并不是一件很方便的事）。
 但在这个实验中会出现运行结果不对的情况（为什么呢？因为我们给的代码并不是100%好用的）。
 所以接下来要复习一下汇编，并阅读《Bochs使用手册》，学学在 <code class="docutils literal notranslate"><span class="pre">Bochs</span></code> 中如何调试操作系统代码。</p>
-<p>我想经过漫长而痛苦的调试后，大家一定能兴奋地得到下面的运行结果：</p>
+<p>经过漫长而痛苦的调试后，大家一定能兴奋地得到下面的运行结果：</p>
 <p><img alt="图4 用可以打印硬件参数的setup.s进行引导的结果" src="../_images/lab01_final.png" /></p>
 <p>图4 用可以打印硬件参数的 <code class="docutils literal notranslate"><span class="pre">setup.s</span></code> 进行引导的结果</p>
 <p><code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Size</span></code> 是 <code class="docutils literal notranslate"><span class="pre">0x3C00KB</span></code> ，算一算刚好是 <code class="docutils literal notranslate"><span class="pre">15MB</span></code> （扩展内存），
@@ -618,7 +632,7 @@ ata0-master: type=disk, mode=flat, cylinders=204, heads=16, spt=38
 
   <div role="contentinfo">
     <p>
-        &copy; Copyright 2019-2023, Dr. GuoJun LIU. All Rights Reserved.
+        &copy; Copyright 2019-2025, Dr. GuoJun LIU. All Rights Reserved.
 
     </p>
   </div>
